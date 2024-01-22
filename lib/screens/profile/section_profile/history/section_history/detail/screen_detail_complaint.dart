@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/section_detail/body_detail_complaint.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ScreenDetailComplaint extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ScreenDetailComplaintState extends State<ScreenDetailComplaint> {
         elevation: 0,
         iconTheme: const IconThemeData(color: black),
       ),
-      // body: BodyDetailComplaint(),
+      body: const BodyDetailComplaint(),
     );
   }
 }

@@ -19,28 +19,40 @@ class SectionIklan extends StatelessWidget {
             width: 320,
             height: 135,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: white,
+              borderRadius: BorderRadius.circular(8),
+              color: primaryGreen,
+              image: const DecorationImage(
+                  image: AssetImage(
+                    pathImageDummyImage,
+                  ),
+                  fit: BoxFit.cover),
             ),
-            child: Image.asset(pathImageBannerBeranda),
           ),
           Container(
             width: 320,
             height: 135,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: white,
+              borderRadius: BorderRadius.circular(8),
+              color: primaryGreen,
+              image: const DecorationImage(
+                  image: AssetImage(
+                    pathImageDummyImage,
+                  ),
+                  fit: BoxFit.cover),
             ),
-            child: Image.asset(pathImageBannerBeranda),
           ),
           Container(
             width: 320,
             height: 135,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: white,
+              borderRadius: BorderRadius.circular(8),
+              color: primaryGreen,
+              image: const DecorationImage(
+                  image: AssetImage(
+                    pathImageDummyImage,
+                  ),
+                  fit: BoxFit.cover),
             ),
-            child: Image.asset(pathImageBannerBeranda),
           ),
         ],
       ),

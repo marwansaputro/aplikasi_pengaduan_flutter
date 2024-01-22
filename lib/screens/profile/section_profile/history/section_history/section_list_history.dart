@@ -18,7 +18,7 @@ class _SectionListHistoryState extends State<SectionListHistory> {
     return Padding(
       padding: paddingMobile,
       child: Padding(
-        padding: const EdgeInsets.only(top: 5),
+        padding: const EdgeInsets.only(top: 10),
         child: IColumn(
           gap: 5,
           children: [
@@ -32,7 +32,8 @@ class _SectionListHistoryState extends State<SectionListHistory> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ScreenDetailComplaint()),
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
                 ),
               },
             ),
