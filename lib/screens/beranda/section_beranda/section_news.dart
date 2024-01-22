@@ -14,12 +14,16 @@ class SectionNews extends StatelessWidget {
       children: [
         Container(
           width: 400,
-          height: 200,
+          height: 250,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: white,
+            borderRadius: BorderRadius.circular(8),
+            color: primaryGreen,
+            image: const DecorationImage(
+                image: AssetImage(
+                  pathImageDummyImage,
+                ),
+                fit: BoxFit.cover),
           ),
-          child: Image.asset(pathImageBannerBeranda),
         ),
         const SizedBox(
           height: 10,
@@ -30,34 +34,44 @@ class SectionNews extends StatelessWidget {
             gap: 10,
             children: [
               Container(
-                width: 200,
-                height: 180,
+                width: 150,
+                height: 150,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   color: white,
                 ),
-                child: Image.asset(pathImageBannerBeranda,
-                    alignment: AlignmentDirectional.topStart),
+                alignment: Alignment.topCenter,
+                child: Image.asset(pathImageDummyImage),
               ),
               Container(
-                width: 200,
-                height: 180,
+                width: 150,
+                height: 150,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   color: white,
                 ),
-                child: Image.asset(pathImageBannerBeranda,
-                    alignment: AlignmentDirectional.topStart),
+                alignment: Alignment.topCenter,
+                child: Image.asset(pathImageDummyImage),
               ),
               Container(
-                width: 200,
-                height: 180,
+                width: 150,
+                height: 150,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   color: white,
                 ),
-                child: Image.asset(pathImageBannerBeranda,
-                    alignment: AlignmentDirectional.topStart),
+                alignment: Alignment.topCenter,
+                child: Image.asset(pathImageDummyImage),
+              ),
+              Container(
+                width: 150,
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: white,
+                ),
+                alignment: Alignment.topCenter,
+                child: Image.asset(pathImageDummyImage),
               ),
             ],
           ),
