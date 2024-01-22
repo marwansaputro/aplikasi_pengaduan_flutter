@@ -1,5 +1,6 @@
 //Banners
 const pathImageBannerBeranda = 'assets/images/banner/banner_beranda.jpg';
+const pathImageDummyImage = 'assets/images/banner/dummy-image.jpg';
 //Avatar
 const pathImageDummyProfile = 'assets/images/avatar/dummy_profile.jpg';
 //Icon
