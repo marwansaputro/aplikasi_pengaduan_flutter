@@ -22,7 +22,7 @@ class MenuProfile extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: Colors.lightGreen,
         padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: white,
       ),
       onPressed: press,
