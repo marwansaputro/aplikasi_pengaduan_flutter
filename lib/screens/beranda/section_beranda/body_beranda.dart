@@ -51,7 +51,7 @@ class _BodyBerandaState extends State<BodyBeranda> {
                                 .withOpacity(0.10),
                             blurRadius: 10,
                             spreadRadius: 10,
-                            offset: const Offset(1, 1))
+                            offset: const Offset(1, 1)),
                       ],
                       color: grey),
                   child: const Padding(

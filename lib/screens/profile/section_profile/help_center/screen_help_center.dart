@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/profile/section_profile/help_center/section_help_center/body_help_center.dart';
-import 'package:integra_mobile/screens/profile/section_profile/history/section_history/body_history.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ScreenHelpCenter extends StatefulWidget {
