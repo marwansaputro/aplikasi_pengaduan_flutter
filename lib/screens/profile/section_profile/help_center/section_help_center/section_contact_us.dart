@@ -43,6 +43,16 @@ class SectionContactUs extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: darkblue,
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .shadow
+                          .withOpacity(0.25),
+                      blurRadius: 25,
+                      spreadRadius: -10,
+                      offset: const Offset(0, 30)),
+                ],
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15),

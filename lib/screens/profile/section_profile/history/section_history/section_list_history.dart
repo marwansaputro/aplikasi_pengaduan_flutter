@@ -65,8 +65,9 @@ class Complaint extends StatelessWidget {
         foregroundColor: primaryGreen,
         padding: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: Colors.white,
-        shadowColor: primaryGreen,
+        backgroundColor: white,
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
       ),
       onPressed: press,
       child: Row(

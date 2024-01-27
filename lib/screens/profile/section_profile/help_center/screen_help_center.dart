@@ -13,7 +13,7 @@ class _ScreenHelpCenterState extends State<ScreenHelpCenter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryGrey,
+      backgroundColor: grey,
       appBar: AppBar(
         title: Text(
           "Help Center",
@@ -22,7 +22,7 @@ class _ScreenHelpCenterState extends State<ScreenHelpCenter> {
               .headlineSmall
               ?.copyWith(color: black, fontWeight: FontWeight.w600),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: white,
         elevation: 0,
         iconTheme: const IconThemeData(color: black),
       ),

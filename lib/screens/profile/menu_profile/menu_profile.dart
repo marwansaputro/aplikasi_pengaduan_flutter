@@ -26,8 +26,8 @@ class MenuProfile extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         backgroundColor: white,
-        // elevation: 30,
-        // shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.2),
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
 
         // boxShadow: [
         //                 BoxShadow(

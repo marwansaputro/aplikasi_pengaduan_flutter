@@ -96,7 +96,8 @@ class StatusColor extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
-          shadowColor: primaryGreen,
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
         ),
         onPressed: press,
         child: Row(
@@ -153,7 +154,8 @@ class MenuProfile extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: white,
-          shadowColor: primaryGreen,
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
         ),
         onPressed: press,
         child: Row(
