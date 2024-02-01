@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/value/theme.dart';
 
 class SectionDetailComplaint extends StatelessWidget {
   const SectionDetailComplaint({super.key});
@@ -16,17 +17,17 @@ class SectionDetailComplaint extends StatelessWidget {
           children: [
             Column(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Stack(
-                    children: [
-                      Image.asset(pathImageDummyImage, fit: BoxFit.cover),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                Container(
+                  width: 400,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: white,
+                    image: const DecorationImage(
+                        image: AssetImage(
+                          pathImageDummyImage,
                         ),
-                      ),
-                    ],
+                        fit: BoxFit.cover),
                   ),
                 ),
                 const SizedBox(
@@ -91,12 +92,12 @@ class StatusColor extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Color.fromARGB(255, 1, 60, 90),
-          padding: EdgeInsets.all(15.0),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          foregroundColor: primaryGreen,
+          padding: const EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
-          shadowColor: const Color.fromARGB(255, 1, 60, 90),
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
         ),
         onPressed: press,
         child: Row(
@@ -149,12 +150,12 @@ class MenuProfile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Color.fromARGB(255, 1, 60, 90),
-          padding: EdgeInsets.all(15.0),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          backgroundColor: Colors.white,
-          shadowColor: const Color.fromARGB(255, 1, 60, 90),
+          foregroundColor: primaryGreen,
+          padding: const EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          backgroundColor: white,
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
         ),
         onPressed: press,
         child: Row(

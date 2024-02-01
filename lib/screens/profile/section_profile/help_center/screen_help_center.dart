@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/section_detail/body_detail_complaint.dart';
+import 'package:integra_mobile/screens/profile/section_profile/help_center/section_help_center/body_help_center.dart';
 import 'package:integra_mobile/value/theme.dart';
 
-class ScreenDetailComplaint extends StatefulWidget {
-  const ScreenDetailComplaint({super.key});
+class ScreenHelpCenter extends StatefulWidget {
+  const ScreenHelpCenter({super.key});
 
   @override
-  State<ScreenDetailComplaint> createState() => _ScreenDetailComplaintState();
+  State<ScreenHelpCenter> createState() => _ScreenHelpCenterState();
 }
 
-class _ScreenDetailComplaintState extends State<ScreenDetailComplaint> {
+class _ScreenHelpCenterState extends State<ScreenHelpCenter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: grey,
       appBar: AppBar(
         title: Text(
-          'Detail Complaint',
+          "Help Center",
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -26,7 +26,7 @@ class _ScreenDetailComplaintState extends State<ScreenDetailComplaint> {
         elevation: 0,
         iconTheme: const IconThemeData(color: black),
       ),
-      body: const BodyDetailComplaint(),
+      body: const BodyHelpCenter(),
     );
   }
 }

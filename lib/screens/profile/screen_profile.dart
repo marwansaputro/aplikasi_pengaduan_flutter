@@ -13,7 +13,7 @@ class _ScreenProfileState extends State<ScreenProfile> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: primaryGrey,
+      backgroundColor: grey,
       body: BodyProfile(),
     );
   }

@@ -13,7 +13,7 @@ class _ScreenHistoryState extends State<ScreenHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryGrey,
+      backgroundColor: grey,
       appBar: AppBar(
         title: Text(
           "History List",

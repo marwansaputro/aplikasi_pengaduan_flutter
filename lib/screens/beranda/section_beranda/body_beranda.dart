@@ -25,7 +25,7 @@ class _BodyBerandaState extends State<BodyBeranda> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryGrey,
+      color: grey,
       child: ListView(
         children: [
           Padding(
@@ -35,9 +35,8 @@ class _BodyBerandaState extends State<BodyBeranda> {
               children: [
                 const SectionMenu(),
                 Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: double.infinity,
-                  ),
+                  width: double.infinity,
+                  constraints: const BoxConstraints(maxWidth: 500),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
@@ -51,9 +50,9 @@ class _BodyBerandaState extends State<BodyBeranda> {
                                 .withOpacity(0.10),
                             blurRadius: 10,
                             spreadRadius: 10,
-                            offset: const Offset(1, 1))
+                            offset: const Offset(1, 1)),
                       ],
-                      color: grey),
+                      color: white),
                   child: const Padding(
                     padding: paddingMobile,
                     child: Column(
@@ -62,9 +61,9 @@ class _BodyBerandaState extends State<BodyBeranda> {
                         SectionIklan(),
                         SectionTitleNews(),
                         SectionNews(),
-                        SizedBox(
-                          height: 25,
-                        )
+                        // SizedBox(
+                        //   height: 100,
+                        // )
                       ],
                     ),
                   ),

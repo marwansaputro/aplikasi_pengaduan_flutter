@@ -3,6 +3,7 @@ import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/profile/menu_profile/menu_profile.dart';
 import 'package:integra_mobile/screens/profile/section_profile/account/screen_account.dart';
+import 'package:integra_mobile/screens/profile/section_profile/help_center/screen_help_center.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/widget/button/button_solid.dart';
@@ -57,8 +58,14 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
             MenuProfile(
               icon: pathIIconApps,
               judul: 'Help Center',
-              subjudul: 'FAQ, Customer Service',
-              press: () => {},
+              subjudul: 'Contact Us, Customer Service',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ScreenHelpCenter()),
+                ),
+              },
             ),
             const SizedBox(height: 10),
             ButtonSolid(

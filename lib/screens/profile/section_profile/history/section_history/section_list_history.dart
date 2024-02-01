@@ -23,8 +23,8 @@ class _SectionListHistoryState extends State<SectionListHistory> {
           gap: 5,
           children: [
             Complaint(
-              image: pathImageBannerBeranda,
-              status: 'Succes',
+              image: pathImageDummyImage,
+              status: '',
               complaint:
                   'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
               date: '06 September 2022',
@@ -59,13 +59,15 @@ class Complaint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSuccess = true;
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: primaryGreen,
         padding: const EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.white,
-        shadowColor: primaryGreen,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        backgroundColor: white,
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
       ),
       onPressed: press,
       child: Row(
@@ -73,6 +75,7 @@ class Complaint extends StatelessWidget {
         children: [
           Image.asset(
             image,
+            fit: BoxFit.cover,
             width: 40.0,
           ),
           const SizedBox(width: 10),
@@ -81,10 +84,10 @@ class Complaint extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  status,
+                  isSuccess ? 'Success' : 'Reject',
                   style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
+                    color: isSuccess ? Colors.green : Colors.red,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -98,13 +101,18 @@ class Complaint extends StatelessWidget {
                 SizedBox(
                   height: 3,
                 ),
-                Text(
-                  date,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.grey,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      date,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

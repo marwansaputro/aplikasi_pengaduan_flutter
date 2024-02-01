@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 
 const black = Color(0xff202223);
-const darkblue = Color(0xff023a51);
+const darkblue = Color(0xFF033C5C);
 const primaryGreen = Color(0xff25A751);
 const white = Color(0xffFFFFFF);
-const primaryGrey = Color(0xffe8ebef);
-const grey = Color(0xFFF4F4F4);
+const primaryGrey = Color(0xFFE0E0E0);
+const grey = Color(0xFFFAFAFA);
 const darkGrey = Color(0xFF898989);
-const gold = Color(0xffFAD97F);
 
 final nLightTheme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(

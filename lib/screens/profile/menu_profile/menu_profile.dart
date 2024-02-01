@@ -22,8 +22,23 @@ class MenuProfile extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: Colors.lightGreen,
         padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         backgroundColor: white,
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
+
+        // boxShadow: [
+        //                 BoxShadow(
+        //                     color: Theme.of(context)
+        //                         .colorScheme
+        //                         .shadow
+        //                         .withOpacity(0.10),
+        //                     blurRadius: 10,
+        //                     spreadRadius: 10,
+        //                     offset: const Offset(1, 1)),
+        //               ],
       ),
       onPressed: press,
       child: IRow(

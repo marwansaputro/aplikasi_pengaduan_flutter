@@ -18,6 +18,13 @@ class SectionNews extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: primaryGreen,
+            // boxShadow: [
+            //   BoxShadow(
+            //       color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+            //       blurRadius: 15,
+            //       spreadRadius: -15,
+            //       offset: const Offset(0, 15)),
+            // ],
             image: const DecorationImage(
                 image: AssetImage(
                   pathImageDummyImage,
@@ -26,57 +33,53 @@ class SectionNews extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: IRow(
-            gap: 10,
-            children: [
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: white,
-                ),
-                alignment: Alignment.topCenter,
-                child: Image.asset(pathImageDummyImage),
-              ),
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: white,
-                ),
-                alignment: Alignment.topCenter,
-                child: Image.asset(pathImageDummyImage),
-              ),
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: white,
-                ),
-                alignment: Alignment.topCenter,
-                child: Image.asset(pathImageDummyImage),
-              ),
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: white,
-                ),
-                alignment: Alignment.topCenter,
-                child: Image.asset(pathImageDummyImage),
-              ),
-            ],
+        SizedBox(
+          height: 180,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: IRow(
+              gap: 10,
+              children: const [
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+              ],
+            ),
           ),
         ),
       ],
     );
+  }
+}
+
+class SubNews extends StatelessWidget {
+  const SubNews({
+    required this.image,
+    super.key,
+  });
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 150,
+        height: 150,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: white,
+          boxShadow: [
+            BoxShadow(
+                color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+                blurRadius: 10,
+                spreadRadius: -3,
+                offset: const Offset(0, 5)),
+          ],
+        ),
+        alignment: Alignment.topCenter,
+        child: Image.asset(image));
   }
 }
