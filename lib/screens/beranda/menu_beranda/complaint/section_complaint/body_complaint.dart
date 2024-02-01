@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/beranda/menu_beranda/complaint/section_complaint/section_form_complaint.dart';
+import 'package:integra_mobile/screens/beranda/menu_beranda/complaint/section_complaint/section_image_complaint.dart';
 
 class BodyComplaint extends StatefulWidget {
   const BodyComplaint({super.key});
@@ -12,7 +13,10 @@ class _BodyComplaintState extends State<BodyComplaint> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [SectionFormComplaint()],
+      children: const [
+        SectionFormComplaint(),
+        SectionImageComplaint(),
+      ],
     );
   }
 }

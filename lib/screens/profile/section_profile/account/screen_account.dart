@@ -13,7 +13,7 @@ class _ScreenAccountState extends State<ScreenAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryGrey,
+      backgroundColor: grey,
       appBar: AppBar(
         title: Text(
           "My Account",

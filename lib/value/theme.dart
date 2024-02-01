@@ -8,7 +8,6 @@ const white = Color(0xffFFFFFF);
 const primaryGrey = Color(0xFFE0E0E0);
 const grey = Color(0xFFFAFAFA);
 const darkGrey = Color(0xFF898989);
-const gold = Color.fromARGB(255, 201, 201, 201);
 
 final nLightTheme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(

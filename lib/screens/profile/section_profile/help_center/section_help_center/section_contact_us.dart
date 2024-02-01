@@ -48,10 +48,10 @@ class SectionContactUs extends StatelessWidget {
                       color: Theme.of(context)
                           .colorScheme
                           .shadow
-                          .withOpacity(0.25),
-                      blurRadius: 25,
-                      spreadRadius: -10,
-                      offset: const Offset(0, 30)),
+                          .withOpacity(0.10),
+                      blurRadius: 15,
+                      spreadRadius: -15,
+                      offset: const Offset(0, 25)),
                 ],
               ),
               child: Padding(

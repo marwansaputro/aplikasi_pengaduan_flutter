@@ -8,7 +8,7 @@ class ScreenNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryGrey,
+      backgroundColor: grey,
       appBar: AppBar(
         title: Text(
           "Notifications",

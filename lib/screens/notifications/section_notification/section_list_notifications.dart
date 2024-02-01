@@ -10,6 +10,6 @@ class ListNotifications extends StatefulWidget {
 class _ListNotificationsState extends State<ListNotifications> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Column();
   }
 }
