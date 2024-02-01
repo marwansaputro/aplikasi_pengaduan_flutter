@@ -18,13 +18,13 @@ class SectionNews extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: primaryGreen,
-            boxShadow: [
-              BoxShadow(
-                  color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-                  blurRadius: 25,
-                  spreadRadius: -10,
-                  offset: const Offset(0, 30)),
-            ],
+            // boxShadow: [
+            //   BoxShadow(
+            //       color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+            //       blurRadius: 15,
+            //       spreadRadius: -15,
+            //       offset: const Offset(0, 15)),
+            // ],
             image: const DecorationImage(
                 image: AssetImage(
                   pathImageDummyImage,
@@ -33,16 +33,21 @@ class SectionNews extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: IRow(
-            gap: 10,
-            children: const [
-              SubNews(image: pathImageDummyImage),
-              SubNews(image: pathImageDummyImage),
-            ],
+        SizedBox(
+          height: 180,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: IRow(
+              gap: 10,
+              children: const [
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageDummyImage),
+              ],
+            ),
           ),
         ),
       ],
@@ -69,9 +74,9 @@ class SubNews extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-                blurRadius: 25,
-                spreadRadius: -10,
-                offset: const Offset(0, 30)),
+                blurRadius: 10,
+                spreadRadius: -3,
+                offset: const Offset(0, 5)),
           ],
         ),
         alignment: Alignment.topCenter,

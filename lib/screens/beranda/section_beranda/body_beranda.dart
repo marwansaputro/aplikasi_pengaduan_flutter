@@ -61,9 +61,9 @@ class _BodyBerandaState extends State<BodyBeranda> {
                         SectionIklan(),
                         SectionTitleNews(),
                         SectionNews(),
-                        SizedBox(
-                          height: 100,
-                        )
+                        // SizedBox(
+                        //   height: 100,
+                        // )
                       ],
                     ),
                   ),
