@@ -37,6 +37,8 @@ dependencies:
   liquid_swipe: ^3.0.0
   liquid_pull_to_refresh: ^3.0.1
   svg_icon: ^0.0.1
+  country_code_picker: ^3.0.0
+  pinput: ^3.0.1
 
 dev_dependencies:
   flutter_test:

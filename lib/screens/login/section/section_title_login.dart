@@ -1,95 +1,102 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/login/section/section_register.dart';
+import 'package:integra_mobile/layout/column.dart';
+import 'package:integra_mobile/layout/padding.dart';
+import 'package:integra_mobile/layout/row.dart';
+import 'package:integra_mobile/value/theme.dart';
 
-class SectionTitleLogin extends StatelessWidget {
+class SectionTitleLogin extends StatefulWidget {
   const SectionTitleLogin({super.key});
 
   @override
+  State<SectionTitleLogin> createState() => _SectionTitleLoginState();
+}
+
+class _SectionTitleLoginState extends State<SectionTitleLogin> {
+  TextEditingController countrycode = TextEditingController();
+  @override
+  void initState() {
+    countrycode.text = "+62";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(
-          'assets/images/illustration-1.png',
-          width: 240,
-        ),
-        SizedBox(
-          height: 18,
-        ),
-        const Text(
-          "Let's get started",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          "Never a better time than now to start.",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black38,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: 38,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) => const SectionRegister()),
-              );
-            },
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.purple),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
+    return Padding(
+      padding: paddingMobile,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: IColumn(
+          gap: 10,
+          children: [
+            const Text(
+              "Phone Verification",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              "We need to register your phone without getting started!",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8)),
+              child: IRow(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  SizedBox(
+                      width: 100,
+                      child: CountryCodePicker(
+                        onChanged: print,
+                        initialSelection: 'IT',
+                        favorite: ['+62', 'INA'],
+                        textStyle: TextStyle(fontSize: 20),
+                        showCountryOnly: false,
+                        showOnlyCountryWhenClosed: false,
+                        alignLeft: false,
+                      )),
+                  Text(
+                    "|",
+                    style: TextStyle(fontSize: 33, color: Colors.grey),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: TextField(
+                    keyboardType: TextInputType.phone,
+                    style: TextStyle(fontSize: 20),
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Phone Number",
+                        hintStyle: TextStyle(fontSize: 20, color: darkGrey)),
+                  ))
+                ],
               ),
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Text(
-                'Create Account',
-                style: TextStyle(fontSize: 16),
-              ),
+            SizedBox(
+              width: double.infinity,
+              height: 45,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryGreen,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'verify');
+                  },
+                  child: const Text("Send the code")),
             ),
-          ),
+          ],
         ),
-        const SizedBox(
-          height: 22,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-              ),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Text(
-                'Login',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
