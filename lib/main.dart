@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/login/screen_login.dart';
+import 'package:integra_mobile/screens/login/screen_phone_verification.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         // useMaterial3: true,
       ),
-      home: const ScreenLogin(),
+      home: const ScreenPhoneVerification(),
     );
   }
 }
