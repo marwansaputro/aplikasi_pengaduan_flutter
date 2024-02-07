@@ -29,7 +29,7 @@ class BodyVerifyCode extends StatelessWidget {
     return Padding(
       padding: paddingMobile,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: const EdgeInsets.symmetric(vertical: 50),
         child: IColumn(
           gap: 10,
           children: [

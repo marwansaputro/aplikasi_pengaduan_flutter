@@ -19,14 +19,7 @@ class ScreenBeranda extends StatelessWidget {
         //   ),
         // ),
 
-        // actions: [
-        //   // Container(
-        //   //   width: 350,
-        //   //   height: 70,
-        //   //   color: Colors.white,
-        //   // ),
-        // ],
-        // leading: const SizedBox(),
+        leading: const SizedBox(),
         elevation: 0,
         // iconTheme: const IconThemeData(color: Colors.black),
       ),

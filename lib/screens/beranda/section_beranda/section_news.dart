@@ -17,7 +17,7 @@ class SectionNews extends StatelessWidget {
           height: 250,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: primaryGreen,
+
             // boxShadow: [
             //   BoxShadow(
             //       color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
@@ -27,13 +27,10 @@ class SectionNews extends StatelessWidget {
             // ],
             image: const DecorationImage(
                 image: AssetImage(
-                  pathImageDummyImage,
+                  pathImageNews1,
                 ),
                 fit: BoxFit.cover),
           ),
-        ),
-        const SizedBox(
-          height: 5,
         ),
         SizedBox(
           height: 180,
@@ -42,10 +39,10 @@ class SectionNews extends StatelessWidget {
             child: IRow(
               gap: 10,
               children: const [
-                SubNews(image: pathImageDummyImage),
-                SubNews(image: pathImageDummyImage),
-                SubNews(image: pathImageDummyImage),
-                SubNews(image: pathImageDummyImage),
+                SubNews(image: pathImageNews2),
+                SubNews(image: pathImageNews3),
+                SubNews(image: pathImageNews4),
+                SubNews(image: pathImageNews5),
               ],
             ),
           ),
@@ -66,20 +63,26 @@ class SubNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 150,
-        height: 150,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: white,
-          boxShadow: [
-            BoxShadow(
-                color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-                blurRadius: 10,
-                spreadRadius: -3,
-                offset: const Offset(0, 5)),
-          ],
-        ),
-        alignment: Alignment.topCenter,
-        child: Image.asset(image));
+      width: 150,
+      height: 150,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: white,
+        image: DecorationImage(
+            image: AssetImage(
+              image,
+            ),
+            alignment: Alignment.topCenter),
+        boxShadow: [
+          BoxShadow(
+              color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+              blurRadius: 10,
+              spreadRadius: 1,
+              offset: const Offset(0, 5)),
+        ],
+      ),
+      // alignment: Alignment.topCenter,
+      // child: Image.asset(image),
+    );
   }
 }

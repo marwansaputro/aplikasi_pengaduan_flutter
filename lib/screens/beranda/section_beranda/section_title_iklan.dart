@@ -12,9 +12,9 @@ class SectionTitleIklan extends StatelessWidget {
       children: [
         Text(
           "Promotions & Information",
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: black,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
               ),
         ),
         const Spacer(),
