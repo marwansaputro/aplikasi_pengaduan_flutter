@@ -17,22 +17,25 @@ class SectionFormComplaint extends StatelessWidget {
         children: <Widget>[
           Text(
             "Complaint Now",
-            style: TextStyle(
-                fontSize: 32, color: Colors.black, fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(color: darkblue, fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
           ),
           Text(
             "Please complete the form below",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black54,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(color: darkGrey, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 30,
+            height: 50,
           ),
           IColumn(
-            gap: 15,
+            gap: 10,
             children: [
               TextFormField(
                 maxLines: 1,
@@ -42,12 +45,12 @@ class SectionFormComplaint extends StatelessWidget {
                     borderSide: BorderSide(color: primaryGreen),
                   ),
                   hintText: "Enter the name application",
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: TextStyle(color: darkGrey),
                   labelText: "App Name",
-                  labelStyle: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
               ),
@@ -59,12 +62,12 @@ class SectionFormComplaint extends StatelessWidget {
                     borderSide: BorderSide(color: primaryGreen),
                   ),
                   hintText: "Enter name of Company/Office",
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: TextStyle(color: darkGrey),
                   labelText: "Company/Office",
-                  labelStyle: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
               ),
@@ -76,12 +79,12 @@ class SectionFormComplaint extends StatelessWidget {
                     borderSide: BorderSide(color: primaryGreen),
                   ),
                   hintText: "Type your complaint",
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: TextStyle(color: darkGrey),
                   labelText: "Complaint",
-                  labelStyle: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
               ),

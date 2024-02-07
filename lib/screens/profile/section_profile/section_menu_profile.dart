@@ -6,7 +6,7 @@ import 'package:integra_mobile/screens/profile/section_profile/account/screen_ac
 import 'package:integra_mobile/screens/profile/section_profile/help_center/screen_help_center.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
 import 'package:integra_mobile/value/path_image.dart';
-import 'package:integra_mobile/widget/button/button_solid.dart';
+import 'package:integra_mobile/widget/button/button_solid_grey.dart';
 
 class SectionMenuProfil extends StatefulWidget {
   const SectionMenuProfil({super.key});
@@ -21,7 +21,7 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
     return Padding(
       padding: paddingMobile,
       child: Padding(
-        padding: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.symmetric(vertical: 50),
         child: IColumn(
           gap: 10,
           children: [
@@ -67,8 +67,8 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
                 ),
               },
             ),
-            const SizedBox(height: 10),
-            ButtonSolid(
+            const SizedBox(height: 250),
+            ButtonSolidGrey(
               title: 'Logout',
               ontap: () {},
             ),

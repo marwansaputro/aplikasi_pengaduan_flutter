@@ -36,9 +36,12 @@ class SectionMenu extends StatelessWidget {
             const SizedBox(height: 5),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 56),
-              child: const Text(
+              child: Text(
                 'Portfolio',
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: black,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ),
           ],
@@ -64,9 +67,12 @@ class SectionMenu extends StatelessWidget {
             const SizedBox(height: 5),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 56),
-              child: const Text(
+              child: Text(
                 'News',
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: black,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ),
           ],
@@ -98,9 +104,12 @@ class SectionMenu extends StatelessWidget {
             const SizedBox(height: 5),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 56),
-              child: const Text(
+              child: Text(
                 'Complaint',
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: black,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ),
           ],
@@ -132,9 +141,12 @@ class SectionMenu extends StatelessWidget {
             const SizedBox(height: 5),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 56),
-              child: const Text(
+              child: Text(
                 'Product',
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: black,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ),
           ],
@@ -160,9 +172,12 @@ class SectionMenu extends StatelessWidget {
             const SizedBox(height: 5),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 56),
-              child: const Text(
+              child: Text(
                 'More',
-                style: TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: black,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ),
           ],

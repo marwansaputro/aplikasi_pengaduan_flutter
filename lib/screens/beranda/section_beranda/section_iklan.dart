@@ -15,9 +15,9 @@ class SectionIklan extends StatelessWidget {
       child: IRow(
         gap: 10,
         children: const [
-          Banner(image: pathImageDummyImage),
-          Banner(image: pathImageDummyImage),
-          Banner(image: pathImageDummyImage),
+          Banner(image: pathImageBannerIklan1),
+          Banner(image: pathImageBannerIklan2),
+          Banner(image: pathImageBannerIklan3),
         ],
       ),
     );

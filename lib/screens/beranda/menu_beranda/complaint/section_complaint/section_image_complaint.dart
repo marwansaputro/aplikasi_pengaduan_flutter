@@ -15,10 +15,8 @@ class _SectionImageComplaintState extends State<SectionImageComplaint> {
       padding: paddingMobile,
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: Container(
-          width: 200,
-          height: 150,
-          color: Colors.amber,
+        child: Column(
+          children: [],
         ),
       ),
     );

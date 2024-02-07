@@ -66,7 +66,7 @@ class Complaint extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: white,
-        elevation: 20,
+        elevation: 10,
         shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
       ),
       onPressed: press,

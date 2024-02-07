@@ -69,16 +69,17 @@ class _BodyPhoneVerificationState extends State<BodyPhoneVerification> {
     return Padding(
       padding: paddingMobile,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: const EdgeInsets.symmetric(vertical: 50),
         child: IColumn(
           gap: 10,
           children: [
             Text(
-              "Phone Verification",
+              "INTEGRA Mobile!",
               style: Theme.of(context)
                   .textTheme
                   .headlineMedium
                   ?.copyWith(color: darkblue, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
             ),
             Text(
               "Please log in with your mobile number",
