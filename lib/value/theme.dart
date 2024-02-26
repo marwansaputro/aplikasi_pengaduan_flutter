@@ -7,7 +7,7 @@ const primaryGreen = Color(0xff25A751);
 const white = Color(0xffFFFFFF);
 const primaryGrey = Color(0xFFE0E0E0);
 const grey = Color(0xFFFAFAFA);
-const darkGrey = Color(0xFFC3C3C3);
+const darkGrey = Color(0xFF888888);
 
 final nLightTheme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(
