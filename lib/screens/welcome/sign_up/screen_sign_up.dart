@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/sign_in/section_sign_in.dart';
+import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 
-class ScreenSignIn extends StatefulWidget {
-  const ScreenSignIn({super.key});
+class ScreenSignUp extends StatefulWidget {
+  const ScreenSignUp({super.key});
 
   @override
-  State<ScreenSignIn> createState() => _ScreenSignInState();
+  State<ScreenSignUp> createState() => _ScreenSignUpState();
 }
 
-class _ScreenSignInState extends State<ScreenSignIn> {
+class _ScreenSignUpState extends State<ScreenSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +17,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: const SectionSignIn(),
+      body: const ScreenWelcome(),
     );
   }
 }

@@ -1,3 +1,5 @@
+const pathImageBackgroundWelcome =
+    'assets/images/banner/background_welcome.jpg';
 //Banners
 const pathImageBannerBeranda = 'assets/images/banner/banner_beranda.jpg';
 const pathImageBannerIklan1 = 'assets/images/banner/iklan_1.jpg';
