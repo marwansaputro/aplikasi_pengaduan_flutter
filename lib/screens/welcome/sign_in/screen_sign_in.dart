@@ -23,6 +23,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/row.dart';
+import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:integra_mobile/widget/custom/custom_scaffold.dart';
@@ -49,7 +50,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
             ),
           ),
           Expanded(
-            flex: 7,
+            flex: 2,
             child: Container(
               padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
               decoration: const BoxDecoration(
@@ -65,12 +66,19 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Welcome Back",
-                        style: TextStyle(
-                            fontSize: 40,
-                            color: darkblue,
-                            fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(
+                                color: darkblue, fontWeight: FontWeight.w800),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "Sign in with your email and password",
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: darkGrey, fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
@@ -79,7 +87,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Email';
+                            return 'Please enter your Email';
                           }
                           return null;
                         },
@@ -113,7 +121,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Password';
+                            return 'Please enter your Password';
                           }
                           return null;
                         },
@@ -163,7 +171,14 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                             ],
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (e) => const ScreenForgotPassword(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Forget password?',
                               style: TextStyle(
@@ -178,6 +193,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                         height: 25.0,
                       ),
                       SizedBox(
+                        height: 40,
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -278,7 +294,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                               );
                             },
                             child: const Text(
-                              'Sign up',
+                              'Sign Up',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: primaryGreen,
@@ -286,9 +302,6 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
                       ),
                     ],
                   ),

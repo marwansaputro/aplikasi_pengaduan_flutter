@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
+import 'package:integra_mobile/navbar/convex_bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         // useMaterial3: true,
       ),
-      home: const ScreenWelcome(),
+      home: const ConvexButtomBar(),
     );
   }
 }

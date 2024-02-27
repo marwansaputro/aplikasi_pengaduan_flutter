@@ -25,6 +25,42 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   vertical: 0,
                   horizontal: 40.0,
                 ),
+                // child: IColumn(
+                //   gap: 10,
+                //   children: [
+                //     IRow(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       gap: 8,
+                //       children: [
+                //         Text(
+                //           "Welcome",
+                //           style: Theme.of(context)
+                //               .textTheme
+                //               .headlineLarge
+                //               ?.copyWith(
+                //                   color: white, fontWeight: FontWeight.w800),
+                //         ),
+                //         Text(
+                //           "Back!",
+                //           style: Theme.of(context)
+                //               .textTheme
+                //               .headlineLarge
+                //               ?.copyWith(
+                //                   color: white, fontWeight: FontWeight.w800),
+                //         ),
+                //       ],
+                //     ),
+                //     Text(
+                //       "Sign in with your email and password or continue with social media",
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .titleLarge
+                //           ?.copyWith(color: white, fontWeight: FontWeight.w400),
+                //       textAlign: TextAlign.center,
+                //     ),
+                //   ],
+                // ),
+
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
@@ -56,14 +92,15 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                 children: [
                   Expanded(
                     child: ButtonWelcome(
-                        buttonText: 'Sign in',
-                        onTap: ScreenSignIn(),
-                        color: Colors.transparent,
-                        textColor: white),
+                      buttonText: 'Sign In',
+                      onTap: ScreenSignIn(),
+                      color: Colors.transparent,
+                      textColor: white,
+                    ),
                   ),
                   Expanded(
                     child: ButtonWelcome(
-                      buttonText: 'Sign up',
+                      buttonText: 'Sign Up',
                       onTap: ScreenSignUp(),
                       color: white,
                       textColor: darkblue,
