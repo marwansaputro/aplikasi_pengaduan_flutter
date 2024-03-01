@@ -11,6 +11,7 @@ class ScreenBeranda extends StatelessWidget {
       // backgroundColor: Colors.grey[100],
       appBar: AppBar(
         toolbarHeight: 150,
+
         backgroundColor: darkblue,
         actions: [],
         leading: const SizedBox(),

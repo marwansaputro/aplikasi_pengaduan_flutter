@@ -35,18 +35,11 @@ class Banner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
-      height: 135,
+      width: 380,
+      height: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: primaryGrey,
-        // boxShadow: [
-        //   BoxShadow(
-        //       color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-        //       blurRadius: 15,
-        //       spreadRadius: -15,
-        //       offset: const Offset(0, 15)),
-        // ],
         image: DecorationImage(
             image: AssetImage(
               image,
