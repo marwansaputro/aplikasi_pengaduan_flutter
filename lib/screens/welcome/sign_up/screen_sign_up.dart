@@ -121,7 +121,6 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
                       const SizedBox(
                         height: 25.0,
                       ),
-
                       TextFormField(
                         obscureText: true,
                         obscuringCharacter: '*',
@@ -286,7 +285,7 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
                                 ),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign in',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -295,9 +294,6 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
                       ),
                     ],
                   ),

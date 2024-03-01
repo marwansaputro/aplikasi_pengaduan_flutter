@@ -13,7 +13,7 @@ class _ScreenComplaintState extends State<ScreenComplaint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: grey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

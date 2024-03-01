@@ -12,13 +12,7 @@ class ScreenBeranda extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 150,
         backgroundColor: darkblue,
-        // title: Center(
-        //   child: Image.asset(
-        //     pathImageBannerBeranda,
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
-
+        actions: [],
         leading: const SizedBox(),
         elevation: 0,
         // iconTheme: const IconThemeData(color: Colors.black),
