@@ -67,14 +67,14 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                            text: 'Welcome Back!\n',
+                            text: 'Integra Mobile\n',
                             style: TextStyle(
                               fontSize: 45.0,
                               fontWeight: FontWeight.w600,
                             )),
                         TextSpan(
                             text:
-                                '\nEnter personal details to your employee account',
+                                '\nPlease sign in or sign up if you don\'t have an account',
                             style: TextStyle(
                               fontSize: 20,
                               // height: 0,
