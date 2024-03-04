@@ -7,19 +7,16 @@ class ScreenBeranda extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        toolbarHeight: 150,
+    return const Scaffold(
+      backgroundColor: darkblue,
+      // appBar: AppBar(
+      //   toolbarHeight: 150,
 
-        backgroundColor: darkblue,
-        actions: [],
-        leading: const SizedBox(),
-        elevation: 0,
-        // iconTheme: const IconThemeData(color: Colors.black),
-      ),
-
-      body: const BodyBeranda(),
+      //   leading: const SizedBox(),
+      //   elevation: 0,
+      //   iconTheme: const IconThemeData(color: Colors.black),
+      // ),
+      body: BodyBeranda(),
     );
   }
 }

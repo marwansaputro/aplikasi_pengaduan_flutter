@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_iklan.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_news.dart';
+import 'package:integra_mobile/screens/beranda/section_beranda/section_notification.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_iklan.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_news.dart';
 import 'package:integra_mobile/value/theme.dart';
@@ -23,26 +23,39 @@ class _BodyBerandaState extends State<BodyBeranda> {
   final _controller = PageController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: grey,
-      child: ListView(
+    return SafeArea(
+      child: Column(
         children: [
-          IColumn(
-            gap: 20,
-            children: const [
-              // const SectionMenu(),
-              Padding(
-                padding: paddingMobile,
-                child: Column(
-                  children: [
-                    SectionTitleIklan(),
-                    SectionIklan(),
-                    SectionTitleNews(),
-                    SectionNews(),
-                  ],
+          const Padding(
+            padding: paddingMobile,
+            child: SectionNotification(),
+          ),
+          const SizedBox(height: 30),
+          Expanded(
+            child: ListView(children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25)),
+                child: Container(
+                  color: white,
+                  child: const Padding(
+                    padding: paddingMobile,
+                    child: Column(
+                      children: [
+                        SectionTitleIklan(),
+                        SectionIklan(),
+                        SectionTitleNews(),
+                        SectionNews(),
+                        SizedBox(
+                          height: 30,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ],
+            ]),
           ),
         ],
       ),
