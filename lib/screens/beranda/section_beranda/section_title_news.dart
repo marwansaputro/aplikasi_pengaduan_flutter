@@ -24,7 +24,7 @@ class SectionTitleNews extends StatelessWidget {
           ),
           onPressed: () {},
           child: Text(
-            'See More',
+            'See All',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: primaryGreen,
                   fontWeight: FontWeight.w500,
