@@ -8,17 +8,13 @@ const white = Color(0xffFFFFFF);
 const primaryGrey = Color(0xFFE0E0E0);
 const grey = Color(0xFFFAFAFA);
 const darkGrey = Color(0xFF888888);
+const red = Color(0xFFFF0000);
 
 final nLightTheme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff307FE2),
   ).copyWith(
     primary: const Color(0xff25A751),
-    // onPrimary: const Color(0xff1094DD),
-    // secondary: const Color(0xffE0D5FE),
-    // tertiary: const Color(0xff8DD7FF),
-    // surface: const Color(0xffC8D5F4),
-    // onSurface: const Color(0xffC9CCCF),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(

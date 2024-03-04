@@ -23,3 +23,4 @@ const pathIIconPencil = 'assets/images/icon/pencil.svg';
 const pathIIconApps = 'assets/images/icon/apps.svg';
 const pathIIconStar = 'assets/images/icon/staricon.svg';
 const pathIIconWhatsapp = 'assets/images/icon/whatsapp.svg';
+const pathIIconLogout = 'assets/images/icon/logout.svg';
