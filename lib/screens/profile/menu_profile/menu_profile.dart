@@ -20,14 +20,14 @@ class MenuProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        foregroundColor: Colors.lightGreen,
+        foregroundColor: primaryGreen,
         padding: const EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
         backgroundColor: white,
         elevation: 20,
-        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
+        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.2),
 
         // boxShadow: [
         //                 BoxShadow(
