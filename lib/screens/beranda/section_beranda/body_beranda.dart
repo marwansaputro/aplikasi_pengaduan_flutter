@@ -26,11 +26,7 @@ class _BodyBerandaState extends State<BodyBeranda> {
     return SafeArea(
       child: Column(
         children: [
-          const Padding(
-            padding: paddingMobile,
-            child: SectionNotification(),
-          ),
-          const SizedBox(height: 30),
+          const SectionNotification(),
           Expanded(
             child: ListView(children: [
               ClipRRect(

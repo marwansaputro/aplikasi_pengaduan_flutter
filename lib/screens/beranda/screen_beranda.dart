@@ -9,6 +9,7 @@ class ScreenBeranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: darkblue,
+
       // appBar: AppBar(
       //   toolbarHeight: 150,
 
