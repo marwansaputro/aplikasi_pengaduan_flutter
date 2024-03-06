@@ -12,6 +12,8 @@ const pathImageNews3 =
 const pathImageNews4 = 'assets/images/banner/paparan-akhir-web.jpg';
 const pathImageNews5 = 'assets/images/banner/sosialisasi-eimut-jih.jpg';
 const pathImageDummyImage = 'assets/images/banner/dummy-image.jpg';
+const pathImageOrnamen1 = 'assets/images/banner/ornamen1.png';
+const pathImageOrnamen2 = 'assets/images/banner/ornamen2.png';
 //Logo
 const pathLogoBarcodeWa = 'assets/images/logo/wa-link.png';
 //Avatar

@@ -14,11 +14,11 @@ class _ScreenComplaintState extends State<ScreenComplaint> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: grey,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: black),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   iconTheme: const IconThemeData(color: black),
+      // ),
       body: const BodyComplaint(),
     );
   }

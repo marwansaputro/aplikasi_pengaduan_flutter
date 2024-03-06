@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/value/theme.dart';
 
 class SectionPictureProfile extends StatelessWidget {
   const SectionPictureProfile({super.key});
@@ -20,14 +21,14 @@ class SectionPictureProfile extends StatelessWidget {
                 backgroundImage: AssetImage(pathImageDummyProfile),
               ),
               Positioned(
-                right: -16.0,
+                right: -8.0,
                 bottom: 0.0,
                 child: SizedBox(
-                  height: 50,
-                  width: 50,
+                  height: 40,
+                  width: 40,
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.lightGreen,
+                      foregroundColor: primaryGreen,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                         side: const BorderSide(color: Colors.white),
