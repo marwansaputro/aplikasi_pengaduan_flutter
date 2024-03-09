@@ -12,14 +12,14 @@ class ScreenComplaint extends StatefulWidget {
 class _ScreenComplaintState extends State<ScreenComplaint> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: grey,
       // appBar: AppBar(
       //   backgroundColor: Colors.transparent,
       //   elevation: 0,
       //   iconTheme: const IconThemeData(color: black),
       // ),
-      body: const BodyComplaint(),
+      body: BodyComplaint(),
     );
   }
 }

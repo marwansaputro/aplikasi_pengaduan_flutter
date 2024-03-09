@@ -68,7 +68,7 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
                 ),
               },
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () {},
               child: Container(
