@@ -25,18 +25,19 @@ class SectionNotification extends StatelessWidget {
               children: [
                 IColumn(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  gap: 5,
+                  gap: 3,
                   children: [
                     Text(
                       'Hi, Marwan!',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: white,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: white,
+                                fontWeight: FontWeight.w600,
+                              ),
                     ),
                     Text(
                       '25 May 2024',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: primaryGrey, fontWeight: FontWeight.w400),
                     )
                   ],
