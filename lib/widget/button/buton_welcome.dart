@@ -10,8 +10,8 @@ class ButtonWelcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return TextButton(
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(
