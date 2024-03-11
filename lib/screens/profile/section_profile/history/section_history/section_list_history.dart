@@ -18,10 +18,130 @@ class _SectionListHistoryState extends State<SectionListHistory> {
     return Padding(
       padding: paddingMobile,
       child: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: IColumn(
           gap: 5,
           children: [
+            Complaint(
+              image: pathImageBackgroundWelcome,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
+            Complaint(
+              image: pathImageDummyImage,
+              status: '',
+              complaint:
+                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
+              date: '06 September 2022',
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDetailComplaint(),
+                  ),
+                ),
+              },
+            ),
             Complaint(
               image: pathImageDummyImage,
               status: '',
@@ -73,10 +193,17 @@ class Complaint extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            image,
-            fit: BoxFit.cover,
-            width: 40.0,
+          Container(
+            width: 40,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              image: const DecorationImage(
+                  image: AssetImage(
+                    pathImageDummyImage,
+                  ),
+                  fit: BoxFit.cover),
+            ),
           ),
           const SizedBox(width: 10),
           Expanded(

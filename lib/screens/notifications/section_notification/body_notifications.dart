@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:integra_mobile/screens/notifications/section_notification/section_list_notifications.dart';
 
 class BodyNotification extends StatefulWidget {
   const BodyNotification({super.key});
@@ -10,6 +11,8 @@ class BodyNotification extends StatefulWidget {
 class _BodyNotificationState extends State<BodyNotification> {
   @override
   Widget build(BuildContext context) {
-    return ListView();
+    return ListView(
+      children: const [SectionListNotifications()],
+    );
   }
 }

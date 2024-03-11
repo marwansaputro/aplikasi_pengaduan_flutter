@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
+import 'package:integra_mobile/screens/notifications/screen_notifications.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
 
@@ -44,10 +45,17 @@ class SectionNotification extends StatelessWidget {
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScreenNotifications(),
+                      ),
+                    );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white12,
+                        color: Colors.white10,
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8),

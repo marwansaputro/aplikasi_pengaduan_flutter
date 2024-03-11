@@ -1,9 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/activity/screen_activity.dart';
 import 'package:integra_mobile/screens/beranda/menu_beranda/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/beranda/screen_beranda.dart';
-import 'package:integra_mobile/screens/notifications/screen_notifications.dart';
+import 'package:integra_mobile/screens/portfolio/screen_portfolio.dart';
+import 'package:integra_mobile/screens/product/screen_product.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
 import 'package:integra_mobile/value/theme.dart';
 
@@ -20,9 +20,9 @@ class _ConvexButtomBarState extends State<ConvexButtomBar> {
   int pageIndex = 0;
 
   final ScreenBeranda _screenBeranda = const ScreenBeranda();
-  final ScreenActivity _screenActivity = const ScreenActivity();
+  final ScreenPortfolio _screenPortfolio = const ScreenPortfolio();
   final ScreenComplaint _screenComplaint = const ScreenComplaint();
-  final ScreenNotifications _screenNotifications = const ScreenNotifications();
+  final ScreenProduct _screenProduct = const ScreenProduct();
   final ScreenProfile _screenProfile = const ScreenProfile();
 
   Widget _showPage = const ScreenBeranda();
@@ -33,13 +33,13 @@ class _ConvexButtomBarState extends State<ConvexButtomBar> {
         return _screenBeranda;
 
       case 1:
-        return _screenActivity;
+        return _screenPortfolio;
 
       case 2:
         return _screenComplaint;
 
       case 3:
-        return _screenNotifications;
+        return _screenProduct;
 
       case 4:
         return _screenProfile;
