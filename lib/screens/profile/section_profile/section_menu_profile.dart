@@ -41,7 +41,7 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
             MenuProfile(
               icon: pathIIconReceipt,
               judul: 'History',
-              subjudul: 'Pengaduan/Complaint history',
+              subjudul: 'History Complaint',
               press: () => {
                 Navigator.push(
                   context,

@@ -2,7 +2,6 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/activity/screen_activity.dart';
 import 'package:integra_mobile/screens/beranda/screen_beranda.dart';
 import 'package:integra_mobile/screens/notifications/screen_notifications.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
@@ -18,7 +17,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int pageIndex = 0;
   final ScreenBeranda _screenBeranda = ScreenBeranda();
-  final ScreenActivity _screenActivity = ScreenActivity();
+  // final ScreenActivity _screenActivity = ScreenActivity();
   // final RewardsPage _rewardsPage = RewardsPage();
   final ScreenNotifications _screenNotifications = ScreenNotifications();
   final ScreenProfile _screenProfile = ScreenProfile();
@@ -30,9 +29,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 0:
         return _screenBeranda;
         break;
-      case 1:
-        return _screenActivity;
-        break;
+      // case 1:
+      //   return _screenActivity;
+      //   break;
       // case 2:
       //   return _rewardsPage;
       //   break;

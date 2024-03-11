@@ -16,7 +16,7 @@ class _ScreenHistoryState extends State<ScreenHistory> {
       backgroundColor: grey,
       appBar: AppBar(
         title: Text(
-          "History List",
+          "History Complaint",
           style: Theme.of(context)
               .textTheme
               .headlineSmall
