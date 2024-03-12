@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/screens/beranda/menu_beranda/complaint/screen_complaint.dart';
+import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionMenu extends StatelessWidget {

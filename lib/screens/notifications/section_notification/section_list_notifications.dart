@@ -105,7 +105,7 @@ class Notification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSuccess = false;
+    bool isSuccess = true;
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: primaryGreen,
@@ -119,17 +119,9 @@ class Notification extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 40,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              image: const DecorationImage(
-                  image: AssetImage(
-                    pathImageDummyImage,
-                  ),
-                  fit: BoxFit.cover),
-            ),
+          const Icon(
+            Icons.search,
+            color: darkGrey,
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -137,9 +129,9 @@ class Notification extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isSuccess ? 'Success' : 'Reject',
+                  isSuccess ? 'Process' : 'Reject',
                   style: TextStyle(
-                    color: isSuccess ? Colors.green : Colors.red,
+                    color: isSuccess ? Colors.orange : Colors.red,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

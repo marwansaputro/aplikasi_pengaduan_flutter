@@ -58,7 +58,7 @@ class SectionNotification extends StatelessWidget {
                         color: Colors.white10,
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(10),
                       child: badges.Badge(
                         badgeAnimation: const badges.BadgeAnimation.rotation(
                             colorChangeAnimationCurve: Curves.bounceIn,

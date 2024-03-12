@@ -1,7 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/beranda/menu_beranda/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/beranda/screen_beranda.dart';
+import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/portfolio/screen_portfolio.dart';
 import 'package:integra_mobile/screens/product/screen_product.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
