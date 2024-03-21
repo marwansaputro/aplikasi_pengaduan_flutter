@@ -28,6 +28,7 @@ class CustomItemPortfolio extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 380),
         child: Container(
           decoration: BoxDecoration(
+            // border: Border.all(color: darkGrey, width: 0.5),
             borderRadius: BorderRadius.circular(8),
             color: white,
             boxShadow: [
