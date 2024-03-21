@@ -46,7 +46,7 @@ class SectionPortfolio extends StatelessWidget {
               height: 40.0,
             ),
             IColumn(
-              gap: 10,
+              gap: 5,
               children: const [
                 CustomItemPortfolio(
                   image: pathImageNews1,
@@ -114,6 +114,9 @@ class SectionPortfolio extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       ],
