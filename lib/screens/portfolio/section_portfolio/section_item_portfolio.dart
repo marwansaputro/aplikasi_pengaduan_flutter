@@ -53,7 +53,7 @@ class CustomItemPortfolio extends StatelessWidget {
                       ?.copyWith(color: black, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
-                  height: 3,
+                  height: 2,
                 ),
                 IRow(
                   crossAxisAlignment: CrossAxisAlignment.start,
