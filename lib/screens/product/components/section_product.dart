@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/product/components/section_government_product.dart';
 import 'package:integra_mobile/screens/product/components/section_menu_product.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
@@ -48,7 +47,6 @@ class SectionProduct extends StatelessWidget {
               height: 40.0,
             ),
             SectionMenuProduct(),
-            SectionGovernmentProduct(),
           ],
         ),
       ],
