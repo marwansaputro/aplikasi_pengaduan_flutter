@@ -43,7 +43,7 @@ class SectionGovernmentProduct extends StatelessWidget {
                     gap: 5,
                     children: const [
                       ItemGovernmentProduct(
-                        icon: Icons.call_missed_outgoing,
+                        icon: Icons.moving_rounded,
                         title: 'Sistem Informasi Penyusunan RPJMD (E-RPJMD)',
                       ),
                       ItemGovernmentProduct(
