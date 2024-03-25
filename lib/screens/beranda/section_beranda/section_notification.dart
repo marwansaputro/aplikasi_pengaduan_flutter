@@ -37,7 +37,7 @@ class SectionNotification extends StatelessWidget {
                               ),
                     ),
                     Text(
-                      '25 May 2024',
+                      'Can I help you?',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: primaryGrey, fontWeight: FontWeight.w400),
                     )
