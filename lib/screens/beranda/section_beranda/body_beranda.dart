@@ -35,15 +35,26 @@ class _BodyBerandaState extends State<BodyBeranda> {
                     topRight: Radius.circular(25)),
                 child: Container(
                   color: white,
-                  child: const Padding(
+                  child: Padding(
                     padding: paddingMobile,
                     child: Column(
                       children: [
-                        SectionTitleIklan(),
-                        SectionIklan(),
-                        SectionTitleNews(),
-                        SectionNews(),
-                        SizedBox(
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Container(
+                          height: 5,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: primaryGrey,
+                          ),
+                        ),
+                        const SectionTitleIklan(),
+                        const SectionIklan(),
+                        const SectionTitleNews(),
+                        const SectionNews(),
+                        const SizedBox(
                           height: 30,
                         )
                       ],

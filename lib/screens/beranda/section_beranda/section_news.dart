@@ -25,18 +25,84 @@ class SectionNews extends StatelessWidget {
                 ),
                 fit: BoxFit.cover),
           ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Colors.black87],
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IColumn(
+                gap: 5,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IRow(
+                    gap: 3,
+                    children: [
+                      Image.asset(
+                        pathLogoIntegraSmall,
+                        height: 15,
+                      ),
+                      Text(
+                        'Integra .',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '24 Mar 2024',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'Bimbingan Teknis Sistem Informasi Manajemen Penanggulangan Kemiskinan Kabupaten Kapuas Hulu',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         SizedBox(
-          height: 180,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: IRow(
+              crossAxisAlignment: CrossAxisAlignment.start,
               gap: 10,
               children: const [
-                SubNews(image: pathImageNews2),
-                SubNews(image: pathImageNews3),
-                SubNews(image: pathImageNews4),
-                SubNews(image: pathImageNews5),
+                SubNews(
+                  image: pathImageNews2,
+                  title:
+                      'Sosialisasi Bersama Tim Pusat Kesejahteraan Sosial (Puskesos) Kabupaten Blora',
+                ),
+                SubNews(
+                  image: pathImageNews3,
+                  title:
+                      'Diskusi Pengembangan Sistem Bersama Balai Pengelolaan Pengujian Pendidikan Kemdikbudristek',
+                ),
+                SubNews(
+                  image: pathImageNews4,
+                  title:
+                      'Paparan Akhir Pengembangan Website Dinas Pemberdayaan Perempuan, Perlindungan Anak dan Pengendalian Penduduk DIY',
+                ),
+                SubNews(
+                  image: pathImageNews5,
+                  title:
+                      'Persiapan Implementasi, Rumah Sakit ‘JIH’ Purwokerto Lakukan Sosialisasi dan Pelatihan Aplikasi E-Office',
+                ),
               ],
             ),
           ),
@@ -49,77 +115,89 @@ class SectionNews extends StatelessWidget {
 class SubNews extends StatelessWidget {
   const SubNews({
     required this.image,
+    required this.title,
     super.key,
   });
 
   final String image;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 150,
-
+      height: 210,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: white,
-        // image: DecorationImage(
-        //     image: AssetImage(
-        //       image,
-        //     ),
-        //     alignment: Alignment.topCenter),
-        // boxShadow: [
-        //   BoxShadow(
-        //       color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-        //       blurRadius: 10,
-        //       spreadRadius: 1,
-        //       offset: const Offset(0, 5)),
-        // ],
-      ),
-      child: IColumn(
-        gap: 5,
-        children: [
-          Image.asset(pathImageNews2),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: IColumn(
-              gap: 10,
-              children: [
-                Text(
-                  'Sosialisasi Bersama Tim Pusat Kesejahteraan Sosial (Puskesos) Kabupaten Blora',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Berita',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      '24 Mar 2024',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: black,
-                            fontWeight: FontWeight.w400,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ],
+        image: DecorationImage(
+            image: AssetImage(
+              image,
             ),
-          ),
+            alignment: Alignment.topCenter),
+        boxShadow: [
+          BoxShadow(
+              color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+              blurRadius: 10,
+              spreadRadius: 1,
+              offset: const Offset(0, 5)),
         ],
       ),
-      // alignment: Alignment.topCenter,
-      // child: Image.asset(image),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 5, top: 85),
+        child: IColumn(
+          gap: 5,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6),
+              child: IColumn(
+                gap: 10,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IRow(
+                        gap: 3,
+                        children: [
+                          Image.asset(
+                            pathLogoIntegraSmall,
+                            height: 15,
+                          ),
+                          Text(
+                            'Integra',
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '24 Mar 2024',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: black,
+                              fontWeight: FontWeight.w400,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

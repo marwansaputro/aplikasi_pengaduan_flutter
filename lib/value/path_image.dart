@@ -32,6 +32,7 @@ const pathImagePortfolioCovid = 'assets/images/banner/covidtracer.jpg';
 const pathImagePortfolioBlitar = 'assets/images/banner/ehealth-blitar.jpg';
 //Logo
 const pathLogoBarcodeWa = 'assets/images/logo/wa-link.png';
+const pathLogoIntegraSmall = 'assets/images/logo/logo-small.png';
 //Avatar
 const pathImageDummyProfile = 'assets/images/avatar/dummy_profile.jpg';
 //Icon
