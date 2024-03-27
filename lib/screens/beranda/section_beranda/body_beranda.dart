@@ -5,6 +5,7 @@ import 'package:integra_mobile/screens/beranda/section_beranda/section_news.dart
 import 'package:integra_mobile/screens/beranda/section_beranda/section_notification.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_iklan.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_news.dart';
+import 'package:integra_mobile/screens/beranda/section_beranda/section_why_choose.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class BodyBeranda extends StatefulWidget {
@@ -55,8 +56,12 @@ class _BodyBerandaState extends State<BodyBeranda> {
                         const SectionTitleNews(),
                         const SectionNews(),
                         const SizedBox(
+                          height: 15,
+                        ),
+                        const SectionWhyChoose(),
+                        const SizedBox(
                           height: 30,
-                        )
+                        ),
                       ],
                     ),
                   ),

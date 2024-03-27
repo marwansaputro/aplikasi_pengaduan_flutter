@@ -3,6 +3,7 @@ import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
+import 'package:readmore/readmore.dart';
 
 class SectionNews extends StatelessWidget {
   const SectionNews({
@@ -124,78 +125,105 @@ class SubNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      height: 210,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: white,
-        image: DecorationImage(
-            image: AssetImage(
-              image,
-            ),
-            alignment: Alignment.topCenter),
-        boxShadow: [
-          BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
-              blurRadius: 10,
-              spreadRadius: 1,
-              offset: const Offset(0, 5)),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5, top: 85),
-        child: IColumn(
-          gap: 5,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(6),
-              child: IColumn(
-                gap: 10,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IRow(
-                        gap: 3,
-                        children: [
-                          Image.asset(
-                            pathLogoIntegraSmall,
-                            height: 15,
-                          ),
-                          Text(
-                            'Integra',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: black,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '24 Mar 2024',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: black,
-                              fontWeight: FontWeight.w400,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        width: 150,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: white,
+          image: DecorationImage(
+              image: AssetImage(
+                image,
               ),
-            ),
+              alignment: Alignment.topCenter),
+          boxShadow: [
+            BoxShadow(
+                color: Theme.of(context).colorScheme.shadow.withOpacity(0.10),
+                blurRadius: 10,
+                spreadRadius: -5,
+                offset: const Offset(0, 10)),
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 5, top: 85),
+          child: IColumn(
+            gap: 5,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: IColumn(
+                  gap: 10,
+                  children: [
+                    ReadMoreText(
+                      title,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                      trimLines: 3,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'Show more',
+                      trimExpandedText: '  Show less',
+                      lessStyle:
+                          Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: primaryGreen,
+                                fontWeight: FontWeight.w500,
+                              ),
+                      moreStyle:
+                          Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: primaryGreen,
+                                fontWeight: FontWeight.w500,
+                              ),
+                      textAlign: TextAlign.center,
+                    ),
+                    // Text(
+                    //   title,
+                    //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    //         color: black,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //   textAlign: TextAlign.center,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IRow(
+                          gap: 3,
+                          children: [
+                            Image.asset(
+                              pathLogoIntegraSmall,
+                              height: 15,
+                            ),
+                            Text(
+                              'Integra',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          '24 Mar 2024',
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: black,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
