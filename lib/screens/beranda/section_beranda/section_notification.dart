@@ -15,10 +15,10 @@ class SectionNotification extends StatelessWidget {
     return Stack(
       children: [
         Image.asset(
-          pathImageOrnamen1,
+          pathImageOrnamen3,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 20),
           child: Padding(
             padding: paddingMobile,
             child: IRow(

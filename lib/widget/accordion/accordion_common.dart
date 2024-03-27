@@ -160,7 +160,7 @@ class ItemAccordionCommonState extends State<ItemAccordionCommon>
                     //   height: 10,
                     // ),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 360),
+                      constraints: const BoxConstraints(maxWidth: 360),
                       child: widget.data.contentWidget ??
                           Text(
                             widget.data.content,
@@ -197,7 +197,7 @@ class ItemAccordionCommonState extends State<ItemAccordionCommon>
                   children: [
                     const Icon(
                       Icons.verified_outlined,
-                      size: 15,
+                      size: 18,
                       color: primaryGreen,
                     ),
                     Text(
