@@ -14,6 +14,7 @@ const pathImageNews5 = 'assets/images/banner/sosialisasi-eimut-jih.jpg';
 const pathImageDummyImage = 'assets/images/banner/dummy-image.jpg';
 const pathImageOrnamen1 = 'assets/images/banner/ornamen1.png';
 const pathImageOrnamen2 = 'assets/images/banner/ornamen2.png';
+const pathImageOrnamen3 = 'assets/images/banner/ornamen3.png';
 const pathImageUpload = 'assets/images/banner/upload_image.png';
 const pathImagePortfolioUII = 'assets/images/banner/e-office-uii.jpg';
 const pathImagePortfolioBI = 'assets/images/banner/bigdata-bi.jpg';

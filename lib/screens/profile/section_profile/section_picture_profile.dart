@@ -1,6 +1,11 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
+import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionPictureProfile extends StatefulWidget {
@@ -11,8 +16,10 @@ class SectionPictureProfile extends StatefulWidget {
 }
 
 class _SectionPictureProfileState extends State<SectionPictureProfile> {
-  // PickedFile _imageFile;
+  // late PickedFile _imageFile;
   // final ImagePicker _picker = ImagePicker();
+  Uint8List? _image;
+  File? selectedImage;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -25,12 +32,10 @@ class _SectionPictureProfileState extends State<SectionPictureProfile> {
             fit: StackFit.expand,
             clipBehavior: Clip.none,
             children: [
-              const CircleAvatar(
-                backgroundColor: primaryGreen,
-                // backgroundImage: _imageFile == null
-                //     ? AssetImage(pathImageDummyProfile)
-                //     : FileImage(File(_imageFile.path)),
-              ),
+              _image != null
+                  ? CircleAvatar(backgroundImage: MemoryImage(_image!))
+                  : const CircleAvatar(
+                      backgroundImage: AssetImage(pathImageDummyProfile)),
               Positioned(
                 right: -8.0,
                 bottom: 0.0,
@@ -59,14 +64,17 @@ class _SectionPictureProfileState extends State<SectionPictureProfile> {
                             child: Padding(
                               padding: paddingMobile,
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 20),
+                                padding: const EdgeInsets.only(top: 15),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
-                                      height: 4,
-                                      width: 40,
-                                      color: darkGrey,
+                                      height: 5,
+                                      width: 35,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: primaryGrey,
+                                      ),
                                     ),
                                     const SizedBox(height: 10),
                                     Text(
@@ -95,7 +103,7 @@ class _SectionPictureProfileState extends State<SectionPictureProfile> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              // takePhoto(ImageSource.camera);
+                                              _pickImageFromCamera();
                                             },
                                             child: IRow(
                                               mainAxisAlignment:
@@ -131,7 +139,7 @@ class _SectionPictureProfileState extends State<SectionPictureProfile> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              // takePhoto(ImageSource.gallery);
+                                              _pickImageFromGallery();
                                             },
                                             child: IRow(
                                               mainAxisAlignment:
@@ -180,13 +188,28 @@ class _SectionPictureProfileState extends State<SectionPictureProfile> {
       ),
     );
   }
-}
 
-// void takePhoto(ImageSource source) async {
-//     final pickedFile = await _picker.getImage(
-//       source: source,
-//     );
-//     setState(() {
-//       _imageFile = pickedFile;
-//     });
-//   }
+//Gallery
+  Future _pickImageFromGallery() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (returnImage == null) return;
+    setState(() {
+      selectedImage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    Navigator.of(context).pop();
+  }
+
+  //Camera
+  Future _pickImageFromCamera() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (returnImage == null) return;
+    setState(() {
+      selectedImage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    Navigator.of(context).pop();
+  }
+}
