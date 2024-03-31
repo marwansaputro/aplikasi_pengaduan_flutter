@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
-import 'package:integra_mobile/navbar/bottomnavbar.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:pinput/pinput.dart';
 
@@ -70,10 +69,10 @@ class BodyVerifyCode extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8))),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => BottomNavBar()),
+                  // );
                 },
                 child: Text(
                   "Send the code",

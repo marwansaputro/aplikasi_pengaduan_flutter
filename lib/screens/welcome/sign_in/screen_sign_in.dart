@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/navbar/convex_bottom_bar.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:integra_mobile/widget/custom/custom_scaffold.dart';
+import 'package:integra_mobile/widget/navbar/convex_bottom_bar.dart';
 
 class ScreenSignIn extends StatefulWidget {
   const ScreenSignIn({super.key});
