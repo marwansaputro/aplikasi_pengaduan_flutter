@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/product/components/body_product.dart';
+import 'package:integra_mobile/screens/product/sectiion_product/body_product.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ScreenProduct extends StatefulWidget {

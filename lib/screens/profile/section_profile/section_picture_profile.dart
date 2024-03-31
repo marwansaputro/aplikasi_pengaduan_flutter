@@ -16,8 +16,6 @@ class SectionPictureProfile extends StatefulWidget {
 }
 
 class _SectionPictureProfileState extends State<SectionPictureProfile> {
-  // late PickedFile _imageFile;
-  // final ImagePicker _picker = ImagePicker();
   Uint8List? _image;
   File? selectedImage;
   @override

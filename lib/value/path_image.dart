@@ -15,6 +15,7 @@ const pathImageDummyImage = 'assets/images/banner/dummy-image.jpg';
 const pathImageOrnamen1 = 'assets/images/banner/ornamen1.png';
 const pathImageOrnamen2 = 'assets/images/banner/ornamen2.png';
 const pathImageOrnamen3 = 'assets/images/banner/ornamen3.png';
+const pathImageOrnamen4 = 'assets/images/banner/ornamen4.png';
 const pathImageUpload = 'assets/images/banner/upload_image.png';
 const pathImagePortfolioUII = 'assets/images/banner/e-office-uii.jpg';
 const pathImagePortfolioBI = 'assets/images/banner/bigdata-bi.jpg';
@@ -31,6 +32,9 @@ const pathImagePortfolioVisiting = 'assets/images/banner/visiting-jogja.jpg';
 const pathImagePortfolioSPPIRT = 'assets/images/banner/sppirt.jpg';
 const pathImagePortfolioCovid = 'assets/images/banner/covidtracer.jpg';
 const pathImagePortfolioBlitar = 'assets/images/banner/ehealth-blitar.jpg';
+const pathImageOnboarding1 = 'assets/images/banner/on1.png';
+const pathImageOnboarding2 = 'assets/images/banner/on2.png';
+const pathImageOnboarding3 = 'assets/images/banner/on3.png';
 //Logo
 const pathLogoBarcodeWa = 'assets/images/logo/wa-link.png';
 const pathLogoIntegraSmall = 'assets/images/logo/logo-small.png';
