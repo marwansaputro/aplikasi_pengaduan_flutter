@@ -28,31 +28,19 @@ class ScreenOnboarding extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        IntroductionScreenOnboarding(
-          backgroudColor: darkblue,
-          foregroundColor: primaryGreen,
-          introductionWidgetList: list,
-          onTapSkipButton: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ScreenWelcome(),
-              )),
-          skipTextStyle: const TextStyle(
-            color: white,
-            fontSize: 18,
-          ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Image.asset(
-              pathImageOrnamen4,
-            ),
-          ],
-        )
-      ],
+    return IntroductionScreenOnboarding(
+      backgroudColor: darkblue,
+      foregroundColor: primaryGreen,
+      introductionWidgetList: list,
+      onTapSkipButton: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ScreenWelcome(),
+          )),
+      skipTextStyle: const TextStyle(
+        color: white,
+        fontSize: 18,
+      ),
     );
   }
 }
