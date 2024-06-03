@@ -46,6 +46,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   readmore: ^2.2.0
   intro_screen_onboarding_flutter: ^1.0.0
+  firebase_core: ^2.32.0
+  pusher_beams: ^1.1.1
 
 dev_dependencies:
   flutter_test:
