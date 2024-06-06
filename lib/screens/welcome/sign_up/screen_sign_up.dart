@@ -5,7 +5,7 @@ import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/bloc/bloc_form_registration.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
 import 'package:integra_mobile/value/theme.dart';
-import 'package:integra_mobile/widget/atomic/label.dart';
+import 'package:integra_mobile/share/widget/atomic/label.dart';
 
 class ScreenSignUp extends StatefulWidget {
   const ScreenSignUp({super.key});
@@ -22,11 +22,7 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
   Widget build(BuildContext context) {
     return BlocListener<FormRegisterBloc, FormRegisterBlocState>(
       listener: (context, state) {
-        print("tidak data");
-
         if (state.status.isFailure) {
-          print("tidak data");
-
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(const SnackBar(
@@ -40,6 +36,8 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
             ..showSnackBar(const SnackBar(
                 behavior: SnackBarBehavior.floating,
                 content: Text("Berhasil mendaftarkan peserta")));
+
+          Navigator.pop(context);
         }
       },
       child: Container(

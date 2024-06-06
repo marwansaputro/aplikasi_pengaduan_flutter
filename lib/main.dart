@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/const_pusher.dart';
 import 'package:integra_mobile/firebase_options.dart';
-import 'package:integra_mobile/widget/onboarding/screen_onboarding.dart';
+import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
 import 'package:pusher_beams/pusher_beams.dart';
 
 Future<void> main() async {

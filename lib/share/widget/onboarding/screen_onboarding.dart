@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
-import 'package:integra_mobile/widget/onboarding/introduction_list.dart';
-import 'package:integra_mobile/widget/onboarding/introduction_widget.dart';
+import 'package:integra_mobile/share/widget/onboarding/introduction_list.dart';
+import 'package:integra_mobile/share/widget/onboarding/introduction_widget.dart';
 
 class ScreenOnboarding extends StatelessWidget {
   final List<IntroductionWidget> list = [

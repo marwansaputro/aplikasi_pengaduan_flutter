@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
-import 'package:integra_mobile/widget/atomic/label.dart';
-import 'package:integra_mobile/widget/navbar/convex_bottom_bar.dart';
+import 'package:integra_mobile/share/widget/atomic/label.dart';
+import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 
 class ScreenSignIn extends StatefulWidget {
   const ScreenSignIn({super.key});
@@ -50,42 +50,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: rememberPassword,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            rememberPassword = value!;
-                          });
-                        },
-                        activeColor: primaryGreen,
-                      ),
-                      const Text(
-                        'Remember me',
-                        style: TextStyle(
-                          color: Colors.black45,
-                        ),
-                      ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (e) => const ScreenForgotPassword(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Forget password?',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: darkblue,
-                      ),
-                    ),
-                  ),
+                  _rememberMe(),
+                  _forgetPassword(),
                 ],
               ),
               const SizedBox(height: 25.0),
@@ -140,39 +106,85 @@ class _ScreenSignInState extends State<ScreenSignIn> {
               //   height: 25.0,
               // ),
               // don't have an account
-              IRow(
-                gap: 5,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Don\'t have an account? ',
-                    style: TextStyle(
-                      color: Colors.black45,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (e) => const ScreenSignUp(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: primaryGreen,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _signUp(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  IRow _signUp(BuildContext context) {
+    return IRow(
+      gap: 5,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Don\'t have an account? ',
+          style: TextStyle(
+            color: Colors.black45,
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (e) => const ScreenSignUp(),
+              ),
+            );
+          },
+          child: const Text(
+            'Sign Up',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: primaryGreen,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  GestureDetector _forgetPassword() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (e) => const ScreenForgotPassword(),
+          ),
+        );
+      },
+      child: const Text(
+        'Forget password?',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: darkblue,
+        ),
+      ),
+    );
+  }
+
+  Row _rememberMe() {
+    return Row(
+      children: [
+        Checkbox(
+          value: rememberPassword,
+          onChanged: (bool? value) {
+            setState(() {
+              rememberPassword = value!;
+            });
+          },
+          activeColor: primaryGreen,
+        ),
+        const Text(
+          'Remember me',
+          style: TextStyle(
+            color: Colors.black45,
+          ),
+        ),
+      ],
     );
   }
 
@@ -273,13 +285,9 @@ class _ScreenSignInState extends State<ScreenSignIn> {
                 .add(AuthenticationUsernameChange(username: value));
           },
           decoration: InputDecoration(
-            label: const Text(
-              'Email',
-            ),
+            label: const Text('Email'),
             hintText: 'Enter Your Email',
-            hintStyle: const TextStyle(
-              color: Colors.black26,
-            ),
+            hintStyle: const TextStyle(color: Colors.black26),
             border: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: Colors.black12, // Default border color

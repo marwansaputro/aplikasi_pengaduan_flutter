@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/value/theme.dart';
-import 'package:integra_mobile/widget/button/button_solid_green.dart';
+import 'package:integra_mobile/share/widget/button/button_solid_green.dart';
 
 class SectionListAccount extends StatefulWidget {
   const SectionListAccount({super.key});
