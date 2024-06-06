@@ -5,11 +5,17 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/const_pusher.dart';
 import 'package:integra_mobile/firebase_options.dart';
+import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
+import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/share/storage/helper_storage.dart';
+import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
 import 'package:pusher_beams/pusher_beams.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferenceHelper();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -31,25 +37,77 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late final UserRepository userRepository;
+
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
+
+  @override
+  void initState() {
+    super.initState();
+
+    userRepository = UserRepository();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    userRepository.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: List.of([
-          BlocProvider(
-            create: (context) => AuthenticationBloc(BlocAuthenticationState()),
-          ),
-          BlocProvider(
-            create: (context) =>
-                FormRegisterBloc(const FormRegisterBlocState()),
-          )
-        ]),
-        child: MaterialApp(
-          title: 'Integra Mobile New',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-            // useMaterial3: true,
-          ),
-          home: ScreenOnboarding(),
-        ));
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => userRepository,
+        )
+      ],
+      child: MultiBlocProvider(
+          providers: List.of([
+            BlocProvider(
+                create: (context) =>
+                    AuthenticationBloc(userRepository: userRepository)),
+            BlocProvider(
+                create: (context) =>
+                    FormRegisterBloc(userRepository: userRepository)),
+            BlocProvider(
+                create: (context) =>
+                    BlocFormLogin(userRepository: userRepository))
+          ]),
+          child: MaterialApp(
+            navigatorKey: _navigatorKey,
+            title: 'Integra Mobile New',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+            ),
+            builder: (context, child) {
+              return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
+                listener: (context, state) {
+                  switch (state.status) {
+                    case AuthenticationStatus.authenticated:
+                      _navigator.pushAndRemoveUntil<void>(
+                        ConvexButtomBar.route(),
+                        (route) => false,
+                      );
+                    case AuthenticationStatus.unauthenticated:
+                      _navigator.pushAndRemoveUntil<void>(
+                        ScreenWelcome.route(),
+                        (route) => false,
+                      );
+                    case AuthenticationStatus.unknown:
+                      break;
+                  }
+                },
+                child: child,
+              );
+            },
+            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty
+                ? const ConvexButtomBar()
+                : ScreenOnboarding(),
+          )),
+    );
   }
 }

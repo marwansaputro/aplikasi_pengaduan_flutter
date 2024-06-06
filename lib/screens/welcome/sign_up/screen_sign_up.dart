@@ -189,20 +189,6 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
         onPressed: () {
-          // if (_formSignupKey.currentState!.validate() && agreePersonalData) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     const SnackBar(
-          //       content: Text('Processing Data'),
-          //     ),
-          //   );
-          // } else if (!agreePersonalData) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     const SnackBar(
-          //         content:
-          //             Text('Please agree to the processing of personal data')),
-          //   );
-          // }
-
           context
               .read<FormRegisterBloc>()
               .add(FormRegisterActionRegistration());

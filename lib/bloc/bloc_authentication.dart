@@ -1,39 +1,61 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:integra_mobile/model/model.dart';
+import 'package:integra_mobile/model/model_user.dart';
+import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/share/storage/helper_storage.dart';
 
 part 'bloc_authentication_event.dart';
 part 'bloc_authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<BlocAuthenticationEvent, BlocAuthenticationState> {
-  AuthenticationBloc(super.initialState) {
-    on<AuthenticationLoginRequested>(login);
-    on<AuthenticationRegisterRequested>(register);
-    on<AuthenticationLogoutRequested>(logout);
-    on<AuthenticationUsernameChange>(usernameChange);
-    on<AuthenticationPasswordChange>(passwordChange);
+  AuthenticationBloc({
+    required this.userRepository,
+  }) : super(const BlocAuthenticationState.unknown()) {
+    on<BlocAuthenticationEventStatusChange>(_onAuthenticationStatusChanged);
+
+    _authenticationSubscription = userRepository.status.listen((event) {
+      add(BlocAuthenticationEventStatusChange(status: event));
+    });
+
+    if (SharedPreferenceHelper.instance.token.toString().isNotEmpty) {
+      add(BlocAuthenticationEventStatusChange(
+          status: AuthenticationStatus.authenticated));
+    } else {
+      add(BlocAuthenticationEventStatusChange(
+          status: AuthenticationStatus.unauthenticated));
+    }
   }
 
-  void login(AuthenticationLoginRequested event,
-      Emitter<BlocAuthenticationState> emit) {}
+  final UserRepository userRepository;
+  late StreamSubscription<AuthenticationStatus> _authenticationSubscription;
 
-  void register(AuthenticationRegisterRequested event,
-      Emitter<BlocAuthenticationState> emit) {}
-
-  void logout(AuthenticationLogoutRequested event,
-      Emitter<BlocAuthenticationState> emit) {}
-
-  void usernameChange(AuthenticationUsernameChange event,
-      Emitter<BlocAuthenticationState> emit) {
-    emit(state.copyWith(
-      username: event.username,
-    ));
+  Future<void> _onAuthenticationStatusChanged(
+    BlocAuthenticationEventStatusChange event,
+    Emitter<BlocAuthenticationState> emit,
+  ) async {
+    switch (event.status) {
+      case AuthenticationStatus.unauthenticated:
+        return emit(const BlocAuthenticationState.unauthenticated());
+      case AuthenticationStatus.authenticated:
+        try {
+          final user = await userRepository.userProfile();
+          return emit(BlocAuthenticationState.authenticated(user));
+        } catch (e) {
+          return emit(const BlocAuthenticationState.unauthenticated());
+        }
+      case AuthenticationStatus.unknown:
+        return emit(const BlocAuthenticationState.unknown());
+    }
   }
 
-  void passwordChange(AuthenticationPasswordChange event,
-      Emitter<BlocAuthenticationState> emit) {
-    emit(state.copyWith(
-      password: event.password,
-    ));
+  @override
+  Future<void> close() {
+    _authenticationSubscription.cancel();
+
+    return super.close();
   }
 }

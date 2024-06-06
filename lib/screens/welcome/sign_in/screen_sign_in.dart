@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:formz/formz.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
-import 'package:integra_mobile/bloc/bloc_authentication.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
-import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 
 class ScreenSignIn extends StatefulWidget {
   const ScreenSignIn({super.key});
@@ -22,8 +21,26 @@ class _ScreenSignInState extends State<ScreenSignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
-      listener: (context, state) {},
+    return BlocListener<BlocFormLogin, BlocFormLoginState>(
+      listener: (context, state) {
+        if (state.status.isFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(
+                behavior: SnackBarBehavior.floating,
+                content: Text("Tidak bisa login di akun ini")));
+        }
+
+        if (state.status.isSuccess) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(
+                behavior: SnackBarBehavior.floating,
+                content: Text("Berhasil login di akun peserta")));
+
+          Navigator.pop(context);
+        }
+      },
       child: Container(
         padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
         decoration: const BoxDecoration(
@@ -188,8 +205,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
     );
   }
 
-  BlocBuilder<FormRegisterBloc, FormRegisterBlocState> _buttonSignIn() {
-    return BlocBuilder<FormRegisterBloc, FormRegisterBlocState>(
+  Widget _buttonSignIn() {
+    return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
         builder: (context, state) {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -215,6 +232,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
           //             'Please agree to the processing of personal data')),
           //   );
           // }
+
+          context.read<BlocFormLogin>().add(BlocFormLoginActionLogin());
         },
         child: Text(
           "Sign In",
@@ -228,7 +247,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
   }
 
   Widget _passwordInput(BuildContext context) {
-    return BlocBuilder<AuthenticationBloc, BlocAuthenticationState>(
+    return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
         buildWhen: (previous, current) => previous.password != current.password,
         builder: (context, state) {
           return TextFormField(
@@ -242,8 +261,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
             },
             onChanged: (value) {
               context
-                  .read<AuthenticationBloc>()
-                  .add(AuthenticationPasswordChange(password: value));
+                  .read<BlocFormLogin>()
+                  .add(BlocFormLoginEventChangePassword(password: value));
             },
             decoration: InputDecoration(
               label: const Text('Password'),
@@ -269,8 +288,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
   }
 
   Widget _usernameInput(BuildContext context) {
-    return BlocBuilder<AuthenticationBloc, BlocAuthenticationState>(
-      buildWhen: (previous, current) => previous.username != current.username,
+    return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
+      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextFormField(
           validator: (value) {
@@ -281,8 +300,8 @@ class _ScreenSignInState extends State<ScreenSignIn> {
           },
           onChanged: (value) {
             context
-                .read<AuthenticationBloc>()
-                .add(AuthenticationUsernameChange(username: value));
+                .read<BlocFormLogin>()
+                .add(BlocFormLoginEventChangeEmail(email: value));
           },
           decoration: InputDecoration(
             label: const Text('Email'),

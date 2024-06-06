@@ -14,14 +14,14 @@ class ModelUser {
   });
 
   final int id;
-  final String name;
-  final String email;
+  final String? name;
+  final String? email;
   @JsonKey(name: 'email_verified_at')
-  final String emailVerifiedAt;
+  final String? emailVerifiedAt;
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final String? createdAt;
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final String? updatedAt;
 
   factory ModelUser.fromJson(Map<String, dynamic> json) =>
       _$ModelUserFromJson(json);

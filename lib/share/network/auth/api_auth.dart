@@ -1,16 +1,25 @@
 import 'dart:convert';
 
-import 'package:integra_mobile/model/model_registration_success.dart';
-import 'package:integra_mobile/model/success_login.dart';
-import 'package:integra_mobile/network/api.dart';
+import 'package:integra_mobile/model/model.dart';
+import 'package:integra_mobile/share/network/api.dart';
 
-Future<ModelSuccessLogin> login({
+Future<ModelUser> apiUserProfile() async {
+  final data = await myDio().get('/auth/user-profile');
+
+  if (data.statusCode == 200) {
+    return ModelUser.fromJson(jsonDecode(data.toString()));
+  }
+
+  throw Exception('Tidak bisa mendapatkan data user');
+}
+
+Future<ModelSuccessLogin> apiLogin({
   required String email,
   required String password,
 }) async {
   final data = await myDio().post('/auth/login', data: {
-    email: email,
-    password: password,
+    "email": email,
+    "password": password,
   });
 
   if (data.statusCode == 200) {

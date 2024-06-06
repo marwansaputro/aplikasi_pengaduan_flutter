@@ -1,20 +1,23 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:integra_mobile/network/auth/api_auth.dart';
-import 'package:integra_mobile/screens/welcome/sign_up/models/models.dart';
+import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/share/validations/validations.dart';
 
 part 'bloc_form_registration_event.dart';
 part 'bloc_form_registration_state.dart';
 
 class FormRegisterBloc
     extends Bloc<FormRegisterBlocEvent, FormRegisterBlocState> {
-  FormRegisterBloc(super.initialState) {
+  FormRegisterBloc({required this.userRepository})
+      : super(const FormRegisterBlocState()) {
     on<FormRegistrationChangeName>(changeName);
     on<FormRegistrationChangeEmail>(changeEmail);
     on<FormRegistrationChangePassword>(changePassword);
     on<FormRegisterActionRegistration>(registration);
   }
+
+  final UserRepository userRepository;
 
   void changeName(
       FormRegistrationChangeName event, Emitter<FormRegisterBlocState> emit) {
@@ -49,7 +52,7 @@ class FormRegisterBloc
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
       try {
-        await apiRegister(
+        await userRepository.register(
             name: state.name.value,
             email: state.email.value,
             password: state.password.value);

@@ -8,6 +8,10 @@ import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({super.key});
 
+  static Route<void> route() {
+    return MaterialPageRoute(builder: (context) => const ScreenWelcome());
+  }
+
   @override
   State<ScreenWelcome> createState() => _ScreenWelcomeState();
 }

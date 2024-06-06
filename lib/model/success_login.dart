@@ -16,7 +16,7 @@ class ModelSuccessLogin {
   @JsonKey(name: 'token_type')
   final String tokenType;
   @JsonKey(name: 'expires_in')
-  final String expiresIn;
+  final int expiresIn;
   ModelUser? user;
 
   factory ModelSuccessLogin.fromJson(Map<String, dynamic> json) =>
