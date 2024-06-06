@@ -50,3 +50,5 @@ firebase_options.dart
 google-services.json
 firebase.json
 const_pusher.dart
+
+.env

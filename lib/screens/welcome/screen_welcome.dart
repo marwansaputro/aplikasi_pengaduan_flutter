@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
-import 'package:integra_mobile/widget/button/buton_welcome.dart';
+import 'package:integra_mobile/widget/button/button_welcome.dart';
 import 'package:integra_mobile/widget/custom/custom_scaffold.dart';
 
 class ScreenWelcome extends StatefulWidget {
@@ -84,7 +84,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   ),
                 ),
               )),
-          const Flexible(
+          Flexible(
             flex: 40,
             child: Align(
               alignment: Alignment.bottomRight,
@@ -93,7 +93,14 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   Expanded(
                     child: ButtonWelcome(
                       buttonText: 'Sign In',
-                      onTap: ScreenSignIn(),
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return ScreenSignIn();
+                          },
+                        );
+                      },
                       color: Colors.transparent,
                       textColor: white,
                     ),
@@ -101,7 +108,20 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   Expanded(
                     child: ButtonWelcome(
                       buttonText: 'Sign Up',
-                      onTap: ScreenSignUp(),
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return const SizedBox(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [ScreenSignUp()],
+                              ),
+                            );
+                          },
+                        );
+                      },
                       color: white,
                       textColor: darkblue,
                     ),
