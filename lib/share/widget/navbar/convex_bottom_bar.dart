@@ -7,10 +7,12 @@ import 'package:integra_mobile/screens/product/screen_product.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
 import 'package:integra_mobile/value/theme.dart';
 
-void main() => runApp(const MaterialApp(home: ConvexButtomBar()));
-
 class ConvexButtomBar extends StatefulWidget {
   const ConvexButtomBar({super.key});
+
+  static Route<void> route() {
+    return MaterialPageRoute(builder: (context) => const ConvexButtomBar());
+  }
 
   @override
   State<ConvexButtomBar> createState() => _ConvexButtomBarState();

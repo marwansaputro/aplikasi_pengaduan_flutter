@@ -4,21 +4,14 @@ class ButtonWelcome extends StatelessWidget {
   const ButtonWelcome(
       {super.key, this.buttonText, this.onTap, this.color, this.textColor});
   final String? buttonText;
-  final Widget? onTap;
+  final void Function()? onTap;
   final Color? color;
   final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (e) => onTap!,
-          ),
-        );
-      },
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
