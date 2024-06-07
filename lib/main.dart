@@ -38,6 +38,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final UserRepository userRepository;
+  late final PengaduanRepository pengaduanRepository;
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     userRepository = UserRepository();
+    pengaduanRepository = PengaduanRepository();
   }
 
   @override
@@ -63,6 +65,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         RepositoryProvider(
           create: (context) => userRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => pengaduanRepository,
         )
       ],
       child: MultiBlocProvider(

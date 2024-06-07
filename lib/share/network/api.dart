@@ -9,7 +9,8 @@ Dio myDio() {
   dio.options.baseUrl = dotenv.env['BASE_URL'] ?? '';
 
   dio.interceptors.add(TokenInterceptor());
-  dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
+  dio.interceptors.add(PrettyDioLogger(
+      requestBody: true, requestHeader: true, responseBody: true));
 
   return dio;
 }

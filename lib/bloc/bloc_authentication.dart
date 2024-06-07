@@ -43,6 +43,7 @@ class AuthenticationBloc
       case AuthenticationStatus.authenticated:
         try {
           final user = await userRepository.userProfile();
+
           return emit(BlocAuthenticationState.authenticated(user));
         } catch (e) {
           return emit(const BlocAuthenticationState.unauthenticated());
