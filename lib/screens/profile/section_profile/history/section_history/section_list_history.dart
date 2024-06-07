@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
-import 'package:integra_mobile/model/model_pengaduan.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/screen_detail_complaint.dart';
+import 'package:integra_mobile/share/widget/mocullar/items/item_history.dart';
 import 'package:integra_mobile/value/path_image.dart';
-import 'package:integra_mobile/value/theme.dart';
 
 class SectionListHistory extends StatefulWidget {
   const SectionListHistory({super.key});
@@ -29,123 +28,30 @@ class _SectionListHistoryState extends State<SectionListHistory> {
                 previous.status != current.status,
             builder: (context, state) {
               return state.status.isInProgress
-                  ? Container(
-                      child: Text("progress"),
+                  ? const Center(
+                      child: CircularProgressIndicator(),
                     )
                   : state.data.isEmpty
-                      ? Container(
-                          child: Text(state.data.length.toString()),
+                      ? const Center(
+                          child: Text("Data history tidak ada"),
                         )
                       : IColumn(
                           gap: 5,
                           children: state.data
                               .map(
-                                (e) => Complaint(
+                                (e) => ItemComplaint(
                                   image: pathImageBackgroundWelcome,
                                   status: e.statusPengaduan,
                                   complaint: e.isiPengaduan,
-                                  date: '06 September 2022',
+                                  date: e.tanggalPengaduan,
                                   press: () => {
                                     Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ScreenDetailComplaint(),
-                                      ),
-                                    ),
+                                        context, ScreenDetailComplaint.Route()),
                                   },
                                 ),
                               )
                               .toList());
             }),
-      ),
-    );
-  }
-}
-
-class Complaint extends StatelessWidget {
-  const Complaint({
-    Key? key,
-    required this.status,
-    required this.complaint,
-    required this.date,
-    required this.image,
-    this.press,
-  }) : super(key: key);
-
-  final StatusPengaduan status;
-  final String complaint, image, date;
-  final VoidCallback? press;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isSuccess = true;
-    return TextButton(
-      style: TextButton.styleFrom(
-        foregroundColor: primaryGreen,
-        padding: const EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: white,
-        elevation: 10,
-        shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.3),
-      ),
-      onPressed: press,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 40,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              image: const DecorationImage(
-                  image: AssetImage(
-                    pathImageDummyImage,
-                  ),
-                  fit: BoxFit.cover),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: IColumn(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  status.name,
-                  style: TextStyle(
-                    color: isSuccess ? Colors.green : Colors.red,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  complaint,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      date,
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const Icon(Icons.remove_red_eye, size: 15, color: darkGrey),
-        ],
       ),
     );
   }

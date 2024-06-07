@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:formz/formz.dart';
 import 'package:integra_mobile/model/model.dart';
 import 'package:integra_mobile/model/model_user.dart';
 import 'package:integra_mobile/share/network/network.dart';
@@ -41,11 +43,20 @@ class AuthenticationBloc
       case AuthenticationStatus.unauthenticated:
         return emit(const BlocAuthenticationState.unauthenticated());
       case AuthenticationStatus.authenticated:
+        emit(state.copyWith(
+            statuGetteringUser: FormzSubmissionStatus.inProgress));
+
         try {
           final user = await userRepository.userProfile();
 
+          emit(state.copyWith(
+              statuGetteringUser: FormzSubmissionStatus.success));
+
           return emit(BlocAuthenticationState.authenticated(user));
         } catch (e) {
+          emit(state.copyWith(
+              statuGetteringUser: FormzSubmissionStatus.failure));
+
           return emit(const BlocAuthenticationState.unauthenticated());
         }
       case AuthenticationStatus.unknown:

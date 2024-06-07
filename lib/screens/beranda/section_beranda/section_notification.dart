@@ -1,5 +1,9 @@
 import 'package:badges/badges.dart' as badges;
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
@@ -24,25 +28,50 @@ class SectionNotification extends StatelessWidget {
             child: IRow(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IColumn(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  gap: 3,
-                  children: [
-                    Text(
-                      'Hi, Marwan!',
-                      style:
-                          Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                color: white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                    ),
-                    Text(
-                      'Can I help you?',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: primaryGrey, fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
+                BlocBuilder<AuthenticationBloc, BlocAuthenticationState>(
+                    buildWhen: (previous, current) =>
+                        previous.user != current.user ||
+                        previous.statuGetteringUser !=
+                            current.statuGetteringUser,
+                    builder: (context, state) {
+                      return IColumn(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        gap: 3,
+                        children: [
+                          state.statuGetteringUser.isInProgress
+                              ? SizedBox(
+                                  height: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.fontSize,
+                                  width: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.fontSize,
+                                  child: const CircularProgressIndicator(),
+                                )
+                              : Text(
+                                  'Hi, ${StringUtils.capitalize(state.user?.name.toString() ?? '')}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(
+                                        color: white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                          Text(
+                            'Can I help you?',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color: primaryGrey,
+                                    fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      );
+                    }),
                 InkWell(
                   borderRadius: BorderRadius.circular(10),
                   onTap: () {

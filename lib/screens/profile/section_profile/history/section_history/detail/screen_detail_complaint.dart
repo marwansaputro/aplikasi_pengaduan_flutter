@@ -5,6 +5,12 @@ import 'package:integra_mobile/value/theme.dart';
 class ScreenDetailComplaint extends StatefulWidget {
   const ScreenDetailComplaint({super.key});
 
+  static Route() {
+    MaterialPageRoute(
+      builder: (context) => const ScreenDetailComplaint(),
+    );
+  }
+
   @override
   State<ScreenDetailComplaint> createState() => _ScreenDetailComplaintState();
 }
