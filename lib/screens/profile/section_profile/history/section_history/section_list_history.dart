@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
+import 'package:integra_mobile/model/model_pengaduan.dart';
+import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
@@ -19,146 +23,41 @@ class _SectionListHistoryState extends State<SectionListHistory> {
       padding: paddingMobile,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: IColumn(
-          gap: 5,
-          children: [
-            Complaint(
-              image: pathImageBackgroundWelcome,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-            Complaint(
-              image: pathImageDummyImage,
-              status: '',
-              complaint:
-                  'isi pengaduan Kami selalu melakukan research yang berkelanjutan untuk auptodate dengan perkembangan teknologi terkini ',
-              date: '06 September 2022',
-              press: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenDetailComplaint(),
-                  ),
-                ),
-              },
-            ),
-          ],
-        ),
+        child: BlocBuilder<BlocHistory, BlocHistoryState>(
+            buildWhen: (previous, current) =>
+                previous.data.length != current.data.length ||
+                previous.status != current.status,
+            builder: (context, state) {
+              return state.status.isInProgress
+                  ? Container(
+                      child: Text("progress"),
+                    )
+                  : state.data.isEmpty
+                      ? Container(
+                          child: Text(state.data.length.toString()),
+                        )
+                      : IColumn(
+                          gap: 5,
+                          children: state.data
+                              .map(
+                                (e) => Complaint(
+                                  image: pathImageBackgroundWelcome,
+                                  status: e.statusPengaduan,
+                                  complaint: e.isiPengaduan,
+                                  date: '06 September 2022',
+                                  press: () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ScreenDetailComplaint(),
+                                      ),
+                                    ),
+                                  },
+                                ),
+                              )
+                              .toList());
+            }),
       ),
     );
   }
@@ -174,7 +73,8 @@ class Complaint extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  final String status, complaint, image, date;
+  final StatusPengaduan status;
+  final String complaint, image, date;
   final VoidCallback? press;
 
   @override
@@ -211,7 +111,7 @@ class Complaint extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isSuccess ? 'Success' : 'Reject',
+                  status.name,
                   style: TextStyle(
                     color: isSuccess ? Colors.green : Colors.red,
                     fontSize: 18,
