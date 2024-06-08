@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/onboarding/introduction_list.dart';
 import 'package:integra_mobile/share/widget/onboarding/introduction_widget.dart';
 

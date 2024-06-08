@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/product/sectiion_product/section_button_chat.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionChat extends StatelessWidget {
   const SectionChat({super.key});

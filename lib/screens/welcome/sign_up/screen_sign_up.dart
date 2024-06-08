@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/bloc/bloc_form_registration.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
 
 class ScreenSignUp extends StatefulWidget {

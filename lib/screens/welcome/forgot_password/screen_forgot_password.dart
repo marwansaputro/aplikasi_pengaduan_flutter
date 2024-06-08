@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
 
 class ScreenForgotPassword extends StatefulWidget {

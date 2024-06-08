@@ -5,7 +5,7 @@ import 'package:integra_mobile/layout/row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
 
 class ScreenSignIn extends StatefulWidget {

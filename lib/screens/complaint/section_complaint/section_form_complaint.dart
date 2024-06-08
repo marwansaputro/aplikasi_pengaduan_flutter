@@ -7,7 +7,7 @@ import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/complaint/bloc/bloc_complaint.dart';
 import 'package:integra_mobile/screens/complaint/section_complaint/section_image_complaint.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionFormComplaint extends StatefulWidget {
   const SectionFormComplaint({

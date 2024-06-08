@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SectionIklan extends StatefulWidget {

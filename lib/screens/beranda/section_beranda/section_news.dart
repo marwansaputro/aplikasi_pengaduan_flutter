@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:readmore/readmore.dart';
 
 class SectionNews extends StatelessWidget {

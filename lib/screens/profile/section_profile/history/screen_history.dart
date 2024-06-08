@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/body_history.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class ScreenHistory extends StatefulWidget {
   const ScreenHistory({super.key});

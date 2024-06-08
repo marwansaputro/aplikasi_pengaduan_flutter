@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/button/button_welcome.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
 import 'package:pusher_beams/pusher_beams.dart';

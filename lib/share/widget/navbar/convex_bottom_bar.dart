@@ -5,7 +5,7 @@ import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/portfolio/screen_portfolio.dart';
 import 'package:integra_mobile/screens/product/screen_product.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class ConvexButtomBar extends StatefulWidget {
   const ConvexButtomBar({super.key});

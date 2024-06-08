@@ -3,7 +3,7 @@ import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionListNotifications extends StatefulWidget {
   const SectionListNotifications({super.key});
