@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

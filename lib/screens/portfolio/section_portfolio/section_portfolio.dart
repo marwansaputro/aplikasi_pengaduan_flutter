@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/screens/portfolio/section_portfolio/section_item_portfolio.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionPortfolio extends StatelessWidget {

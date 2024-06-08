@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/complaint/bloc/bloc_complaint.dart';
 import 'package:integra_mobile/screens/complaint/section_complaint/section_image_complaint.dart';
-import 'package:integra_mobile/value/path_image.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionFormComplaint extends StatefulWidget {

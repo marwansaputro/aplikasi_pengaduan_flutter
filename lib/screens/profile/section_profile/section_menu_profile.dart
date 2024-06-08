@@ -6,7 +6,7 @@ import 'package:integra_mobile/screens/profile/menu_profile/menu_profile.dart';
 import 'package:integra_mobile/screens/profile/section_profile/account/screen_account.dart';
 import 'package:integra_mobile/screens/profile/section_profile/help_center/screen_help_center.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionMenuProfil extends StatefulWidget {

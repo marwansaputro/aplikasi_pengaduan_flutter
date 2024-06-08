@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class SectionPictureProfile extends StatefulWidget {

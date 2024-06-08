@@ -2,7 +2,7 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/column.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ItemComplaint extends StatelessWidget {

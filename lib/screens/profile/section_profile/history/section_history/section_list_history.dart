@@ -6,7 +6,7 @@ import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/share/widget/mocullar/items/item_history.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 
 class SectionListHistory extends StatefulWidget {
   const SectionListHistory({super.key});
