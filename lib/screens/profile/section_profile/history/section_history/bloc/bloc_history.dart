@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:integra_mobile/model/model_pengaduan.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 
 part 'bloc_history_event.dart';
 part 'bloc_history_state.dart';

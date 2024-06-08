@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/screens/complaint/bloc/bloc_complaint.dart';
 import 'package:integra_mobile/screens/complaint/section_complaint/body_complaint.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ScreenComplaint extends StatefulWidget {

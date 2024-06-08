@@ -1,6 +1,5 @@
-import 'package:integra_mobile/model/model_complaint_list.dart';
-import 'package:integra_mobile/model/model_complaint_success.dart';
-import 'package:integra_mobile/share/network/api/api_pengaduan.dart';
+import 'package:integra_mobile/data/model/models.dart';
+import 'package:integra_mobile/data/provider/network/api/api_pengaduan.dart';
 
 class PengaduanRepository {
   Future<ModelComplaintSuccess> createPengaduan({

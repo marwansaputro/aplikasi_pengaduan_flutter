@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/body_history.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/value/theme.dart';
 
 class ScreenHistory extends StatefulWidget {

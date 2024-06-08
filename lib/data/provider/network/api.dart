@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:integra_mobile/share/network/interceptor/token_interceptor.dart';
+import 'package:integra_mobile/data/provider/network/interceptor/token_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 Dio myDio() {

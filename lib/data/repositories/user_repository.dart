@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:integra_mobile/model/model.dart';
-import 'package:integra_mobile/share/network/api/api_auth.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
+import 'package:integra_mobile/data/provider/network/api/api_auth.dart';
 import 'package:integra_mobile/share/storage/helper_storage.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }

@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:integra_mobile/model/model.dart';
-import 'package:integra_mobile/share/network/api.dart';
+import 'package:integra_mobile/data/model/models.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
+import 'package:integra_mobile/data/provider/network/api.dart';
 
 Future<ModelUser> apiUserProfile() async {
   final data = await myDio().get('/auth/user-profile');

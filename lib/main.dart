@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
-import 'package:integra_mobile/const_pusher.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/share/storage/helper_storage.dart';
 import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
@@ -16,15 +15,17 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SharedPreferenceHelper();
+  await dotenv.load(fileName: ".env");
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await Future.wait([
-    dotenv.load(fileName: ".env"),
-    PusherBeams.instance.start(instanceId),
+    PusherBeams.instance.start(dotenv.env['INSTANCE_ID'] ?? ''),
   ]);
+
+  await PusherBeams.instance.setDeviceInterests(["hello"]);
 
   runApp(const MyApp());
 }

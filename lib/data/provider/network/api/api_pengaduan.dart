@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:integra_mobile/model/model_complaint_list.dart';
-import 'package:integra_mobile/model/model_complaint_success.dart';
-import 'package:integra_mobile/share/network/api.dart';
+import 'package:integra_mobile/data/model/models.dart';
+import 'package:integra_mobile/data/provider/network/api.dart';
 
 Future<ModelComplaintSuccess> apiCreatePengaduan({
   required String aplikasi,

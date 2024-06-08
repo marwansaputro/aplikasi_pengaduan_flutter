@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
-import 'package:integra_mobile/model/model.dart';
-import 'package:integra_mobile/model/model_user.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/share/storage/helper_storage.dart';
 
 part 'bloc_authentication_event.dart';

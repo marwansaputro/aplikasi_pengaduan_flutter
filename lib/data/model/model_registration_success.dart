@@ -1,4 +1,4 @@
-import 'package:integra_mobile/model/model_user.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'model_registration_success.g.dart';

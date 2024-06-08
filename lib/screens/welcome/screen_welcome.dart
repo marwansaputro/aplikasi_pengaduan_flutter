@@ -4,6 +4,7 @@ import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/value/theme.dart';
 import 'package:integra_mobile/share/widget/button/button_welcome.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
+import 'package:pusher_beams/pusher_beams.dart';
 
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({super.key});
@@ -17,6 +18,11 @@ class ScreenWelcome extends StatefulWidget {
 }
 
 class _ScreenWelcomeState extends State<ScreenWelcome> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

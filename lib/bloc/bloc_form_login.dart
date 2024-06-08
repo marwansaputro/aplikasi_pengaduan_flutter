@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:integra_mobile/share/network/network.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/share/validations/validations.dart';
 
 part 'bloc_form_login_state.dart';
