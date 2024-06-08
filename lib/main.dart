@@ -6,7 +6,7 @@ import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
-import 'package:integra_mobile/share/storage/helper_storage.dart';
+import 'package:integra_mobile/app/services/helper_storage.dart';
 import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
 import 'package:pusher_beams/pusher_beams.dart';

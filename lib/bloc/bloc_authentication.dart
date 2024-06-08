@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
-import 'package:integra_mobile/share/storage/helper_storage.dart';
+import 'package:integra_mobile/app/services/helper_storage.dart';
 
 part 'bloc_authentication_event.dart';
 part 'bloc_authentication_state.dart';

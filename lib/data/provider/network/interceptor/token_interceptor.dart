@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:integra_mobile/share/storage/helper_storage.dart';
+import 'package:integra_mobile/app/services/helper_storage.dart';
 
 class TokenInterceptor extends Interceptor {
   @override
