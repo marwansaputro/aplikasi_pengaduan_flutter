@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class SectionContactUs extends StatelessWidget {
   const SectionContactUs({super.key});
@@ -132,7 +133,7 @@ class SectionContactUs extends StatelessWidget {
                               IRow(
                                 gap: 10,
                                 children: [
-                                  const SvgIcon(
+                                  SvgPicture.asset(
                                     pathIIconWhatsapp,
                                     color: white,
                                     height: 15,
@@ -152,7 +153,7 @@ class SectionContactUs extends StatelessWidget {
                               IRow(
                                 gap: 10,
                                 children: [
-                                  const SvgIcon(
+                                  SvgPicture.asset(
                                     pathIIconWhatsapp,
                                     color: white,
                                     height: 15,

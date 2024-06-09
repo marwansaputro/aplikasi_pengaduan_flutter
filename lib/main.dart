@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:integra_mobile/app/services/helper_local_notifications.dart';
+import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
@@ -9,7 +11,6 @@ import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/services/helper_storage.dart';
 import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
 import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
-import 'package:pusher_beams/pusher_beams.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,15 +18,13 @@ Future<void> main() async {
   SharedPreferenceHelper();
   await dotenv.load(fileName: ".env");
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
   await Future.wait([
-    PusherBeams.instance.start(dotenv.env['INSTANCE_ID'] ?? ''),
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
+    ServicePusherBeams().startUp(),
+    NotificationService().init(),
   ]);
-
-  await PusherBeams.instance.setDeviceInterests(["hello"]);
 
   runApp(const MyApp());
 }
@@ -89,6 +88,9 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             ),
+            onGenerateRoute: (settings) {
+              print(settings.name);
+            },
             builder: (context, child) {
               return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
                 listener: (context, state) {

@@ -106,8 +106,14 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
+                          isScrollControlled: true,
                           builder: (context) {
-                            return ScreenSignIn();
+                            return const SizedBox(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [ScreenSignIn()],
+                              ),
+                            );
                           },
                         );
                       },

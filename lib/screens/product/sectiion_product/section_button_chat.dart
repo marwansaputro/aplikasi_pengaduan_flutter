@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class SectionButtonChat extends StatelessWidget {
   const SectionButtonChat({super.key});
@@ -26,7 +26,7 @@ class SectionButtonChat extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               gap: 5,
               children: [
-                const SvgIcon(
+                SvgPicture.asset(
                   pathIIconWhatsapp,
                   color: white,
                   height: 20,
