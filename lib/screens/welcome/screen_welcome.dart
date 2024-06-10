@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/app/config/theme.dart';
@@ -103,23 +104,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   Expanded(
                     child: ButtonWelcome(
                       buttonText: 'Sign In',
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) {
-                            return SizedBox(
-                              child: Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: const Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [ScreenSignIn()],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                      onTap: () => showLogin(context),
                       color: Colors.transparent,
                       textColor: white,
                     ),
@@ -128,21 +113,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                     child: ButtonWelcome(
                       buttonText: 'Sign Up',
                       onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) {
-                            return SizedBox(
-                              child: Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: const Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [ScreenSignUp()],
-                                ),
-                              ),
-                            );
-                          },
-                        );
+                        showSignUp(context);
                       },
                       color: white,
                       textColor: darkblue,
@@ -154,6 +125,81 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> showForgotPassword(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [ScreenForgotPassword()],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<dynamic> showSignUp(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ScreenSignUp(
+                  signInOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showLogin(context);
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<dynamic> showLogin(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ScreenSignIn(
+                  signUpOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showSignUp(context);
+                  },
+                  forgotPasswordOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showForgotPassword(context);
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

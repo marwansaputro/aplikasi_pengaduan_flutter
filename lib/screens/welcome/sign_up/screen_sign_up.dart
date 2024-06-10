@@ -8,7 +8,12 @@ import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
 
 class ScreenSignUp extends StatefulWidget {
-  const ScreenSignUp({super.key});
+  const ScreenSignUp({
+    super.key,
+    this.signInOnClick,
+  });
+
+  final void Function()? signInOnClick;
 
   @override
   State<ScreenSignUp> createState() => _ScreenSignUpState();
@@ -42,13 +47,6 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
       },
       child: Container(
         padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
-        decoration: const BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0),
-            topRight: Radius.circular(40.0),
-          ),
-        ),
         child: Form(
           key: _formSignupKey,
           child: Column(
@@ -155,14 +153,7 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (e) => const ScreenSignIn(),
-                        ),
-                      );
-                    },
+                    onTap: widget.signInOnClick,
                     child: const Text(
                       'Sign in',
                       style: TextStyle(

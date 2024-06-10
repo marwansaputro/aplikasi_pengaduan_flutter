@@ -112,7 +112,8 @@ class _MyAppState extends State<MyApp> {
                 child: child,
               );
             },
-            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty
+            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty &&
+                    SharedPreferenceHelper.instance.rememberMe
                 ? const ConvexButtomBar()
                 : ScreenOnboarding(),
           )),

@@ -23,4 +23,12 @@ class SharedPreferenceHelper {
   set token(String? value) {
     if (value != null) prefs.setString(keyToken, value);
   }
+
+  bool get rememberMe {
+    return prefs.getBool("remember_me") ?? false;
+  }
+
+  set rememberMe(bool value) {
+    prefs.setBool("remember_me", value);
+  }
 }

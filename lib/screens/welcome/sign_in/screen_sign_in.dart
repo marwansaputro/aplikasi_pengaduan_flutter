@@ -4,13 +4,18 @@ import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
-import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
-import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
 
 class ScreenSignIn extends StatefulWidget {
-  const ScreenSignIn({super.key});
+  const ScreenSignIn({
+    super.key,
+    this.signUpOnClick,
+    this.forgotPasswordOnClick,
+  });
+
+  final void Function()? signUpOnClick;
+  final void Function()? forgotPasswordOnClick;
 
   @override
   State<ScreenSignIn> createState() => _ScreenSignInState();
@@ -18,7 +23,6 @@ class ScreenSignIn extends StatefulWidget {
 
 class _ScreenSignInState extends State<ScreenSignIn> {
   final _formSignInKey = GlobalKey<FormState>();
-  bool rememberPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +48,6 @@ class _ScreenSignInState extends State<ScreenSignIn> {
       },
       child: Container(
         padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
-        decoration: const BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0),
-            topRight: Radius.circular(40.0),
-          ),
-        ),
         child: Form(
           key: _formSignInKey,
           child: Column(
@@ -144,14 +141,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
           ),
         ),
         GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (e) => const ScreenSignUp(),
-              ),
-            );
-          },
+          onTap: widget.signUpOnClick,
           child: const Text(
             'Sign Up',
             style: TextStyle(
@@ -166,14 +156,7 @@ class _ScreenSignInState extends State<ScreenSignIn> {
 
   GestureDetector _forgetPassword() {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (e) => const ScreenForgotPassword(),
-          ),
-        );
-      },
+      onTap: widget.forgotPasswordOnClick,
       child: const Text(
         'Forget password?',
         style: TextStyle(
@@ -184,26 +167,31 @@ class _ScreenSignInState extends State<ScreenSignIn> {
     );
   }
 
-  Row _rememberMe() {
-    return Row(
-      children: [
-        Checkbox(
-          value: rememberPassword,
-          onChanged: (bool? value) {
-            setState(() {
-              rememberPassword = value!;
-            });
-          },
-          activeColor: primaryGreen,
-        ),
-        const Text(
-          'Remember me',
-          style: TextStyle(
-            color: Colors.black45,
-          ),
-        ),
-      ],
-    );
+  Widget _rememberMe() {
+    return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
+        buildWhen: (previous, current) =>
+            previous.rememberMe != current.rememberMe,
+        builder: (context, state) {
+          return Row(
+            children: [
+              Checkbox(
+                value: state.rememberMe.value,
+                onChanged: (bool? value) {
+                  context.read<BlocFormLogin>().add(
+                      BlocFormLoginEventChangeRememberMe(
+                          rememberMe: value ?? false));
+                },
+                activeColor: primaryGreen,
+              ),
+              const Text(
+                'Remember me',
+                style: TextStyle(
+                  color: Colors.black45,
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Widget _buttonSignIn() {
@@ -221,25 +209,6 @@ class _ScreenSignInState extends State<ScreenSignIn> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const ConvexButtomBar()),
-          // );
-          // if (_formSignInKey.currentState!.validate() &&
-          //     rememberPassword) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     const SnackBar(
-          //       content: Text('Processing Data'),
-          //     ),
-          //   );
-          // } else if (!rememberPassword) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     const SnackBar(
-          //         content: Text(
-          //             'Please agree to the processing of personal data')),
-          //   );
-          // }
-
           context.read<BlocFormLogin>().add(BlocFormLoginActionLogin());
         },
         child: Text(
