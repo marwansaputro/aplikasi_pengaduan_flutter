@@ -113,7 +113,7 @@ class FormComplaint extends StatelessWidget {
               child: BlocBuilder<BlocComplaint, BlocComplaintState>(
                   builder: (context, state) {
                 if (state.status.isInProgress) {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }
 
                 return ElevatedButton(

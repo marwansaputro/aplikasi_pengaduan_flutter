@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:integra_mobile/data/model/models.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
@@ -23,6 +24,11 @@ class PengaduanRepository {
           tanggal: tanggal,
           image: image);
     } catch (e) {
+      if (e is DioException) {
+        if (e.response?.statusCode == 401) {
+          user.logOut();
+        }
+      }
       rethrow;
     }
   }
