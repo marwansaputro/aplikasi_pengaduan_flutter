@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:integra_mobile/data/model/models.dart';
-import 'package:integra_mobile/data/provider/network/api/api_pengaduan.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class PengaduanRepository {
@@ -12,13 +13,15 @@ class PengaduanRepository {
     required String kantor,
     required String pengaduan,
     required DateTime tanggal,
+    required File image,
   }) {
     try {
       return apiCreatePengaduan(
           aplikasi: aplikasi,
           kantor: kantor,
           pengaduan: pengaduan,
-          tanggal: tanggal);
+          tanggal: tanggal,
+          image: image);
     } catch (e) {
       rethrow;
     }

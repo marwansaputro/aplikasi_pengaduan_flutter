@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
-import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
-import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
+import 'package:integra_mobile/screens/welcome/forgot_password/bottom_dialog_forgot_password.dart';
+import 'package:integra_mobile/screens/welcome/sign_in/bottom_dialog_sign_in.dart';
+import 'package:integra_mobile/screens/welcome/sign_up/bottom_dialog_sign_up.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/button/button_welcome.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
-import 'package:pusher_beams/pusher_beams.dart';
 
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({super.key});
@@ -138,7 +137,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
             padding: MediaQuery.of(context).viewInsets,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [ScreenForgotPassword()],
+              children: [BottomDialogFogotPassword()],
             ),
           ),
         );
@@ -157,7 +156,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ScreenSignUp(
+                BottomDialogSignUp(
                   signInOnClick: () {
                     Navigator.of(context).pop();
 
@@ -183,7 +182,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ScreenSignIn(
+                BottomDialogSignIn(
                   signUpOnClick: () {
                     Navigator.of(context).pop();
 

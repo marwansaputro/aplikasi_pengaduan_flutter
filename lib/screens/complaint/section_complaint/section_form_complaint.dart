@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
@@ -54,7 +55,6 @@ class _SectionFormComplaintState extends State<SectionFormComplaint> {
             Padding(
               padding: paddingMobile,
               child: Container(
-                height: 600,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: white,
@@ -105,13 +105,17 @@ class FormComplaint extends StatelessWidget {
             formAppName(),
             formCompany(),
             formComplaint(),
-            SectionImageComplaint(),
+            formImage(),
             SizedBox(height: 10),
             SizedBox(
               height: 40,
               width: double.infinity,
               child: BlocBuilder<BlocComplaint, BlocComplaintState>(
                   builder: (context, state) {
+                if (state.status.isInProgress) {
+                  return CircularProgressIndicator();
+                }
+
                 return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryGreen,
@@ -137,6 +141,18 @@ class FormComplaint extends StatelessWidget {
       },
     );
   }
+
+  Widget formImage() => BlocBuilder<BlocComplaint, BlocComplaintState>(
+        builder: (context, state) => SectionImageComplaint(
+          changeImage: (fileImage) {
+            if (fileImage != null) {
+              context
+                  .read<BlocComplaint>()
+                  .add(BlocComplaintChangeImage(image: fileImage));
+            }
+          },
+        ),
+      );
 
   BlocBuilder<BlocComplaint, BlocComplaintState> formComplaint() {
     return BlocBuilder<BlocComplaint, BlocComplaintState>(

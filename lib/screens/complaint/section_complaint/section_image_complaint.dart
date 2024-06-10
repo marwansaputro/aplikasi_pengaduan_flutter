@@ -11,20 +11,31 @@ import 'package:integra_mobile/app/config/theme.dart';
 class SectionImageComplaint extends StatefulWidget {
   const SectionImageComplaint({
     super.key,
+    this.changeImage,
   });
+
+  final void Function(File? fileImage)? changeImage;
 
   @override
   State<SectionImageComplaint> createState() => _SectionImageComplaintState();
 }
 
 class _SectionImageComplaintState extends State<SectionImageComplaint> {
-  File? file;
+  File? _file;
   bool isFile = false;
+
+  set file(File? file) {
+    _file = file;
+
+    widget.changeImage?.call(_file);
+  }
+
   void takeImageWithCamera() async {
     XFile? xFileImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
     File image = File(xFileImage!.path);
     Navigator.of(context).pop();
+
     setState(() {
       file = image;
       isFile = true;
@@ -36,6 +47,7 @@ class _SectionImageComplaintState extends State<SectionImageComplaint> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     File image = File(xFileImage!.path);
     Navigator.of(context).pop();
+
     setState(() {
       file = image;
       isFile = true;
@@ -170,7 +182,7 @@ class _SectionImageComplaintState extends State<SectionImageComplaint> {
                 padding: const EdgeInsets.all(8),
                 child: isFile
                     ? Image.file(
-                        file!,
+                        _file!,
                         width: 345,
                         height: 250,
                         fit: BoxFit.cover,

@@ -20,4 +20,10 @@ class BlocComplaintChangeComplaint extends BlocComplaintEvent {
   BlocComplaintChangeComplaint({required this.complaint});
 }
 
+class BlocComplaintChangeImage extends BlocComplaintEvent {
+  final File image;
+
+  BlocComplaintChangeImage({required this.image});
+}
+
 class BlocComplaintActionSubmit extends BlocComplaintEvent {}

@@ -6,6 +6,7 @@ class BlocComplaintState extends Equatable {
     this.appName = const AppNameValidation.pure(),
     this.company = const CompanyValidation.pure(),
     this.complaint = const ComplaintValidation.pure(),
+    this.image = const FileValidation.pure(),
     this.isValid = false,
   });
 
@@ -14,6 +15,7 @@ class BlocComplaintState extends Equatable {
   final AppNameValidation appName;
   final CompanyValidation company;
   final ComplaintValidation complaint;
+  final FileValidation image;
 
   final bool isValid;
 
@@ -22,6 +24,7 @@ class BlocComplaintState extends Equatable {
     AppNameValidation? appName,
     CompanyValidation? company,
     ComplaintValidation? complaint,
+    FileValidation? image,
     bool? isValid,
   }) {
     return BlocComplaintState(
@@ -29,6 +32,7 @@ class BlocComplaintState extends Equatable {
       appName: appName ?? this.appName,
       company: company ?? this.company,
       complaint: complaint ?? this.complaint,
+      image: image ?? this.image,
       isValid: isValid ?? this.isValid,
     );
   }
@@ -39,6 +43,7 @@ class BlocComplaintState extends Equatable {
         company,
         complaint,
         isValid,
+        image,
         status,
       ];
 }

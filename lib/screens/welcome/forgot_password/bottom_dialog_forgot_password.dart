@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/app/config/theme.dart';
-import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
 
-class ScreenForgotPassword extends StatefulWidget {
-  const ScreenForgotPassword({super.key});
+class BottomDialogFogotPassword extends StatefulWidget {
+  const BottomDialogFogotPassword({super.key});
 
   @override
-  State<ScreenForgotPassword> createState() => _ScreenForgotPasswordState();
+  State<BottomDialogFogotPassword> createState() =>
+      _BottomDialogFogotPasswordState();
 }
 
-class _ScreenForgotPasswordState extends State<ScreenForgotPassword> {
+class _BottomDialogFogotPasswordState extends State<BottomDialogFogotPassword> {
   final _formSignInKey = GlobalKey<FormState>();
   bool rememberPassword = true;
   @override

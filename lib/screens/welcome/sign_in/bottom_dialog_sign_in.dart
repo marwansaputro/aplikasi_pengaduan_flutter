@@ -3,12 +3,11 @@ import 'package:formz/formz.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_password.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
 
-class ScreenSignIn extends StatefulWidget {
-  const ScreenSignIn({
+class BottomDialogSignIn extends StatefulWidget {
+  const BottomDialogSignIn({
     super.key,
     this.signUpOnClick,
     this.forgotPasswordOnClick,
@@ -18,10 +17,10 @@ class ScreenSignIn extends StatefulWidget {
   final void Function()? forgotPasswordOnClick;
 
   @override
-  State<ScreenSignIn> createState() => _ScreenSignInState();
+  State<BottomDialogSignIn> createState() => _BottomDialogSignInState();
 }
 
-class _ScreenSignInState extends State<ScreenSignIn> {
+class _BottomDialogSignInState extends State<BottomDialogSignIn> {
   final _formSignInKey = GlobalKey<FormState>();
 
   @override
