@@ -183,6 +183,12 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
   BlocBuilder<FormRegisterBloc, FormRegisterBlocState> _buttonSignUp() {
     return BlocBuilder<FormRegisterBloc, FormRegisterBlocState>(
         builder: (context, state) {
+      if (state.status.isInProgress) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: primaryGreen,

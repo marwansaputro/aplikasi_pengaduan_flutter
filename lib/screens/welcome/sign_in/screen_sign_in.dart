@@ -7,6 +7,7 @@ import 'package:integra_mobile/screens/welcome/forgot_password/screen_forgot_pas
 import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
+import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
 
 class ScreenSignIn extends StatefulWidget {
   const ScreenSignIn({super.key});
@@ -208,6 +209,12 @@ class _ScreenSignInState extends State<ScreenSignIn> {
   Widget _buttonSignIn() {
     return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
         builder: (context, state) {
+      if (state.status.isInProgress) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: primaryGreen,
