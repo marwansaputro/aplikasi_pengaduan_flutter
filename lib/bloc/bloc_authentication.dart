@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/services/helper_storage.dart';
@@ -16,6 +17,7 @@ class AuthenticationBloc
     required this.userRepository,
   }) : super(const BlocAuthenticationState.unknown()) {
     on<BlocAuthenticationEventStatusChange>(_onAuthenticationStatusChanged);
+    on<BlocAuthenticationLogout>(logOut);
 
     _authenticationSubscription = userRepository.status.listen((event) {
       add(BlocAuthenticationEventStatusChange(status: event));
@@ -46,6 +48,7 @@ class AuthenticationBloc
 
         try {
           final user = await userRepository.userProfile();
+          ServicePusherBeams().setupUserId(user.id.toString());
 
           emit(state.copyWith(
               statuGetteringUser: FormzSubmissionStatus.success));
@@ -67,5 +70,11 @@ class AuthenticationBloc
     _authenticationSubscription.cancel();
 
     return super.close();
+  }
+
+  logOut(
+      BlocAuthenticationLogout event, Emitter<BlocAuthenticationState> emit) {
+    add(BlocAuthenticationEventStatusChange(
+        status: AuthenticationStatus.unauthenticated));
   }
 }

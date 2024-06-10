@@ -23,8 +23,7 @@ class UserRepository {
 
       _controller.add(AuthenticationStatus.authenticated);
     } catch (e) {
-      _controller.add(AuthenticationStatus.unauthenticated);
-
+      logOut();
       rethrow;
     }
   }
@@ -37,14 +36,23 @@ class UserRepository {
       await apiRegister(email: email, password: password, name: name);
       await login(email: email, password: password);
     } catch (e) {
-      _controller.add(AuthenticationStatus.unauthenticated);
-
+      logOut();
       rethrow;
     }
   }
 
+  logOut() {
+    SharedPreferenceHelper().token = null;
+    _controller.add(AuthenticationStatus.unauthenticated);
+  }
+
   Future<ModelUser> userProfile() {
-    return apiUserProfile();
+    try {
+      return apiUserProfile();
+    } catch (e) {
+      logOut();
+      rethrow;
+    }
   }
 
   void dispose() {

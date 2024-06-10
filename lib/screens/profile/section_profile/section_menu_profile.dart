@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
@@ -70,7 +72,9 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.read<UserRepository>().logOut();
+              },
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: IRow(

@@ -108,10 +108,13 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                           context: context,
                           isScrollControlled: true,
                           builder: (context) {
-                            return const SizedBox(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [ScreenSignIn()],
+                            return SizedBox(
+                              child: Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: const Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [ScreenSignIn()],
+                                ),
                               ),
                             );
                           },
@@ -129,10 +132,13 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                           context: context,
                           isScrollControlled: true,
                           builder: (context) {
-                            return const SizedBox(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [ScreenSignUp()],
+                            return SizedBox(
+                              child: Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: const Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [ScreenSignUp()],
+                                ),
                               ),
                             );
                           },

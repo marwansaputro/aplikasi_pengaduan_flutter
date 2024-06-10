@@ -7,3 +7,5 @@ class BlocAuthenticationEventStatusChange extends BlocAuthenticationEvent {
 
   BlocAuthenticationEventStatusChange({required this.status});
 }
+
+class BlocAuthenticationLogout extends BlocAuthenticationEvent {}

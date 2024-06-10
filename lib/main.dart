@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     userRepository = UserRepository();
-    pengaduanRepository = PengaduanRepository();
+    pengaduanRepository = PengaduanRepository(user: userRepository);
   }
 
   @override
