@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/section_detail/body_detail_complaint.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class ScreenDetailComplaint extends StatefulWidget {
   const ScreenDetailComplaint({super.key});
+
+  static Route() {
+    MaterialPageRoute(
+      builder: (context) => const ScreenDetailComplaint(),
+    );
+  }
 
   @override
   State<ScreenDetailComplaint> createState() => _ScreenDetailComplaintState();

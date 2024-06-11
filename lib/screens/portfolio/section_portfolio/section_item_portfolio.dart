@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:integra_mobile/domain/entities/model_portofolio.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class CustomItemPortfolio extends StatelessWidget {
   const CustomItemPortfolio({
-    required this.image,
-    required this.title1,
-    required this.title2,
-    required this.title3,
-    required this.title4,
+    required this.portofolio,
     super.key,
   });
 
-  final String image;
-  final String title1;
-  final String title2;
-  final String title3;
-  final String title4;
+  final ModelPortofolio portofolio;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +39,7 @@ class CustomItemPortfolio extends StatelessWidget {
               gap: 5,
               children: [
                 Text(
-                  title1,
+                  portofolio.title,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge
@@ -67,7 +60,7 @@ class CustomItemPortfolio extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                           image: DecorationImage(
                               image: AssetImage(
-                                image,
+                                portofolio.image,
                               ),
                               fit: BoxFit.cover),
                         ),
@@ -78,7 +71,7 @@ class CustomItemPortfolio extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            title2,
+                            portofolio.description,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -95,7 +88,7 @@ class CustomItemPortfolio extends StatelessWidget {
                             gap: 5,
                             children: [
                               Text(
-                                title3,
+                                portofolio.location,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall
@@ -105,7 +98,7 @@ class CustomItemPortfolio extends StatelessWidget {
                                     ),
                               ),
                               Text(
-                                title4,
+                                portofolio.tag,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall

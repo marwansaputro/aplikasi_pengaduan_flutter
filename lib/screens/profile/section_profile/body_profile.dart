@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/profile/section_profile/section_menu_profile.dart';
 import 'package:integra_mobile/screens/profile/section_profile/section_picture_profile.dart';
-import 'package:integra_mobile/value/path_image.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
 
 class BodyProfile extends StatefulWidget {
   const BodyProfile({super.key});

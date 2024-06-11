@@ -1,111 +1,122 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/widget/onboarding/screen_onboarding.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:integra_mobile/app/services/helper_local_notifications.dart';
+import 'package:integra_mobile/app/services/pusher.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
+import 'package:integra_mobile/firebase_options.dart';
+import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
+import 'package:integra_mobile/app/services/helper_storage.dart';
+import 'package:integra_mobile/share/widget/navbar/convex_bottom_bar.dart';
+import 'package:integra_mobile/share/widget/onboarding/screen_onboarding.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferenceHelper();
+  await dotenv.load(fileName: ".env");
+
+  await Future.wait([
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
+    ServicePusherBeams().startUp(),
+    NotificationService().init(),
+  ]);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final UserRepository userRepository;
+  late final PengaduanRepository pengaduanRepository;
+
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
+
+  @override
+  void initState() {
+    super.initState();
+
+    userRepository = UserRepository();
+    pengaduanRepository = PengaduanRepository(user: userRepository);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    userRepository.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Integra Mobile New',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        // useMaterial3: true,
-      ),
-      home: ScreenOnboarding(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => userRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => pengaduanRepository,
+        )
+      ],
+      child: MultiBlocProvider(
+          providers: List.of([
+            BlocProvider(
+                create: (context) =>
+                    AuthenticationBloc(userRepository: userRepository)),
+            BlocProvider(
+                create: (context) =>
+                    FormRegisterBloc(userRepository: userRepository)),
+            BlocProvider(
+                create: (context) =>
+                    BlocFormLogin(userRepository: userRepository))
+          ]),
+          child: MaterialApp(
+            navigatorKey: _navigatorKey,
+            title: 'Integra Mobile New',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+            ),
+            onGenerateRoute: (settings) {
+              print(settings.name);
+            },
+            builder: (context, child) {
+              return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
+                listener: (context, state) {
+                  switch (state.status) {
+                    case AuthenticationStatus.authenticated:
+                      _navigator.pushAndRemoveUntil<void>(
+                        ConvexButtomBar.route(),
+                        (route) => false,
+                      );
+                    case AuthenticationStatus.unauthenticated:
+                      _navigator.pushAndRemoveUntil<void>(
+                        ScreenWelcome.route(),
+                        (route) => false,
+                      );
+                    case AuthenticationStatus.unknown:
+                      break;
+                  }
+                },
+                child: child,
+              );
+            },
+            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty &&
+                    SharedPreferenceHelper.instance.rememberMe
+                ? const ConvexButtomBar()
+                : ScreenOnboarding(),
+          )),
     );
   }
 }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   // This widget is the home page of your application. It is stateful, meaning
-//   // that it has a State object (defined below) that contains fields that affect
-//   // how it looks.
-
-//   // This class is the configuration for the state. It holds the values (in this
-//   // case the title) provided by the parent (in this case the App widget) and
-//   // used by the build method of the State. Fields in a Widget subclass are
-//   // always marked "final".
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-//       // This call to setState tells the Flutter framework that something has
-//       // changed in this State, which causes it to rerun the build method below
-//       // so that the display can reflect the updated values. If we changed
-//       // _counter without calling setState(), then the build method would not be
-//       // called again, and so nothing would appear to happen.
-//       _counter++;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // This method is rerun every time setState is called, for instance as done
-//     // by the _incrementCounter method above.
-//     //
-//     // The Flutter framework has been optimized to make rerunning build methods
-//     // fast, so that you can just rebuild anything that needs updating rather
-//     // than having to individually change instances of widgets.
-//     return Scaffold(
-//       appBar: AppBar(
-//         // TRY THIS: Try changing the color here to a specific color (to
-//         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-//         // change color while the other colors stay the same.
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         // Here we take the value from the MyHomePage object that was created by
-//         // the App.build method, and use it to set our appbar title.
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         // Center is a layout widget. It takes a single child and positions it
-//         // in the middle of the parent.
-//         child: Column(
-//           // Column is also a layout widget. It takes a list of children and
-//           // arranges them vertically. By default, it sizes itself to fit its
-//           // children horizontally, and tries to be as tall as its parent.
-//           //
-//           // Column has various properties to control how it sizes itself and
-//           // how it positions its children. Here we use mainAxisAlignment to
-//           // center the children vertically; the main axis here is the vertical
-//           // axis because Columns are vertical (the cross axis would be
-//           // horizontal).
-//           //
-//           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-//           // action in the IDE, or press "p" in the console), to see the
-//           // wireframe for each widget.
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text(
-//               'You have pushed the button this many times:',
-//             ),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headlineMedium,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }
