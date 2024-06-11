@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/onboarding/introduction_widget.dart';
 import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
 

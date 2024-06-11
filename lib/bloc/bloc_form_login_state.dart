@@ -5,6 +5,7 @@ class BlocFormLoginState extends Equatable {
     this.status = FormzSubmissionStatus.initial,
     this.password = const PasswordRegistration.pure(),
     this.email = const EmailRegistration.pure(),
+    this.rememberMe = const RememberMeValidation.pure(),
     this.isValid = false,
   });
 
@@ -12,22 +13,25 @@ class BlocFormLoginState extends Equatable {
 
   final EmailRegistration email;
   final PasswordRegistration password;
+  final RememberMeValidation rememberMe;
   final bool isValid;
 
   BlocFormLoginState copyWith({
     FormzSubmissionStatus? status,
     EmailRegistration? email,
     PasswordRegistration? password,
+    RememberMeValidation? rememberMe,
     bool? isValid,
   }) {
     return BlocFormLoginState(
       status: status ?? this.status,
       password: password ?? this.password,
       email: email ?? this.email,
+      rememberMe: rememberMe ?? this.rememberMe,
       isValid: isValid ?? this.isValid,
     );
   }
 
   @override
-  List<Object?> get props => [email, password, status, isValid];
+  List<Object?> get props => [email, password, status, isValid, rememberMe];
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/value/theme.dart';
-import 'package:svg_icon/svg_icon.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class MenuProfile extends StatelessWidget {
   const MenuProfile({
@@ -48,7 +48,7 @@ class MenuProfile extends StatelessWidget {
             flex: 1,
             child: Row(
               children: [
-                SvgIcon(icon, color: primaryGreen, width: 20.0),
+                SvgPicture.asset(icon, color: primaryGreen, width: 20.0),
               ],
             ),
           ),

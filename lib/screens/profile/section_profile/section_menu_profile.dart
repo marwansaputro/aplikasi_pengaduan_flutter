@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
@@ -6,8 +8,8 @@ import 'package:integra_mobile/screens/profile/menu_profile/menu_profile.dart';
 import 'package:integra_mobile/screens/profile/section_profile/account/screen_account.dart';
 import 'package:integra_mobile/screens/profile/section_profile/help_center/screen_help_center.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
-import 'package:integra_mobile/value/path_image.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionMenuProfil extends StatefulWidget {
   const SectionMenuProfil({super.key});
@@ -70,7 +72,9 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.read<UserRepository>().logOut();
+              },
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: IRow(

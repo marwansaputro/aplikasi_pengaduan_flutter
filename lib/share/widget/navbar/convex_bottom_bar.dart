@@ -1,11 +1,13 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:integra_mobile/app/services/helper_local_notifications.dart';
+import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/screens/beranda/screen_beranda.dart';
 import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/portfolio/screen_portfolio.dart';
 import 'package:integra_mobile/screens/product/screen_product.dart';
 import 'package:integra_mobile/screens/profile/screen_profile.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class ConvexButtomBar extends StatefulWidget {
   const ConvexButtomBar({super.key});
@@ -19,6 +21,14 @@ class ConvexButtomBar extends StatefulWidget {
 }
 
 class _ConvexButtomBarState extends State<ConvexButtomBar> {
+  @override
+  void initState() {
+    super.initState();
+
+    NotificationService().requestPermissions();
+    ServicePusherBeams().initPusherBeams();
+  }
+
   int pageIndex = 0;
 
   final ScreenBeranda _screenBeranda = const ScreenBeranda();

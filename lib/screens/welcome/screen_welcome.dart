@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/welcome/sign_in/screen_sign_in.dart';
-import 'package:integra_mobile/screens/welcome/sign_up/screen_sign_up.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/screens/welcome/forgot_password/bottom_dialog_forgot_password.dart';
+import 'package:integra_mobile/screens/welcome/sign_in/bottom_dialog_sign_in.dart';
+import 'package:integra_mobile/screens/welcome/sign_up/bottom_dialog_sign_up.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/button/button_welcome.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
 
@@ -17,6 +18,11 @@ class ScreenWelcome extends StatefulWidget {
 }
 
 class _ScreenWelcomeState extends State<ScreenWelcome> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -97,14 +103,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   Expanded(
                     child: ButtonWelcome(
                       buttonText: 'Sign In',
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return ScreenSignIn();
-                          },
-                        );
-                      },
+                      onTap: () => showLogin(context),
                       color: Colors.transparent,
                       textColor: white,
                     ),
@@ -113,18 +112,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                     child: ButtonWelcome(
                       buttonText: 'Sign Up',
                       onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) {
-                            return const SizedBox(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [ScreenSignUp()],
-                              ),
-                            );
-                          },
-                        );
+                        showSignUp(context);
                       },
                       color: white,
                       textColor: darkblue,
@@ -136,6 +124,81 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> showForgotPassword(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [BottomDialogFogotPassword()],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<dynamic> showSignUp(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BottomDialogSignUp(
+                  signInOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showLogin(context);
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<dynamic> showLogin(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SizedBox(
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BottomDialogSignIn(
+                  signUpOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showSignUp(context);
+                  },
+                  forgotPasswordOnClick: () {
+                    Navigator.of(context).pop();
+
+                    showForgotPassword(context);
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

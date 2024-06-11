@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionMenu extends StatelessWidget {
   const SectionMenu({

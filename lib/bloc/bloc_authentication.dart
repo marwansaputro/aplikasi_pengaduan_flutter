@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:integra_mobile/model/model.dart';
-import 'package:integra_mobile/model/model_user.dart';
-import 'package:integra_mobile/share/network/network.dart';
-import 'package:integra_mobile/share/storage/helper_storage.dart';
+import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/services/pusher.dart';
+import 'package:integra_mobile/domain/entities/entities.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
+import 'package:integra_mobile/app/services/helper_storage.dart';
 
 part 'bloc_authentication_event.dart';
 part 'bloc_authentication_state.dart';
@@ -16,6 +17,7 @@ class AuthenticationBloc
     required this.userRepository,
   }) : super(const BlocAuthenticationState.unknown()) {
     on<BlocAuthenticationEventStatusChange>(_onAuthenticationStatusChanged);
+    on<BlocAuthenticationLogout>(logOut);
 
     _authenticationSubscription = userRepository.status.listen((event) {
       add(BlocAuthenticationEventStatusChange(status: event));
@@ -41,10 +43,21 @@ class AuthenticationBloc
       case AuthenticationStatus.unauthenticated:
         return emit(const BlocAuthenticationState.unauthenticated());
       case AuthenticationStatus.authenticated:
+        emit(state.copyWith(
+            statuGetteringUser: FormzSubmissionStatus.inProgress));
+
         try {
           final user = await userRepository.userProfile();
+          ServicePusherBeams().setupUserId(user.id.toString());
+
+          emit(state.copyWith(
+              statuGetteringUser: FormzSubmissionStatus.success));
+
           return emit(BlocAuthenticationState.authenticated(user));
         } catch (e) {
+          emit(state.copyWith(
+              statuGetteringUser: FormzSubmissionStatus.failure));
+
           return emit(const BlocAuthenticationState.unauthenticated());
         }
       case AuthenticationStatus.unknown:
@@ -57,5 +70,11 @@ class AuthenticationBloc
     _authenticationSubscription.cancel();
 
     return super.close();
+  }
+
+  logOut(
+      BlocAuthenticationLogout event, Emitter<BlocAuthenticationState> emit) {
+    add(BlocAuthenticationEventStatusChange(
+        status: AuthenticationStatus.unauthenticated));
   }
 }

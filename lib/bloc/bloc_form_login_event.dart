@@ -12,4 +12,10 @@ class BlocFormLoginEventChangePassword extends BlocFormLoginEvent {
   final String password;
 }
 
+class BlocFormLoginEventChangeRememberMe extends BlocFormLoginEvent {
+  final bool rememberMe;
+
+  BlocFormLoginEventChangeRememberMe({required this.rememberMe});
+}
+
 class BlocFormLoginActionLogin extends BlocFormLoginEvent {}

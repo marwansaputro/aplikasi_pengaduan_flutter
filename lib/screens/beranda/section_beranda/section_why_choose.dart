@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/accordion/accordion_common.dart';
 
 class SectionWhyChoose extends StatelessWidget {

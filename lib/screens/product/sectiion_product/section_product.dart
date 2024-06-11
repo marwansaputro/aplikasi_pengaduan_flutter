@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/product/sectiion_product/section_menu_product.dart';
-import 'package:integra_mobile/value/path_image.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/app_constant.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class SectionProduct extends StatelessWidget {
   const SectionProduct({

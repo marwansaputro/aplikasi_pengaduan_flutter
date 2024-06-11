@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/screens/product/sectiion_product/body_product.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class ScreenProduct extends StatefulWidget {
   const ScreenProduct({super.key});

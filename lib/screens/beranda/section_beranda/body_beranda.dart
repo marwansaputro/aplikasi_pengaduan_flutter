@@ -6,7 +6,7 @@ import 'package:integra_mobile/screens/beranda/section_beranda/section_notificat
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_iklan.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_title_news.dart';
 import 'package:integra_mobile/screens/beranda/section_beranda/section_why_choose.dart';
-import 'package:integra_mobile/value/theme.dart';
+import 'package:integra_mobile/app/config/theme.dart';
 
 class BodyBeranda extends StatefulWidget {
   const BodyBeranda({super.key});
