@@ -5,6 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
+import 'package:integra_mobile/bloc/bloc_reset_password.dart';
+import 'package:integra_mobile/data/repositories/user_repository.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
@@ -80,7 +82,9 @@ class _MyAppState extends State<MyApp> {
                     FormRegisterBloc(userRepository: userRepository)),
             BlocProvider(
                 create: (context) =>
-                    BlocFormLogin(userRepository: userRepository))
+                    BlocFormLogin(userRepository: userRepository)),
+            BlocProvider(
+                create: (context) => BlocResetPassword(userRepository)),
           ]),
           child: MaterialApp(
             navigatorKey: _navigatorKey,
@@ -88,9 +92,6 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             ),
-            onGenerateRoute: (settings) {
-              print(settings.name);
-            },
             builder: (context, child) {
               return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
                 listener: (context, state) {
@@ -112,8 +113,7 @@ class _MyAppState extends State<MyApp> {
                 child: child,
               );
             },
-            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty &&
-                    SharedPreferenceHelper.instance.rememberMe
+            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty
                 ? const ConvexButtomBar()
                 : ScreenOnboarding(),
           )),

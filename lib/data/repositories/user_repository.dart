@@ -28,6 +28,16 @@ class UserRepository {
     }
   }
 
+  resetPassword({required String email}) async {
+    try {
+      final dataResetPassword = await apiResetPassword(email: email);
+
+      return dataResetPassword;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   register(
       {required String name,
       required String email,

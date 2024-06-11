@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:integra_mobile/data/model/models.dart';
+import 'package:integra_mobile/data/model/return_reset_password.dart';
 import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:integra_mobile/data/provider/network/api.dart';
 
@@ -46,4 +47,15 @@ Future<ModelRegistrationSuccess> apiRegister({
   }
 
   throw Exception('Tidak bisa login');
+}
+
+Future<ReturnResetPassord> apiResetPassword({required String email}) async {
+  final data =
+      await myDio().post('/auth/forgot-password', data: {"email": email});
+
+  if (data.statusCode == 200) {
+    return ReturnResetPassord.fromJson(jsonDecode(data.toString()));
+  }
+
+  throw Exception("Tidak bisa mendapatkan reset password");
 }
