@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:integra_mobile/data/provider/network/network.dart';
-import 'package:integra_mobile/bloc/bloc_reset_password.dart';
 import 'package:integra_mobile/screens/welcome/forgot_password/bottom_dialog_forgot_password.dart';
 import 'package:integra_mobile/screens/welcome/sign_in/bottom_dialog_sign_in.dart';
 import 'package:integra_mobile/screens/welcome/sign_up/bottom_dialog_sign_up.dart';

@@ -6,6 +6,7 @@ import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/bloc/bloc_reset_password.dart';
+import 'package:integra_mobile/data/repositories/notification_repository.dart';
 import 'package:integra_mobile/data/repositories/user_repository.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late final UserRepository userRepository;
   late final PengaduanRepository pengaduanRepository;
+  late final NotificationRepository notificationRepository;
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -52,6 +54,7 @@ class _MyAppState extends State<MyApp> {
 
     userRepository = UserRepository();
     pengaduanRepository = PengaduanRepository(user: userRepository);
+    notificationRepository = NotificationRepository(user: userRepository);
   }
 
   @override
@@ -67,6 +70,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         RepositoryProvider(
           create: (context) => userRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => notificationRepository,
         ),
         RepositoryProvider(
           create: (context) => pengaduanRepository,
