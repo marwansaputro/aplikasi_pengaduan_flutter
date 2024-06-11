@@ -11,6 +11,8 @@ class NotificationRepository {
     try {
       return apiListNotification();
     } catch (e) {
+      print(e.toString());
+
       rethrow;
     }
   }
