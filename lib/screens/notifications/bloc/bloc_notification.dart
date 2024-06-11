@@ -13,7 +13,7 @@ class BlocNotification
     extends Bloc<BlocNotificationEvent, BlocNotificationState> {
   BlocNotification({
     required this.notificationRepository,
-  }) : super(BlocNotificationState(data: [])) {
+  }) : super(const BlocNotificationState()) {
     on<BlocNotificationEventGetData>(getData);
   }
 

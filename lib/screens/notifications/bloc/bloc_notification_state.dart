@@ -1,12 +1,12 @@
 part of 'bloc_notification.dart';
 
 class BlocNotificationState extends Equatable {
-  BlocNotificationState({
+  const BlocNotificationState({
     this.status = FormzSubmissionStatus.initial,
-    required this.data,
+    this.data = const [],
   });
 
-  List<ModelNotification> data;
+  final List<ModelNotification> data;
   final FormzSubmissionStatus status;
 
   BlocNotificationState copyWith({
