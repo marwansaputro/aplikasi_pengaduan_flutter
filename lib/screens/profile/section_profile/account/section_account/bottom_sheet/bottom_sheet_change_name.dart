@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/profile/section_profile/account/section_account/bottom_sheet/bloc/bloc_user_change_name.dart';
 import 'package:integra_mobile/share/widget/button/button_solid_green.dart';
@@ -14,6 +15,8 @@ class BottomSheetChangeName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthenticationBloc>().state;
+
     return BlocProvider(
       create: (context) => BlocUserChangeName(context.read()),
       child: BlocListener<BlocUserChangeName, BlocUserChangeNameState>(
@@ -59,7 +62,7 @@ class BottomSheetChangeName extends StatelessWidget {
                           previous.name != current.name,
                       builder: (context, state) {
                         return MyFormInput(
-                          hintText: "Marwan Saputro",
+                          hintText: authState.user?.name ?? '',
                           labelText: "Name",
                           onChange: (value) {
                             context.read<BlocUserChangeName>().add(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/app/config/theme.dart';
@@ -17,6 +19,8 @@ class SectionListAccount extends StatefulWidget {
 class _SectionListAccountState extends State<SectionListAccount> {
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthenticationBloc>().state;
+
     return Padding(
       padding: paddingMobile,
       child: IColumn(
@@ -26,7 +30,7 @@ class _SectionListAccountState extends State<SectionListAccount> {
             padding: const EdgeInsets.only(top: 50),
             child: MyFormInput(
               labelText: "Name",
-              hintText: "Marwan Saputro",
+              hintText: authState.user?.name ?? '',
               suffixIcon: TextButton(
                 style: TextButton.styleFrom(
                   foregroundColor: primaryGreen, // foreground
@@ -38,7 +42,7 @@ class _SectionListAccountState extends State<SectionListAccount> {
                     builder: (BuildContext context) {
                       return Padding(
                         padding: MediaQuery.of(context).viewInsets,
-                        child: BottomSheetChangeName(),
+                        child: const BottomSheetChangeName(),
                       );
                     },
                   );
@@ -54,7 +58,7 @@ class _SectionListAccountState extends State<SectionListAccount> {
             ),
           ),
           MyFormInput(
-            hintText: "087838653826",
+            hintText: authState.user?.phoneNumber ?? '',
             labelText: "No. Handphone",
             suffixIcon: TextButton(
               style: TextButton.styleFrom(
@@ -63,10 +67,11 @@ class _SectionListAccountState extends State<SectionListAccount> {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
                   builder: (BuildContext context) {
                     return Padding(
                         padding: MediaQuery.of(context).viewInsets,
-                        child: BottomSheetChangeHandphone());
+                        child: const BottomSheetChangeHandphone());
                   },
                 );
               },
@@ -90,7 +95,7 @@ class _SectionListAccountState extends State<SectionListAccount> {
                 showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return BottomSheetChangePassword();
+                    return const BottomSheetChangePassword();
                   },
                 );
               },
