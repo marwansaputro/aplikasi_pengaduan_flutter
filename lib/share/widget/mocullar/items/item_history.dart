@@ -1,9 +1,11 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/share/widget/mocullar/image/image_collector.dart';
 
 class ItemComplaint extends StatelessWidget {
   const ItemComplaint({
@@ -34,17 +36,12 @@ class ItemComplaint extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 40,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              image: const DecorationImage(
-                  image: AssetImage(
-                    pathImageDummyImage,
-                  ),
-                  fit: BoxFit.cover),
-            ),
+          SizedBox(
+            width: 50,
+            height: 50,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: ImageCollector(imageUrl: image)),
           ),
           const SizedBox(width: 10),
           Expanded(

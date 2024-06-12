@@ -35,13 +35,10 @@ class SectionDetailComplaint extends StatelessWidget {
                     width: 400,
                     height: 250,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: ImageCollector(
-                          imageUrl: [
-                        AppEnv().baseStorage(),
-                        state.detail?.gambar ?? ''
-                      ].join('/')),
-                    ),
+                        borderRadius: BorderRadius.circular(8),
+                        child: ImageCollector(
+                            imageUrl: AppEnv()
+                                .baseStorage(state.detail?.gambar ?? ''))),
                   ),
                   const SizedBox(
                     height: 5,

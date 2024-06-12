@@ -17,8 +17,8 @@ class AppEnv {
     return dotenv.env['BASE_URL'] ?? '';
   }
 
-  String baseStorage() {
-    return [AppEnv().baseUrl(), 'storage'].join('/');
+  String baseStorage(String path) {
+    return [AppEnv().baseUrl(), 'storage', path].join('/');
   }
 
   String baseProfile(String path) {
