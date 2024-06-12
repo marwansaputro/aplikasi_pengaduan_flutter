@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/validations/handphone.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class BlocUserChangeHandphoneEvent {}
@@ -51,14 +52,14 @@ class BlocUserChangeHandphoneState extends Equatable {
 
 class BlocUserChangeHandphone
     extends Bloc<BlocUserChangeHandphoneEvent, BlocUserChangeHandphoneState> {
-  BlocUserChangeHandphone(this.userRepository)
-      : super(const BlocUserChangeHandphoneState()) {
+  BlocUserChangeHandphone({
+    required this.userRepository,
+  }) : super(const BlocUserChangeHandphoneState()) {
     on<BlocUserChangeHandphoneEventChangeHandphone>(changeHandphone);
     on<BlocUserChangeHandphoneSubmit>(submit);
   }
 
   final UserRepository userRepository;
-
   FutureOr<void> changeHandphone(
       BlocUserChangeHandphoneEventChangeHandphone event,
       Emitter<BlocUserChangeHandphoneState> emit) {

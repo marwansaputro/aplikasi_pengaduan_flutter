@@ -1,4 +1,3 @@
-import 'package:integra_mobile/domain/entities/model_notification.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class AbsReturnList {

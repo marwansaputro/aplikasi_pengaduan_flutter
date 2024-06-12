@@ -8,25 +8,36 @@ class UserRepository {
 
   final AuthRepository authRepository;
 
-  updateName({required String name}) {
+  updateName({required String name}) async {
     try {
-      return apiUpdateUserName(name: name);
+      final data = await apiUpdateUserName(name: name);
+
+      authRepository.userProfile();
+
+      return data;
     } catch (e) {
       rethrow;
     }
   }
 
-  updateHandphone({required String handphone}) {
+  updateHandphone({required String handphone}) async {
     try {
-      return apiUpdateHandphone(phoneNumber: handphone);
+      final data = await apiUpdateHandphone(phoneNumber: handphone);
+
+      authRepository.userProfile();
+
+      return data;
     } catch (e) {
       rethrow;
     }
   }
 
-  updateImageProfile({required File image}) {
+  updateImageProfile({required File image}) async {
     try {
-      return apiUpdateChangeImageProfile(image: image);
+      final data = await apiUpdateChangeImageProfile(image: image);
+      authRepository.userProfile();
+
+      return data;
     } catch (e) {
       rethrow;
     }

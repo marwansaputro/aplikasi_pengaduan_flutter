@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/padding.dart';
-import 'package:integra_mobile/screens/profile/section_profile/account/section_account/bottom_sheet/bloc/bloc_user_change_handphone.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bloc/bloc_user_change_handphone.dart';
 import 'package:integra_mobile/share/widget/button/button_solid_green.dart';
 import 'package:integra_mobile/share/widget/mocullar/form/form_input.dart';
 
@@ -18,7 +18,8 @@ class BottomSheetChangeHandphone extends StatelessWidget {
     final authState = context.watch<AuthenticationBloc>().state;
 
     return BlocProvider(
-      create: (context) => BlocUserChangeHandphone(context.read()),
+      create: (context) =>
+          BlocUserChangeHandphone(userRepository: context.read()),
       child:
           BlocListener<BlocUserChangeHandphone, BlocUserChangeHandphoneState>(
         listener: (context, state) {

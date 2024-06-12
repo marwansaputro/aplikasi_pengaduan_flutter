@@ -7,11 +7,16 @@ enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository {
   final _controller = StreamController<AuthenticationStatus>();
+  final _controllerUserProfile = StreamController<ModelUser?>();
 
   String? token;
 
   Stream<AuthenticationStatus> get status async* {
     yield* _controller.stream;
+  }
+
+  Stream<ModelUser?> get profile async* {
+    yield* _controllerUserProfile.stream;
   }
 
   login({required String email, required String password}) async {
@@ -56,9 +61,13 @@ class AuthRepository {
     _controller.add(AuthenticationStatus.unauthenticated);
   }
 
-  Future<ModelUser> userProfile() {
+  Future<ModelUser> userProfile() async {
     try {
-      return apiUserProfile();
+      final data = await apiUserProfile();
+
+      _controllerUserProfile.add(data);
+
+      return data;
     } catch (e) {
       logOut();
       rethrow;
@@ -67,5 +76,6 @@ class AuthRepository {
 
   void dispose() {
     _controller.close();
+    _controllerUserProfile.close();
   }
 }

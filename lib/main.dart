@@ -95,6 +95,8 @@ class _MyAppState extends State<MyApp> {
             ),
             builder: (context, child) {
               return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
+                listenWhen: (previous, current) =>
+                    previous.status != current.status,
                 listener: (context, state) {
                   switch (state.status) {
                     case AuthenticationStatus.authenticated:

@@ -9,8 +9,8 @@ import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
-import 'package:integra_mobile/screens/profile/section_profile/bloc/bloc_change_image.dart';
-import 'package:integra_mobile/screens/profile/section_profile/bottom_sheet/bottom_sheet_change_image.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bloc/bloc_change_image.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_change_image.dart';
 import 'package:integra_mobile/share/widget/mocullar/image/image_collector.dart';
 
 class SectionPictureProfile extends StatefulWidget {

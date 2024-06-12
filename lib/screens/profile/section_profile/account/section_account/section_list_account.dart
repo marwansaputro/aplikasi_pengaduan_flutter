@@ -4,9 +4,9 @@ import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/app/config/theme.dart';
-import 'package:integra_mobile/screens/profile/section_profile/account/section_account/bottom_sheet/bottom_sheet_change_handphone.dart';
-import 'package:integra_mobile/screens/profile/section_profile/account/section_account/bottom_sheet/bottom_sheet_change_name.dart';
-import 'package:integra_mobile/screens/profile/section_profile/account/section_account/bottom_sheet/bottom_sheet_change_password.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_change_handphone.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_change_name.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_change_password.dart';
 import 'package:integra_mobile/share/widget/mocullar/form/form_input.dart';
 
 class SectionListAccount extends StatefulWidget {

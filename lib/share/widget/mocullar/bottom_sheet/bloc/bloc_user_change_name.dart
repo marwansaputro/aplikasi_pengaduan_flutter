@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/validations/validations.dart';
+import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class BlocUserChangeNameEvent {}
@@ -50,8 +51,9 @@ class BlocUserChangeNameState extends Equatable {
 
 class BlocUserChangeName
     extends Bloc<BlocUserChangeNameEvent, BlocUserChangeNameState> {
-  BlocUserChangeName(this.userRepository)
-      : super(const BlocUserChangeNameState()) {
+  BlocUserChangeName({
+    required this.userRepository,
+  }) : super(const BlocUserChangeNameState()) {
     on<BlocUserChangeNameEventChangeName>(changeName);
     on<BlocUserChangeNameSubmit>(submit);
   }
