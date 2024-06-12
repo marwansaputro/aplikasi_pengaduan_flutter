@@ -25,103 +25,106 @@ class _BottomDialogSignInState extends State<BottomDialogSignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<BlocFormLogin, BlocFormLoginState>(
-      listener: (context, state) {
-        if (state.status.isFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                content: Text("Tidak bisa login di akun ini")));
-        }
+    return BlocProvider(
+      create: (context) => BlocFormLogin(userRepository: context.read()),
+      child: BlocListener<BlocFormLogin, BlocFormLoginState>(
+        listener: (context, state) {
+          if (state.status.isFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("Tidak bisa login di akun ini")));
+          }
 
-        if (state.status.isSuccess) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                content: Text("Berhasil login di akun peserta")));
+          if (state.status.isSuccess) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("Berhasil login di akun peserta")));
 
-          Navigator.pop(context);
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
-        child: Form(
-          key: _formSignInKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const MyHeadlineTitle("Welcome Back",
-                  color: darkblue, textStyle: MyTextStyle.large),
-              const MyLabelTitle("Sign in with your email and password",
-                  color: darkGrey, textStyle: MyTextStyle.medium),
-              const SizedBox(height: 40.0),
-              _usernameInput(context),
-              const SizedBox(height: 25.0),
-              _passwordInput(context),
-              const SizedBox(height: 25.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _rememberMe(),
-                  _forgetPassword(),
-                ],
-              ),
-              const SizedBox(height: 25.0),
-              SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: _buttonSignIn(),
-              ),
-              const SizedBox(height: 25.0),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Expanded(
-              //       child: Divider(
-              //         thickness: 0.7,
-              //         color: Colors.grey.withOpacity(0.5),
-              //       ),
-              //     ),
-              //     const Padding(
-              //       padding: EdgeInsets.symmetric(
-              //         vertical: 0,
-              //         horizontal: 10,
-              //       ),
-              //       child: Text(
-              //         'Sign up with',
-              //         style: TextStyle(
-              //           color: Colors.black45,
-              //         ),
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: Divider(
-              //         thickness: 0.7,
-              //         color: Colors.grey.withOpacity(0.5),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 25.0,
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     Logo(Logos.facebook_f),
-              //     Logo(Logos.twitter),
-              //     Logo(Logos.google),
-              //     Logo(Logos.apple),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 25.0,
-              // ),
-              // don't have an account
-              _signUp(context),
-            ],
+            Navigator.pop(context);
+          }
+        },
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
+          child: Form(
+            key: _formSignInKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const MyHeadlineTitle("Welcome Back",
+                    color: darkblue, textStyle: MyTextStyle.large),
+                const MyLabelTitle("Sign in with your email and password",
+                    color: darkGrey, textStyle: MyTextStyle.medium),
+                const SizedBox(height: 40.0),
+                _usernameInput(context),
+                const SizedBox(height: 25.0),
+                _passwordInput(context),
+                const SizedBox(height: 25.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _rememberMe(),
+                    _forgetPassword(),
+                  ],
+                ),
+                const SizedBox(height: 25.0),
+                SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: _buttonSignIn(),
+                ),
+                const SizedBox(height: 25.0),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Expanded(
+                //       child: Divider(
+                //         thickness: 0.7,
+                //         color: Colors.grey.withOpacity(0.5),
+                //       ),
+                //     ),
+                //     const Padding(
+                //       padding: EdgeInsets.symmetric(
+                //         vertical: 0,
+                //         horizontal: 10,
+                //       ),
+                //       child: Text(
+                //         'Sign up with',
+                //         style: TextStyle(
+                //           color: Colors.black45,
+                //         ),
+                //       ),
+                //     ),
+                //     Expanded(
+                //       child: Divider(
+                //         thickness: 0.7,
+                //         color: Colors.grey.withOpacity(0.5),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(
+                //   height: 25.0,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     Logo(Logos.facebook_f),
+                //     Logo(Logos.twitter),
+                //     Logo(Logos.google),
+                //     Logo(Logos.apple),
+                //   ],
+                // ),
+                // const SizedBox(
+                //   height: 25.0,
+                // ),
+                // don't have an account
+                _signUp(context),
+              ],
+            ),
           ),
         ),
       ),

@@ -19,7 +19,7 @@ class BlocFormLogin extends Bloc<BlocFormLoginEvent, BlocFormLoginState> {
     on<BlocFormLoginActionLogin>(login);
   }
 
-  final UserRepository userRepository;
+  final AuthRepository userRepository;
 
   void changeEmail(
       BlocFormLoginEventChangeEmail event, Emitter<BlocFormLoginState> emit) {

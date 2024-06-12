@@ -21,6 +21,12 @@ class ModelComplaint {
   final String? updatedAt;
   @JsonKey(name: 'created_at')
   final String? createdAt;
+  final String? respon;
+  @JsonKey(name: 'tanggal_response')
+  final String? tanggalResponse;
+  @JsonKey(name: 'tanggal_success')
+  final String? tanggalSuccess;
+  final String gambar;
 
   ModelComplaint(
       {required this.id,
@@ -31,7 +37,11 @@ class ModelComplaint {
       required this.tanggalPengaduan,
       required this.aplikasi,
       required this.kantor,
+      required this.respon,
+      required this.tanggalResponse,
+      required this.tanggalSuccess,
       required this.updatedAt,
+      required this.gambar,
       required this.createdAt});
 
   factory ModelComplaint.fromJson(Map<String, dynamic> json) =>

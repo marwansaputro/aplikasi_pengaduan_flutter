@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
-import 'package:integra_mobile/bloc/bloc_form_registration.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bloc/bloc_form_registration.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
 
@@ -24,146 +24,149 @@ class _BottomDialogSignUpState extends State<BottomDialogSignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<FormRegisterBloc, FormRegisterBlocState>(
-      listener: (context, state) {
-        if (state.status.isFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                content: Text("Tidak bisa mendaftarkan peserta berikut")));
-        }
+    return BlocProvider(
+      create: (context) => FormRegisterBloc(userRepository: context.read()),
+      child: BlocListener<FormRegisterBloc, FormRegisterBlocState>(
+        listener: (context, state) {
+          if (state.status.isFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("Tidak bisa mendaftarkan peserta berikut")));
+          }
 
-        if (state.status.isSuccess) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                content: Text("Berhasil mendaftarkan peserta")));
+          if (state.status.isSuccess) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("Berhasil mendaftarkan peserta")));
 
-          Navigator.pop(context);
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
-        child: Form(
-          key: _formSignupKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const MyHeadlineTitle("Get Started",
-                  color: darkblue, textStyle: MyTextStyle.medium),
-              const MyLabelTitle("Complete your details or continue",
-                  color: darkGrey, textStyle: MyTextStyle.medium),
-              const SizedBox(height: 40.0),
-              _nameField(),
-              const SizedBox(height: 25.0),
-              _emailField(),
-              const SizedBox(height: 25.0),
-              _passwordField(),
-              const SizedBox(height: 25.0),
-              Row(
-                children: [
-                  Checkbox(
-                    value: agreePersonalData,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        agreePersonalData = value!;
-                      });
-                    },
-                    activeColor: primaryGreen,
-                  ),
-                  const Text(
-                    'I agree to the processing of ',
-                    style: TextStyle(
-                      color: Colors.black45,
+            Navigator.pop(context);
+          }
+        },
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
+          child: Form(
+            key: _formSignupKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const MyHeadlineTitle("Get Started",
+                    color: darkblue, textStyle: MyTextStyle.medium),
+                const MyLabelTitle("Complete your details or continue",
+                    color: darkGrey, textStyle: MyTextStyle.medium),
+                const SizedBox(height: 40.0),
+                _nameField(),
+                const SizedBox(height: 25.0),
+                _emailField(),
+                const SizedBox(height: 25.0),
+                _passwordField(),
+                const SizedBox(height: 25.0),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: agreePersonalData,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          agreePersonalData = value!;
+                        });
+                      },
+                      activeColor: primaryGreen,
                     ),
-                  ),
-                  const Text(
-                    'Personal data',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: darkblue,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 25.0),
-
-              SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: _buttonSignUp(),
-              ),
-              const SizedBox(height: 30.0),
-
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Expanded(
-              //       child: Divider(
-              //         thickness: 0.7,
-              //         color: Colors.grey.withOpacity(0.5),
-              //       ),
-              //     ),
-              //     const Padding(
-              //       padding: EdgeInsets.symmetric(
-              //         vertical: 0,
-              //         horizontal: 10,
-              //       ),
-              //       child: Text(
-              //         'Sign up with',
-              //         style: TextStyle(
-              //           color: Colors.black45,
-              //         ),
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: Divider(
-              //         thickness: 0.7,
-              //         color: Colors.grey.withOpacity(0.5),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 30.0,
-              // ),
-              // sign up social media logo
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     Logo(Logos.facebook_f),
-              //     Logo(Logos.twitter),
-              //     Logo(Logos.google),
-              //     Logo(Logos.apple),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 25.0,
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Already have an account? ',
-                    style: TextStyle(
-                      color: Colors.black45,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: widget.signInOnClick,
-                    child: const Text(
-                      'Sign in',
+                    const Text(
+                      'I agree to the processing of ',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: primaryGreen,
+                        color: Colors.black45,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const Text(
+                      'Personal data',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: darkblue,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 25.0),
+
+                SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: _buttonSignUp(),
+                ),
+                const SizedBox(height: 30.0),
+
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Expanded(
+                //       child: Divider(
+                //         thickness: 0.7,
+                //         color: Colors.grey.withOpacity(0.5),
+                //       ),
+                //     ),
+                //     const Padding(
+                //       padding: EdgeInsets.symmetric(
+                //         vertical: 0,
+                //         horizontal: 10,
+                //       ),
+                //       child: Text(
+                //         'Sign up with',
+                //         style: TextStyle(
+                //           color: Colors.black45,
+                //         ),
+                //       ),
+                //     ),
+                //     Expanded(
+                //       child: Divider(
+                //         thickness: 0.7,
+                //         color: Colors.grey.withOpacity(0.5),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(
+                //   height: 30.0,
+                // ),
+                // sign up social media logo
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     Logo(Logos.facebook_f),
+                //     Logo(Logos.twitter),
+                //     Logo(Logos.google),
+                //     Logo(Logos.apple),
+                //   ],
+                // ),
+                // const SizedBox(
+                //   height: 25.0,
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Already have an account? ',
+                      style: TextStyle(
+                        color: Colors.black45,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: widget.signInOnClick,
+                      child: const Text(
+                        'Sign in',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: primaryGreen,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
