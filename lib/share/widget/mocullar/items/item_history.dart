@@ -54,9 +54,7 @@ class ItemComplaint extends StatelessWidget {
                 Text(
                   StringUtils.capitalize(status.name),
                   style: TextStyle(
-                    color: status == StatusPengaduan.success
-                        ? Colors.green
-                        : Colors.red,
+                    color: status.color,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

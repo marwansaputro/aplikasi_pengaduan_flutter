@@ -1,14 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:integra_mobile/app/config/app_env.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/bloc/bloc_reset_password.dart';
 import 'package:integra_mobile/data/repositories/notification_repository.dart';
-import 'package:integra_mobile/data/repositories/user_repository.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
