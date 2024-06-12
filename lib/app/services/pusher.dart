@@ -55,7 +55,7 @@ class ServicePusherBeams {
 
   Future<void> setupUserId(String id) async {
     final BeamsAuthProvider beamsAuthProvider = BeamsAuthProvider()
-      ..authUrl = '${dotenv.env['BASE_URL']}/auth/beams-auth'
+      ..authUrl = '${dotenv.env['BASE_URL']}/api/auth/beams-auth'
       ..headers = {
         'Content-Type': 'application/json',
         "Authorization": "Bearer ${SharedPreferenceHelper.instance.token}",

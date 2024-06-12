@@ -36,7 +36,7 @@ Future<ModelRegistrationSuccess> apiRegister({
   required String email,
   required String password,
 }) async {
-  final data = await myDio().post('/auth/register', data: {
+  final data = await myDio().post('/api/auth/register', data: {
     "name": name,
     "email": email,
     "password": password,
@@ -51,7 +51,7 @@ Future<ModelRegistrationSuccess> apiRegister({
 
 Future<ReturnResetPassord> apiResetPassword({required String email}) async {
   final data =
-      await myDio().post('/auth/forgot-password', data: {"email": email});
+      await myDio().post('/api/auth/forgot-password', data: {"email": email});
 
   if (data.statusCode == 200) {
     return ReturnResetPassord.fromJson(jsonDecode(data.toString()));

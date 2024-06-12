@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
-import 'package:integra_mobile/screens/profile/section_profile/history/section_history/detail/screen_detail_complaint.dart';
+import 'package:integra_mobile/screens/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/share/widget/mocullar/items/item_history.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 
@@ -46,7 +46,10 @@ class _SectionListHistoryState extends State<SectionListHistory> {
                                   date: e.tanggalPengaduan,
                                   press: () => {
                                     Navigator.push(
-                                        context, ScreenDetailComplaint.Route()),
+                                        context,
+                                        ScreenDetailComplaint.Route(
+                                          idPengaduan: e.id,
+                                        )),
                                   },
                                 ),
                               )
