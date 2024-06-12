@@ -20,4 +20,8 @@ class AppEnv {
   String baseStorage() {
     return [AppEnv().baseUrl(), 'storage'].join('/');
   }
+
+  String baseProfile(String path) {
+    return [AppEnv().baseUrl(), 'storage', path].join('/');
+  }
 }

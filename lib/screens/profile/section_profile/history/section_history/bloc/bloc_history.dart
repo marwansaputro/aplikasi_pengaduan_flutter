@@ -29,7 +29,6 @@ class BlocHistory extends Bloc<BlocHistoryEvent, BlocHistoryState> {
           ...data.data,
         ]));
       } catch (e) {
-        print(e.toString());
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }
     }

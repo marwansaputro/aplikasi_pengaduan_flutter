@@ -59,12 +59,14 @@ class ImageCollectorState extends State<ImageCollector> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.imageUrl != widget.imageUrl) url = widget.imageUrl;
-    if (oldWidget.showBackground != widget.showBackground)
+    if (oldWidget.showBackground != widget.showBackground) {
       showBackground = widget.showBackground;
+    }
     if (oldWidget.boxFit != widget.boxFit) boxFit = widget.boxFit;
     if (oldWidget.color != widget.color) color = widget.color;
-    if (oldWidget.colorPlaceholder != widget.colorPlaceholder)
+    if (oldWidget.colorPlaceholder != widget.colorPlaceholder) {
       colorPlaceholder = widget.colorPlaceholder;
+    }
   }
 
   @override
