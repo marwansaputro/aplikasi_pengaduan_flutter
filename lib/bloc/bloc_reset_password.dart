@@ -15,7 +15,7 @@ class BlocResetPassword
     on<BlocResetPasswordSend>(submit);
   }
 
-  final UserRepository userRepository;
+  final AuthRepository userRepository;
 
   changeEmail(BlocResetPasswordChangeEmail event,
       Emitter<BlocResetPasswordState> emit) {

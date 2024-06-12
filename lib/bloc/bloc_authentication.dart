@@ -32,7 +32,7 @@ class AuthenticationBloc
     }
   }
 
-  final UserRepository userRepository;
+  final AuthRepository userRepository;
   late StreamSubscription<AuthenticationStatus> _authenticationSubscription;
 
   Future<void> _onAuthenticationStatusChanged(

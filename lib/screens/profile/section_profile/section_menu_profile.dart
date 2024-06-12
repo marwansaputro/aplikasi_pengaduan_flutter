@@ -73,7 +73,7 @@ class _SectionMenuProfilState extends State<SectionMenuProfil> {
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                context.read<UserRepository>().logOut();
+                context.read<AuthRepository>().logOut();
               },
               child: Container(
                 padding: const EdgeInsets.all(20.0),

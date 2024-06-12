@@ -6,7 +6,6 @@ import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/bloc/bloc_reset_password.dart';
-import 'package:integra_mobile/data/repositories/notification_repository.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
@@ -39,9 +38,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final UserRepository userRepository;
+  late final AuthRepository authRepository;
   late final PengaduanRepository pengaduanRepository;
   late final NotificationRepository notificationRepository;
+  late final UserRepository userRepository;
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -51,45 +51,41 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    userRepository = UserRepository();
-    pengaduanRepository = PengaduanRepository(user: userRepository);
-    notificationRepository = NotificationRepository(user: userRepository);
+    authRepository = AuthRepository();
+    pengaduanRepository = PengaduanRepository(user: authRepository);
+    notificationRepository = NotificationRepository(user: authRepository);
+    userRepository = UserRepository(authRepository: authRepository);
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    userRepository.dispose();
+    authRepository.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => userRepository,
-        ),
-        RepositoryProvider(
-          create: (context) => notificationRepository,
-        ),
-        RepositoryProvider(
-          create: (context) => pengaduanRepository,
-        )
+        RepositoryProvider(create: (context) => authRepository),
+        RepositoryProvider(create: (context) => notificationRepository),
+        RepositoryProvider(create: (context) => pengaduanRepository),
+        RepositoryProvider(create: (context) => userRepository)
       ],
       child: MultiBlocProvider(
           providers: List.of([
             BlocProvider(
                 create: (context) =>
-                    AuthenticationBloc(userRepository: userRepository)),
+                    AuthenticationBloc(userRepository: authRepository)),
             BlocProvider(
                 create: (context) =>
-                    FormRegisterBloc(userRepository: userRepository)),
+                    FormRegisterBloc(userRepository: authRepository)),
             BlocProvider(
                 create: (context) =>
-                    BlocFormLogin(userRepository: userRepository)),
+                    BlocFormLogin(userRepository: authRepository)),
             BlocProvider(
-                create: (context) => BlocResetPassword(userRepository)),
+                create: (context) => BlocResetPassword(authRepository)),
           ]),
           child: MaterialApp(
             navigatorKey: _navigatorKey,

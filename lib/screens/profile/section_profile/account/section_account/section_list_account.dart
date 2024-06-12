@@ -34,8 +34,12 @@ class _SectionListAccountState extends State<SectionListAccount> {
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     builder: (BuildContext context) {
-                      return BottomSheetChangeName();
+                      return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: BottomSheetChangeName(),
+                      );
                     },
                   );
                 },
@@ -60,7 +64,9 @@ class _SectionListAccountState extends State<SectionListAccount> {
                 showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return BottomSheetChangeHandphone();
+                    return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: BottomSheetChangeHandphone());
                   },
                 );
               },

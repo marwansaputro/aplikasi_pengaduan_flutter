@@ -3,7 +3,7 @@ import 'package:integra_mobile/data/provider/network/api/api_notification.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class NotificationRepository {
-  UserRepository user;
+  AuthRepository user;
 
   NotificationRepository({required this.user});
 

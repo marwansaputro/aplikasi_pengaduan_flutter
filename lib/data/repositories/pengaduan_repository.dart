@@ -6,7 +6,7 @@ import 'package:integra_mobile/data/model/return_pengaduan_detail.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class PengaduanRepository {
-  UserRepository user;
+  AuthRepository user;
 
   PengaduanRepository({required this.user});
 

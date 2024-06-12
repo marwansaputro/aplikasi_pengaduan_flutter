@@ -1,71 +1,24 @@
-import 'dart:async';
-import 'package:integra_mobile/domain/entities/entities.dart';
-import 'package:integra_mobile/data/provider/network/api/api_auth.dart';
-import 'package:integra_mobile/app/services/helper_storage.dart';
-
-enum AuthenticationStatus { unknown, authenticated, unauthenticated }
+import 'package:integra_mobile/data/provider/network/api/api_user.dart';
+import 'package:integra_mobile/data/provider/network/network.dart';
 
 class UserRepository {
-  final _controller = StreamController<AuthenticationStatus>();
+  UserRepository({required this.authRepository});
 
-  String? token;
+  final AuthRepository authRepository;
 
-  Stream<AuthenticationStatus> get status async* {
-    yield* _controller.stream;
-  }
-
-  login({required String email, required String password}) async {
+  updateName({required String name}) {
     try {
-      final dataLogin = await apiLogin(email: email, password: password);
-
-      token = dataLogin.accessToken;
-      SharedPreferenceHelper.instance.token = token;
-
-      _controller.add(AuthenticationStatus.authenticated);
-    } catch (e) {
-      logOut();
-      rethrow;
-    }
-  }
-
-  resetPassword({required String email}) async {
-    try {
-      final dataResetPassword = await apiResetPassword(email: email);
-
-      return dataResetPassword;
+      return apiUpdateUserName(name: name);
     } catch (e) {
       rethrow;
     }
   }
 
-  register(
-      {required String name,
-      required String email,
-      required String password}) async {
+  updateHandphone({required String handphone}) {
     try {
-      await apiRegister(email: email, password: password, name: name);
-      await login(email: email, password: password);
+      return apiUpdateHandphone(phoneNumber: handphone);
     } catch (e) {
-      logOut();
       rethrow;
     }
-  }
-
-  logOut() {
-    SharedPreferenceHelper().token = null;
-    _controller.add(AuthenticationStatus.unauthenticated);
-  }
-
-  Future<ModelUser> userProfile() {
-    try {
-      return apiUserProfile();
-    } catch (e) {
-      logOut();
-      rethrow;
-    }
-  }
-
-  void dispose() {
-    _controller.close();
   }
 }

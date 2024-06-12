@@ -8,6 +8,7 @@ class MyFormInput extends StatelessWidget {
     this.hintText,
     this.maxLines = 1,
     this.suffixIcon,
+    this.onChange,
   });
 
   final String? hintText;
@@ -15,10 +16,13 @@ class MyFormInput extends StatelessWidget {
   final int maxLines;
   final Widget? suffixIcon;
 
+  final void Function(String? value)? onChange;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: maxLines,
+      onChanged: onChange,
       decoration: InputDecoration(
           border: const OutlineInputBorder(),
           focusedBorder: const OutlineInputBorder(
