@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/validations/handphone.dart';
-import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class BlocUserChangeHandphoneEvent {}

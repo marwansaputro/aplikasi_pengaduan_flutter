@@ -1,3 +1,3 @@
 export 'bloc_authentication.dart';
-export 'bloc_form_registration.dart';
-export 'bloc_form_login.dart';
+export '../share/widget/mocullar/bottom_sheet/bloc/bloc_form_registration.dart';
+export '../share/widget/mocullar/bottom_sheet/bloc/bloc_form_login.dart';

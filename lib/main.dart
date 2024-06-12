@@ -5,7 +5,6 @@ import 'package:integra_mobile/app/config/app_env.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
-import 'package:integra_mobile/bloc/bloc_reset_password.dart';
 import 'package:integra_mobile/firebase_options.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
@@ -78,14 +77,6 @@ class _MyAppState extends State<MyApp> {
             BlocProvider(
                 create: (context) =>
                     AuthenticationBloc(userRepository: authRepository)),
-            BlocProvider(
-                create: (context) =>
-                    FormRegisterBloc(userRepository: authRepository)),
-            BlocProvider(
-                create: (context) =>
-                    BlocFormLogin(userRepository: authRepository)),
-            BlocProvider(
-                create: (context) => BlocResetPassword(authRepository)),
           ]),
           child: MaterialApp(
             navigatorKey: _navigatorKey,

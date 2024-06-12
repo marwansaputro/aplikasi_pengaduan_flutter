@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:integra_mobile/screens/welcome/forgot_password/bottom_dialog_forgot_password.dart';
-import 'package:integra_mobile/screens/welcome/sign_in/bottom_dialog_sign_in.dart';
-import 'package:integra_mobile/screens/welcome/sign_up/bottom_dialog_sign_up.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_forgot_password.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_sign_in.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_sign_up.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/button/button_welcome.dart';
 import 'package:integra_mobile/share/widget/custom/custom_scaffold.dart';
