@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/notifications/bloc/bloc_notification.dart';
-import 'package:integra_mobile/screens/profile/section_profile/history/screen_history.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/screens/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/share/widget/mocullar/items/item_notificaton.dart';
@@ -44,7 +44,8 @@ class _SectionListNotificationsState extends State<SectionListNotifications> {
                 .map(
                   (e) => ItemNotification(
                       image: pathImageBackgroundWelcome,
-                      status: '',
+                      status: e.pengaduan?.statusPengaduan ??
+                          StatusPengaduan.incoming,
                       notification: e.body,
                       date: e.tanggal,
                       press: () => Navigator.push(

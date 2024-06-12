@@ -1,3 +1,4 @@
+import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'model_notification.g.dart';
@@ -18,6 +19,8 @@ class ModelNotification {
   final String title;
   final String body;
 
+  ModelComplaint? pengaduan;
+
   ModelNotification(
       {required this.id,
       required this.payload,
@@ -27,7 +30,8 @@ class ModelNotification {
       required this.createdAt,
       required this.updatedAt,
       required this.title,
-      required this.body});
+      required this.body,
+      this.pengaduan});
 
   factory ModelNotification.fromJson(Map<String, dynamic> json) =>
       _$ModelNotificationFromJson(json);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/column.dart';
 
 class ItemNotification extends StatelessWidget {
@@ -12,7 +13,8 @@ class ItemNotification extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  final String status, notification, image, date;
+  final StatusPengaduan status;
+  final String notification, image, date;
   final VoidCallback? press;
 
   @override
@@ -41,7 +43,7 @@ class ItemNotification extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isSuccess ? 'Process' : 'Reject',
+                  status.name,
                   style: TextStyle(
                     color: isSuccess ? Colors.orange : Colors.red,
                     fontSize: 18,

@@ -6,7 +6,7 @@ import 'package:integra_mobile/domain/entities/entities.dart';
 import 'package:integra_mobile/data/provider/network/api.dart';
 
 Future<ModelUser> apiUserProfile() async {
-  final data = await myDio().get('/auth/user-profile');
+  final data = await myDio().get('/api/auth/user-profile');
 
   if (data.statusCode == 200) {
     return ModelUser.fromJson(jsonDecode(data.toString()));
@@ -19,7 +19,7 @@ Future<ModelSuccessLogin> apiLogin({
   required String email,
   required String password,
 }) async {
-  final data = await myDio().post('/auth/login', data: {
+  final data = await myDio().post('/api/auth/login', data: {
     "email": email,
     "password": password,
   });
