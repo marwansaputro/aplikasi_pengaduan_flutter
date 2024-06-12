@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:integra_mobile/data/model/models.dart';
+import 'package:integra_mobile/data/model/return_pengaduan_detail.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 
 class PengaduanRepository {
-  UserRepository user;
+  AuthRepository user;
 
   PengaduanRepository({required this.user});
 
@@ -36,6 +37,16 @@ class PengaduanRepository {
   Future<ModelComplaintList> listHistory() {
     try {
       return apiHistoryPengaduan();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ReturnPengaduanDetail> detail({
+    required String idPengaduan,
+  }) {
+    try {
+      return apiDetailPengaduan(idPengaduan: idPengaduan);
     } catch (e) {
       rethrow;
     }

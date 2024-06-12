@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:integra_mobile/app/config/app_env.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
@@ -16,7 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SharedPreferenceHelper();
-  await dotenv.load(fileName: ".env");
+  await AppEnv().init();
 
   await Future.wait([
     Firebase.initializeApp(
@@ -37,8 +37,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final UserRepository userRepository;
+  late final AuthRepository authRepository;
   late final PengaduanRepository pengaduanRepository;
+  late final NotificationRepository notificationRepository;
+  late final UserRepository userRepository;
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -48,39 +50,33 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    userRepository = UserRepository();
-    pengaduanRepository = PengaduanRepository(user: userRepository);
+    authRepository = AuthRepository();
+    pengaduanRepository = PengaduanRepository(user: authRepository);
+    notificationRepository = NotificationRepository(user: authRepository);
+    userRepository = UserRepository(authRepository: authRepository);
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    userRepository.dispose();
+    authRepository.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => userRepository,
-        ),
-        RepositoryProvider(
-          create: (context) => pengaduanRepository,
-        )
+        RepositoryProvider(create: (context) => authRepository),
+        RepositoryProvider(create: (context) => notificationRepository),
+        RepositoryProvider(create: (context) => pengaduanRepository),
+        RepositoryProvider(create: (context) => userRepository)
       ],
       child: MultiBlocProvider(
           providers: List.of([
             BlocProvider(
                 create: (context) =>
-                    AuthenticationBloc(userRepository: userRepository)),
-            BlocProvider(
-                create: (context) =>
-                    FormRegisterBloc(userRepository: userRepository)),
-            BlocProvider(
-                create: (context) =>
-                    BlocFormLogin(userRepository: userRepository))
+                    AuthenticationBloc(userRepository: authRepository)),
           ]),
           child: MaterialApp(
             navigatorKey: _navigatorKey,
@@ -88,11 +84,10 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             ),
-            onGenerateRoute: (settings) {
-              print(settings.name);
-            },
             builder: (context, child) {
               return BlocListener<AuthenticationBloc, BlocAuthenticationState>(
+                listenWhen: (previous, current) =>
+                    previous.status != current.status,
                 listener: (context, state) {
                   switch (state.status) {
                     case AuthenticationStatus.authenticated:
@@ -112,8 +107,7 @@ class _MyAppState extends State<MyApp> {
                 child: child,
               );
             },
-            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty &&
-                    SharedPreferenceHelper.instance.rememberMe
+            home: SharedPreferenceHelper.instance.token.toString().isNotEmpty
                 ? const ConvexButtomBar()
                 : ScreenOnboarding(),
           )),

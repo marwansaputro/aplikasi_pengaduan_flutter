@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/config/app_env.dart';
+import 'package:integra_mobile/app/extention/string_ext.dart';
+import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/screens/detail/bloc/bloc_detail_complaint.dart';
+import 'package:integra_mobile/share/widget/mocullar/image/image_collector.dart';
 
 class SectionDetailComplaint extends StatelessWidget {
   const SectionDetailComplaint({super.key});
@@ -13,62 +19,63 @@ class SectionDetailComplaint extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Padding(
         padding: paddingMobile,
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                Container(
-                  width: 400,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: white,
-                    image: const DecorationImage(
-                        image: AssetImage(
-                          pathImageDummyImage,
-                        ),
-                        fit: BoxFit.cover),
+        child: BlocBuilder<BlocDetailComplaint, BlocDetailComplaintState>(
+            builder: (context, state) {
+          if (state.status.isInProgress) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          return ListView(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    width: 400,
+                    height: 250,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: ImageCollector(
+                            imageUrl: AppEnv()
+                                .baseStorage(state.detail?.gambar ?? ''))),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const StatusColor(
-                  text1: 'Status:',
-                  text2: '',
-                ),
-                const MenuProfile(
-                  text1: 'App Name',
-                  text2:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                ),
-                const MenuProfile(
-                  text1: 'Agency/Office',
-                  text2:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                ),
-                const MenuProfile(
-                  text1: 'Complaint',
-                  text2:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
-                ),
-                const MenuProfile(
-                  text1: 'Response',
-                  text2:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                ),
-                const MenuProfile(
-                  text1: 'Date of complaint',
-                  text2: '11 September 2022',
-                ),
-                const MenuProfile(
-                  text1: 'Response date',
-                  text2: '11 September 2022',
-                ),
-              ],
-            ),
-          ],
-        ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  StatusColor(
+                    text1: 'Status:',
+                    status: state.detail?.statusPengaduan,
+                  ),
+                  MenuProfile(
+                    text1: 'App Name',
+                    text2: state.detail?.aplikasi ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Agency/Office',
+                    text2: state.detail?.kantor ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Complaint',
+                    text2: state.detail?.isiPengaduan ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Response',
+                    text2: state.detail?.respon ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Date of complaint',
+                    text2: state.detail?.tanggalPengaduan ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Response date',
+                    text2: state.detail?.tanggalResponse ?? '',
+                  ),
+                ],
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
@@ -78,16 +85,17 @@ class StatusColor extends StatelessWidget {
   const StatusColor({
     Key? key,
     required this.text1,
-    required this.text2,
+    required StatusPengaduan? status,
     this.press,
-  }) : super(key: key);
+  })  : status = status ?? StatusPengaduan.incoming,
+        super(key: key);
 
-  final String text1, text2;
+  final String text1;
+  final StatusPengaduan status;
   final VoidCallback? press;
 
   @override
   Widget build(BuildContext context) {
-    bool isSuccess = true;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: TextButton(
@@ -116,9 +124,9 @@ class StatusColor extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    isSuccess ? 'Success' : 'Reject',
+                    status.name.capitalize(),
                     style: TextStyle(
-                      color: isSuccess ? Colors.green : Colors.red,
+                      color: status.color,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

@@ -18,9 +18,14 @@ class AuthenticationBloc
   }) : super(const BlocAuthenticationState.unknown()) {
     on<BlocAuthenticationEventStatusChange>(_onAuthenticationStatusChanged);
     on<BlocAuthenticationLogout>(logOut);
+    on<BlocAuthenticationEventRefreshProfile>(refreshProfile);
 
     _authenticationSubscription = userRepository.status.listen((event) {
       add(BlocAuthenticationEventStatusChange(status: event));
+    });
+
+    _profileUserSubscription = userRepository.profile.listen((event) {
+      add(BlocAuthenticationEventRefreshProfile(user: event));
     });
 
     if (SharedPreferenceHelper.instance.token.toString().isNotEmpty) {
@@ -32,8 +37,9 @@ class AuthenticationBloc
     }
   }
 
-  final UserRepository userRepository;
+  final AuthRepository userRepository;
   late StreamSubscription<AuthenticationStatus> _authenticationSubscription;
+  late StreamSubscription<ModelUser?> _profileUserSubscription;
 
   Future<void> _onAuthenticationStatusChanged(
     BlocAuthenticationEventStatusChange event,
@@ -68,6 +74,7 @@ class AuthenticationBloc
   @override
   Future<void> close() {
     _authenticationSubscription.cancel();
+    _profileUserSubscription.cancel();
 
     return super.close();
   }
@@ -76,5 +83,11 @@ class AuthenticationBloc
       BlocAuthenticationLogout event, Emitter<BlocAuthenticationState> emit) {
     add(BlocAuthenticationEventStatusChange(
         status: AuthenticationStatus.unauthenticated));
+  }
+
+  Future<FutureOr<void>> refreshProfile(
+      BlocAuthenticationEventRefreshProfile event,
+      Emitter<BlocAuthenticationState> emit) async {
+    emit(state.copyWith(user: event.user));
   }
 }

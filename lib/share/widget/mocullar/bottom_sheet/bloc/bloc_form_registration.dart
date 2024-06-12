@@ -17,7 +17,7 @@ class FormRegisterBloc
     on<FormRegisterActionRegistration>(registration);
   }
 
-  final UserRepository userRepository;
+  final AuthRepository userRepository;
 
   void changeName(
       FormRegistrationChangeName event, Emitter<FormRegisterBlocState> emit) {
