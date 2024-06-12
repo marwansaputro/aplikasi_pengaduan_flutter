@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/config/app_env.dart';
+import 'package:integra_mobile/app/extention/string_ext.dart';
 import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
-import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/screens/detail/bloc/bloc_detail_complaint.dart';
+import 'package:integra_mobile/share/widget/mocullar/image/image_collector.dart';
 
 class SectionDetailComplaint extends StatelessWidget {
   const SectionDetailComplaint({super.key});
@@ -18,73 +20,65 @@ class SectionDetailComplaint extends StatelessWidget {
       child: Padding(
         padding: paddingMobile,
         child: BlocBuilder<BlocDetailComplaint, BlocDetailComplaintState>(
-            buildWhen: (previous, current) => previous.detail != current.detail,
             builder: (context, state) {
-              if (state.status.isInProgress) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+          if (state.status.isInProgress) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
 
-              return ListView(
+          return ListView(
+            children: [
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        width: 400,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: white,
-                          image: const DecorationImage(
-                              image: AssetImage(
-                                pathImageDummyImage,
-                              ),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      StatusColor(
-                        text1: 'Status:',
-                        text2: state.detail?.statusPengaduan,
-                      ),
-                      MenuProfile(
-                        text1: 'App Name',
-                        text2: state.detail?.aplikasi ??
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                      ),
-                      MenuProfile(
-                        text1: 'Agency/Office',
-                        text2: state.detail?.kantor ??
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                      ),
-                      MenuProfile(
-                        text1: 'Complaint',
-                        text2: state.detail?.isiPengaduan ??
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
-                      ),
-                      MenuProfile(
-                        text1: 'Response',
-                        text2: state.detail?.respon ??
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                      ),
-                      MenuProfile(
-                        text1: 'Date of complaint',
-                        text2: state.detail?.tanggalPengaduan ??
-                            '11 September 2022',
-                      ),
-                      MenuProfile(
-                        text1: 'Response date',
-                        text2: state.detail?.tanggalResponse ??
-                            '11 September 2022',
-                      ),
-                    ],
+                  Container(
+                    width: 400,
+                    height: 250,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: ImageCollector(
+                          imageUrl: [
+                        AppEnv().baseStorage(),
+                        state.detail?.gambar ?? ''
+                      ].join('/')),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  StatusColor(
+                    text1: 'Status:',
+                    status: state.detail?.statusPengaduan,
+                  ),
+                  MenuProfile(
+                    text1: 'App Name',
+                    text2: state.detail?.aplikasi ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Agency/Office',
+                    text2: state.detail?.kantor ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Complaint',
+                    text2: state.detail?.isiPengaduan ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Response',
+                    text2: state.detail?.respon ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Date of complaint',
+                    text2: state.detail?.tanggalPengaduan ?? '',
+                  ),
+                  MenuProfile(
+                    text1: 'Response date',
+                    text2: state.detail?.tanggalResponse ?? '',
                   ),
                 ],
-              );
-            }),
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
@@ -94,17 +88,17 @@ class StatusColor extends StatelessWidget {
   const StatusColor({
     Key? key,
     required this.text1,
-    required this.text2,
+    required StatusPengaduan? status,
     this.press,
-  }) : super(key: key);
+  })  : status = status ?? StatusPengaduan.incoming,
+        super(key: key);
 
   final String text1;
-  final StatusPengaduan? text2;
+  final StatusPengaduan status;
   final VoidCallback? press;
 
   @override
   Widget build(BuildContext context) {
-    bool isSuccess = true;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: TextButton(
@@ -133,9 +127,9 @@ class StatusColor extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    text2 == StatusPengaduan.success ? 'Success' : 'Reject',
+                    status.name.capitalize(),
                     style: TextStyle(
-                      color: isSuccess ? Colors.green : Colors.red,
+                      color: status.color,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

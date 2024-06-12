@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:integra_mobile/app/config/app_env.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
@@ -19,7 +20,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SharedPreferenceHelper();
-  await dotenv.load(fileName: ".env");
+  await AppEnv().init();
 
   await Future.wait([
     Firebase.initializeApp(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/app/extention/string_ext.dart';
 import 'package:integra_mobile/app/types/types.dart';
 import 'package:integra_mobile/layout/column.dart';
 
@@ -19,7 +20,6 @@ class ItemNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSuccess = true;
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: primaryGreen,
@@ -43,9 +43,9 @@ class ItemNotification extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  status.name,
+                  status.name.capitalize(),
                   style: TextStyle(
-                    color: isSuccess ? Colors.orange : Colors.red,
+                    color: status.color,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
