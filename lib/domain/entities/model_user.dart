@@ -13,6 +13,7 @@ class ModelUser {
     required this.updatedAt,
     required this.phoneNumber,
     required this.imageProfile,
+    required this.notificationId,
   });
 
   final int id;
@@ -28,6 +29,8 @@ class ModelUser {
   final String? phoneNumber;
   @JsonKey(name: 'image_profile')
   final String? imageProfile;
+  @JsonKey(name: 'notification_id')
+  final String? notificationId;
 
   factory ModelUser.fromJson(Map<String, dynamic> json) =>
       _$ModelUserFromJson(json);

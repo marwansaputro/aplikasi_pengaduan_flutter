@@ -47,6 +47,8 @@ class AuthenticationBloc
   ) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
+        ServicePusherBeams().dispose();
+
         return emit(const BlocAuthenticationState.unauthenticated());
       case AuthenticationStatus.authenticated:
         emit(state.copyWith(

@@ -71,4 +71,8 @@ class ServicePusherBeams {
               // Success! Do something...
             });
   }
+
+  Future<void> dispose() async {
+    await PusherBeams.instance.clearAllState();
+  }
 }
