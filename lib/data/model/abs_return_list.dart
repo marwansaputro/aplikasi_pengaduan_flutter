@@ -16,7 +16,7 @@ class AbsReturnList {
   @JsonKey(name: 'per_page')
   final int? perPage;
   @JsonKey(name: 'prev_page_url')
-  final int? prevPageUrl;
+  final String? prevPageUrl;
   final int? to;
   final int? total;
 

@@ -7,9 +7,11 @@ class NotificationRepository {
 
   NotificationRepository({required this.user});
 
-  Future<ModelNotificationList> listHistory() {
+  Future<ModelNotificationList> listHistory({
+    int? page,
+  }) {
     try {
-      return apiListNotification();
+      return apiListNotification(page: page);
     } catch (e) {
       print(e.toString());
 

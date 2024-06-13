@@ -8,6 +8,7 @@ import 'package:integra_mobile/screens/notifications/bloc/bloc_notification.dart
 import 'package:integra_mobile/app/config/app_constant.dart';
 import 'package:integra_mobile/screens/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/share/widget/mocullar/items/item_notificaton.dart';
+import 'package:integra_mobile/share/widget/mocullar/scroll/scroll_infinite.dart';
 
 class SectionListNotifications extends StatefulWidget {
   const SectionListNotifications({super.key});
@@ -26,7 +27,7 @@ class _SectionListNotificationsState extends State<SectionListNotifications> {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: BlocBuilder<BlocNotification, BlocNotificationState>(
             builder: (context, state) {
-          if (state.status.isInProgress) {
+          if (state.status.isInProgress && state.data.isEmpty) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -38,9 +39,8 @@ class _SectionListNotificationsState extends State<SectionListNotifications> {
             );
           }
 
-          return IColumn(
-            gap: 5,
-            children: state.data
+          return ScrollInfinite(
+            listWidget: state.data
                 .map(
                   (e) => ItemNotification(
                       image: pathImageBackgroundWelcome,
@@ -54,6 +54,18 @@ class _SectionListNotificationsState extends State<SectionListNotifications> {
                               idPengaduan: e.pengaduanId))),
                 )
                 .toList(),
+            endOfPage: () {
+              context.read<BlocNotification>().add(
+                  BlocNotificationEventGetData(page: state.currentPage + 1));
+            },
+            isMore: state.isMore,
+            onRefresh: () {
+              context
+                  .read<BlocNotification>()
+                  .add(BlocNotificationEventGetData());
+
+              return Future.value();
+            },
           );
         }),
       ),
