@@ -107,6 +107,8 @@ class BlocComplaint extends Bloc<BlocComplaintEvent, BlocComplaintState> {
             image: state.image.value!);
 
         emit(state.copyWith(status: FormzSubmissionStatus.success));
+
+        emit(state.reset());
       } catch (e) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

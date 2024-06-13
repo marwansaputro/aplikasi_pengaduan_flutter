@@ -19,6 +19,10 @@ class BlocComplaintState extends Equatable {
 
   final bool isValid;
 
+  BlocComplaintState reset() {
+    return const BlocComplaintState();
+  }
+
   BlocComplaintState copyWith({
     FormzSubmissionStatus? status,
     AppNameValidation? appName,
