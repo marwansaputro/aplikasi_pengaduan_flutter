@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
+import 'package:integra_mobile/app/validations/validations.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/complaint/bloc/bloc_complaint.dart';
@@ -145,6 +146,7 @@ class FormComplaint extends StatelessWidget {
 
   Widget formImage() => BlocBuilder<BlocComplaint, BlocComplaintState>(
         builder: (context, state) => SectionImageComplaint(
+          errorText: state.image.isPure ? null : state.image.error?.text,
           changeImage: (fileImage) {
             if (fileImage != null) {
               context
@@ -169,8 +171,8 @@ class FormComplaint extends StatelessWidget {
             },
             hintText: "Type your complaint",
             labelText: "Complaint",
-            errorText: state.complaint.displayError != null
-                ? "Kesalahan di isi pengaduan"
+            errorText: state.complaint.isPure == false
+                ? state.complaint.error?.text
                 : null,
           );
         });
@@ -188,8 +190,8 @@ class FormComplaint extends StatelessWidget {
             },
             hintText: "Enter name of Company/Office",
             labelText: "Company/Office",
-            errorText: state.company.displayError != null
-                ? "Kesalahan di nama perusahaan"
+            errorText: state.company.isPure == false
+                ? state.company.error?.text
                 : null,
           );
         });
@@ -207,8 +209,8 @@ class FormComplaint extends StatelessWidget {
             },
             hintText: "Enter the name application",
             labelText: "App Name",
-            errorText: state.appName.displayError != null
-                ? "Kesalahan di app name"
+            errorText: state.appName.isPure == false
+                ? state.appName.error?.text
                 : null,
           );
         });

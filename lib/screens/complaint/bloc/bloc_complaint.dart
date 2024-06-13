@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:integra_mobile/app/validations/file.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/validations/validations.dart';
 
@@ -83,6 +82,19 @@ class BlocComplaint extends Bloc<BlocComplaintEvent, BlocComplaintState> {
 
   submit(
       BlocComplaintActionSubmit event, Emitter<BlocComplaintState> emit) async {
+    emit(state.copyWith(
+      image: FileValidation.dirty(state.image.value),
+      appName: AppNameValidation.dirty(state.appName.value),
+      company: CompanyValidation.dirty(state.company.value),
+      complaint: ComplaintValidation.dirty(state.complaint.value),
+      isValid: Formz.validate([
+        state.image,
+        state.complaint,
+        state.appName,
+        state.company,
+      ]),
+    ));
+
     if (state.isValid && state.image.value != null) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
