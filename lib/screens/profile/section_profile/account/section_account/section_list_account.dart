@@ -94,8 +94,16 @@ class _SectionListAccountState extends State<SectionListAccount> {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
                   builder: (BuildContext context) {
-                    return const BottomSheetChangePassword();
+                    return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const BottomSheetChangePassword(),
+                          ],
+                        ));
                   },
                 );
               },

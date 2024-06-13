@@ -55,8 +55,8 @@ Future<ReturnMessage> apiUpdatePasssword(
   final data = await myDio().put(
     '/api/user-change-password',
     data: {
-      'oldPassword': oldPassword,
-      'newPassword': newPassword,
+      'old_password': oldPassword,
+      'new_password': newPassword,
     },
   );
 
