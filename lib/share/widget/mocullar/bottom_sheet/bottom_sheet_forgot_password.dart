@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/app/validations/validations.dart';
+import 'package:integra_mobile/share/widget/button/button_solid_green.dart';
 import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bloc/bloc_reset_password.dart';
+import 'package:integra_mobile/share/widget/mocullar/form/form_input.dart';
 
 class BottomDialogFogotPassword extends StatefulWidget {
   const BottomDialogFogotPassword({super.key});
@@ -71,38 +74,16 @@ class _BottomDialogFogotPasswordState extends State<BottomDialogFogotPassword> {
                         buildWhen: (previous, current) =>
                             previous.email != current.email,
                         builder: (context, state) {
-                          return TextFormField(
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your Email';
-                              }
-                              return null;
-                            },
+                          return MyFormInput(
                             onChanged: (value) {
                               context.read<BlocResetPassword>().add(
                                   BlocResetPasswordChangeEmail(email: value));
                             },
-                            decoration: InputDecoration(
-                              label: const Text(
-                                'Email',
-                              ),
-                              hintText: 'Enter Your Email',
-                              hintStyle: const TextStyle(
-                                color: Colors.black26,
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black12, // Default border color
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black12, // Default border color
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                            labelText: "Email",
+                            hintText: 'Enter Your Email',
+                            errorText: state.email.isPure
+                                ? null
+                                : state.email.error?.text,
                           );
                         }),
                     const SizedBox(height: 25.0),
@@ -117,24 +98,13 @@ class _BottomDialogFogotPasswordState extends State<BottomDialogFogotPassword> {
                       return SizedBox(
                         height: 40,
                         width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryGreen,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          onPressed: () {
+                        child: ButtonSolidGreen(
+                          ontap: () {
                             context
                                 .read<BlocResetPassword>()
                                 .add(BlocResetPasswordSend());
                           },
-                          child: Text(
-                            "Forgot Password",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                    color: white, fontWeight: FontWeight.w400),
-                          ),
+                          title: "Forgot Password",
                         ),
                       );
                     }),

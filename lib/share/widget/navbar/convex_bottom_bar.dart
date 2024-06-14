@@ -1,7 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
+import 'package:integra_mobile/bloc/bloc_notification.dart';
 import 'package:integra_mobile/screens/beranda/screen_beranda.dart';
 import 'package:integra_mobile/screens/complaint/screen_complaint.dart';
 import 'package:integra_mobile/screens/portfolio/screen_portfolio.dart';
@@ -26,7 +28,11 @@ class _ConvexButtomBarState extends State<ConvexButtomBar> {
     super.initState();
 
     NotificationService().requestPermissions();
-    ServicePusherBeams().initPusherBeams();
+    ServicePusherBeams().initPusherBeams(
+      onMessageRecieve: (data) {
+        context.read<BlocRootNotification>().add(BlocRootNotificationCount());
+      },
+    );
   }
 
   int pageIndex = 0;

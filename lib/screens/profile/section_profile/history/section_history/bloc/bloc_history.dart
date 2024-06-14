@@ -11,23 +11,31 @@ class BlocHistory extends Bloc<BlocHistoryEvent, BlocHistoryState> {
   final PengaduanRepository pengaduanRepository;
 
   BlocHistory(this.pengaduanRepository)
-      : super(BlocHistoryState(
-          data: const [],
+      : super(const BlocHistoryState(
+          data: [],
         )) {
     on<BlocHistoryGetData>(getData);
   }
 
   getData(BlocHistoryGetData event, Emitter<BlocHistoryState> emit) async {
+    final page = event.page;
+
     if (state.status != FormzSubmissionStatus.inProgress) {
       try {
         emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
         var data = await pengaduanRepository.listHistory();
 
-        emit(state.copyWith(status: FormzSubmissionStatus.success, data: [
-          ...state.data,
-          ...data.data,
-        ]));
+        emit(state.copyWith(
+            status: FormzSubmissionStatus.success,
+            currentPage: data.currentPage,
+            isMore: data.nextPageUrl != null,
+            data: page == 1
+                ? data.data
+                : [
+                    ...state.data,
+                    ...data.data,
+                  ]));
       } catch (e) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

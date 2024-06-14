@@ -49,3 +49,20 @@ Future<ReturnMessage> apiUpdateChangeImageProfile({required File image}) async {
 
   throw Exception('Tidak berhasil merubah image user');
 }
+
+Future<ReturnMessage> apiUpdatePasssword(
+    {required String oldPassword, required String newPassword}) async {
+  final data = await myDio().put(
+    '/api/user-change-password',
+    data: {
+      'old_password': oldPassword,
+      'new_password': newPassword,
+    },
+  );
+
+  if (data.statusCode == 201) {
+    return ReturnMessage.fromJson(jsonDecode(data.toString()));
+  }
+
+  throw Exception('Tidak berhasil merubah image user');
+}

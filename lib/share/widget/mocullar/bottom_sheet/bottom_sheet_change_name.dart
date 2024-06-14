@@ -66,7 +66,7 @@ class BottomSheetChangeName extends StatelessWidget {
                         return MyFormInput(
                           hintText: authState.user?.name ?? '',
                           labelText: "Name",
-                          onChange: (value) {
+                          onChanged: (value) {
                             context.read<BlocUserChangeName>().add(
                                 BlocUserChangeNameEventChangeName(
                                     name: value ?? ''));

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
+import 'package:integra_mobile/bloc/bloc_notification.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/layout/row.dart';
@@ -88,22 +89,26 @@ class SectionNotification extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: badges.Badge(
-                        badgeAnimation: const badges.BadgeAnimation.rotation(
-                            colorChangeAnimationCurve: Curves.bounceIn,
-                            animationDuration: Duration(seconds: 3)),
-                        badgeStyle:
-                            const badges.BadgeStyle(padding: EdgeInsets.all(4)),
-                        position: badges.BadgePosition.topEnd(top: -4, end: -3),
-                        badgeContent: const Text(
-                          '3',
-                          style: TextStyle(color: white),
-                        ),
-                        child: const Icon(
-                          Icons.notifications,
-                          color: white,
-                        ),
-                      ),
+                      child: BlocBuilder<BlocRootNotification,
+                          BlocRootNotificationState>(builder: (context, state) {
+                        return badges.Badge(
+                          badgeAnimation: const badges.BadgeAnimation.rotation(
+                              colorChangeAnimationCurve: Curves.bounceIn,
+                              animationDuration: Duration(seconds: 3)),
+                          badgeStyle: const badges.BadgeStyle(
+                              padding: EdgeInsets.all(4)),
+                          position:
+                              badges.BadgePosition.topEnd(top: -4, end: -3),
+                          badgeContent: Text(
+                            state.count.toString(),
+                            style: const TextStyle(color: white),
+                          ),
+                          child: const Icon(
+                            Icons.notifications,
+                            color: white,
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 )

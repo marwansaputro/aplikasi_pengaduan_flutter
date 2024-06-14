@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
+import 'package:integra_mobile/app/validations/validations.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
 import 'package:integra_mobile/layout/row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/share/widget/atomic/label.dart';
+import 'package:integra_mobile/share/widget/button/button_solid_green.dart';
+import 'package:integra_mobile/share/widget/mocullar/form/form_input.dart';
 
 class BottomDialogSignIn extends StatefulWidget {
   const BottomDialogSignIn({
@@ -205,21 +208,11 @@ class _BottomDialogSignInState extends State<BottomDialogSignIn> {
         );
       }
 
-      return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: primaryGreen,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
-        onPressed: () {
+      return ButtonSolidGreen(
+        ontap: () {
           context.read<BlocFormLogin>().add(BlocFormLoginActionLogin());
         },
-        child: Text(
-          "Sign In",
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: white, fontWeight: FontWeight.w500),
-        ),
+        title: "Sign In",
       );
     });
   }
@@ -228,39 +221,19 @@ class _BottomDialogSignInState extends State<BottomDialogSignIn> {
     return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
         buildWhen: (previous, current) => previous.password != current.password,
         builder: (context, state) {
-          return TextFormField(
+          return MyFormInput(
             obscureText: true,
             obscuringCharacter: '*',
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your Password';
-              }
-              return null;
-            },
+            errorText: state.password.isPure == false
+                ? state.password.error?.text
+                : null,
             onChanged: (value) {
               context
                   .read<BlocFormLogin>()
                   .add(BlocFormLoginEventChangePassword(password: value));
             },
-            decoration: InputDecoration(
-              label: const Text('Password'),
-              hintText: 'Enter Your Password',
-              hintStyle: const TextStyle(
-                color: Colors.black26,
-              ),
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12, // Default border color
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12, // Default border color
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            labelText: "Password",
+            hintText: 'Enter Your Password',
           );
         });
   }
@@ -269,35 +242,16 @@ class _BottomDialogSignInState extends State<BottomDialogSignIn> {
     return BlocBuilder<BlocFormLogin, BlocFormLoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextFormField(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your Email';
-            }
-            return null;
-          },
+        return MyFormInput(
           onChanged: (value) {
             context
                 .read<BlocFormLogin>()
                 .add(BlocFormLoginEventChangeEmail(email: value));
           },
-          decoration: InputDecoration(
-            label: const Text('Email'),
-            hintText: 'Enter Your Email',
-            hintStyle: const TextStyle(color: Colors.black26),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.black12, // Default border color
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.black12, // Default border color
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
+          errorText:
+              state.email.isPure == false ? state.email.error?.text : null,
+          labelText: "Email",
+          hintText: 'Enter Your Email',
         );
       },
     );

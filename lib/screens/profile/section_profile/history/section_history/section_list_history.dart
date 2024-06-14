@@ -8,6 +8,7 @@ import 'package:integra_mobile/screens/profile/section_profile/history/section_h
 import 'package:integra_mobile/screens/detail/screen_detail_complaint.dart';
 import 'package:integra_mobile/share/widget/mocullar/items/item_history.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
+import 'package:integra_mobile/share/widget/mocullar/scroll/scroll_infinite.dart';
 
 class SectionListHistory extends StatefulWidget {
   const SectionListHistory({super.key});
@@ -28,33 +29,44 @@ class _SectionListHistoryState extends State<SectionListHistory> {
                 previous.data.length != current.data.length ||
                 previous.status != current.status,
             builder: (context, state) {
-              return state.status.isInProgress
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : state.data.isEmpty
-                      ? const Center(
-                          child: Text("Data history tidak ada"),
-                        )
-                      : IColumn(
-                          gap: 5,
-                          children: state.data
-                              .map(
-                                (e) => ItemComplaint(
-                                  image: AppEnv().baseStorage(e.gambar),
-                                  status: e.statusPengaduan,
-                                  complaint: e.isiPengaduan,
-                                  date: e.tanggalPengaduan,
-                                  press: () => {
-                                    Navigator.push(
-                                        context,
-                                        ScreenDetailComplaint.Route(
-                                          idPengaduan: e.id,
-                                        )),
-                                  },
-                                ),
-                              )
-                              .toList());
+              if (state.status.isInProgress && state.data.isEmpty) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (state.data.isEmpty) {
+                return const Center(
+                  child: Text("Data history tidak ada"),
+                );
+              }
+              return ScrollInfinite(
+                  isMore: state.isMore,
+                  endOfPage: () {
+                    context
+                        .read<BlocHistory>()
+                        .add(BlocHistoryGetData(page: state.currentPage + 1));
+                  },
+                  onRefresh: () {
+                    return Future.value();
+                  },
+                  listWidget: state.data
+                      .map(
+                        (e) => ItemComplaint(
+                          image: AppEnv().baseStorage(e.gambar),
+                          status: e.statusPengaduan,
+                          complaint: e.isiPengaduan,
+                          date: e.tanggalPengaduan,
+                          press: () => {
+                            Navigator.push(
+                                context,
+                                ScreenDetailComplaint.Route(
+                                  idPengaduan: e.id,
+                                )),
+                          },
+                        ),
+                      )
+                      .toList());
             }),
       ),
     );

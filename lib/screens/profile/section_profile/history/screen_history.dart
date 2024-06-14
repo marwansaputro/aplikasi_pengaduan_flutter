@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:integra_mobile/screens/profile/section_profile/history/section_history/bloc/bloc_history.dart';
-import 'package:integra_mobile/screens/profile/section_profile/history/section_history/body_history.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/screens/profile/section_profile/history/section_history/section_list_history.dart';
 
 class ScreenHistory extends StatefulWidget {
   const ScreenHistory({super.key});
@@ -32,7 +32,7 @@ class _ScreenHistoryState extends State<ScreenHistory> {
           elevation: 0,
           iconTheme: const IconThemeData(color: black),
         ),
-        body: const BodyHistory(),
+        body: const SectionListHistory(),
       ),
     );
   }

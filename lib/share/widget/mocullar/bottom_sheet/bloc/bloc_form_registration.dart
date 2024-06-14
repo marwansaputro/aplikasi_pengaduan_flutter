@@ -48,6 +48,16 @@ class FormRegisterBloc
 
   Future<void> registration(FormRegisterActionRegistration event,
       Emitter<FormRegisterBlocState> emit) async {
+    emit(state.copyWith(
+        email: EmailRegistration.dirty(state.email.value),
+        name: NameRegistration.dirty(state.name.value),
+        password: PasswordRegistration.dirty(state.password.value),
+        isValid: Formz.validate([
+          state.email,
+          state.password,
+          state.name,
+        ])));
+
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 

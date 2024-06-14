@@ -22,7 +22,8 @@ class ServicePusherBeams {
     await PusherBeams.instance.setDeviceInterests(["hello"]);
   }
 
-  Future<void> initPusherBeams() async {
+  Future<void> initPusherBeams(
+      {void Function(Map<Object?, Object?> data)? onMessageRecieve}) async {
     // Let's see our current interests
     print(await PusherBeams.instance.getDeviceInterests());
 
@@ -30,8 +31,13 @@ class ServicePusherBeams {
     if (!kIsWeb) {
       await PusherBeams.instance
           .onInterestChanges((interests) => {print('Interests: $interests')});
-      await PusherBeams.instance
-          .onMessageReceivedInTheForeground(_onMessageReceivedInTheForeground);
+      await PusherBeams.instance.onMessageReceivedInTheForeground(
+        (data) {
+          onMessageRecieve?.call(data);
+
+          _onMessageReceivedInTheForeground(data);
+        },
+      );
     }
     await _checkForInitialMessage();
   }
@@ -70,5 +76,9 @@ class ServicePusherBeams {
               if (error != null) {print(error)}
               // Success! Do something...
             });
+  }
+
+  Future<void> dispose() async {
+    await PusherBeams.instance.clearAllState();
   }
 }

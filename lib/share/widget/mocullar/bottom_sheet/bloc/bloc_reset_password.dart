@@ -29,6 +29,10 @@ class BlocResetPassword
 
   submit(
       BlocResetPasswordSend event, Emitter<BlocResetPasswordState> emit) async {
+    emit(state.copyWith(
+        email: EmailRegistration.dirty(state.email.value),
+        isValid: Formz.validate([state.email])));
+
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
