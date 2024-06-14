@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/bloc/bloc_notification.dart';
 import 'package:integra_mobile/screens/notifications/bloc/bloc_notification.dart';
 import 'package:integra_mobile/app/config/theme.dart';
 import 'package:integra_mobile/screens/notifications/section_notification/section_list_notifications.dart';
@@ -12,6 +13,13 @@ class ScreenNotifications extends StatefulWidget {
 }
 
 class _ScreenNotificationsState extends State<ScreenNotifications> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<BlocRootNotification>().add(BlocRootNotificationReadAll());
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
