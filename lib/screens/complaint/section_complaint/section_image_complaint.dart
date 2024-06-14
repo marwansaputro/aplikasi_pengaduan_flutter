@@ -2,19 +2,18 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:integra_mobile/layout/padding.dart';
-import 'package:integra_mobile/layout/row.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
-import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/share/widget/mocullar/bottom_sheet/bottom_sheet_change_image.dart';
 
 class SectionImageComplaint extends StatefulWidget {
   const SectionImageComplaint({
     super.key,
     this.changeImage,
+    this.errorText,
   });
 
   final void Function(File? fileImage)? changeImage;
+  final String? errorText;
 
   @override
   State<SectionImageComplaint> createState() => _SectionImageComplaintState();
@@ -24,171 +23,81 @@ class _SectionImageComplaintState extends State<SectionImageComplaint> {
   File? _file;
   bool isFile = false;
 
+  String? errorText;
+
   set file(File? file) {
     _file = file;
+    isFile = file != null;
 
     widget.changeImage?.call(_file);
   }
 
-  void takeImageWithCamera() async {
-    XFile? xFileImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    File image = File(xFileImage!.path);
-    Navigator.of(context).pop();
+  @override
+  void initState() {
+    super.initState();
 
-    setState(() {
-      file = image;
-      isFile = true;
-    });
+    errorText = widget.errorText;
   }
 
-  void takeImageWithGallery() async {
-    XFile? xFileImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    File image = File(xFileImage!.path);
-    Navigator.of(context).pop();
+  @override
+  void didUpdateWidget(covariant SectionImageComplaint oldWidget) {
+    super.didUpdateWidget(oldWidget);
 
-    setState(() {
-      file = image;
-      isFile = true;
-    });
-  }
-
-  void cencel() {
-    Navigator.of(context).pop();
+    if (oldWidget.errorText != widget.errorText) {
+      errorText = widget.errorText;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+        showBottomSheet(
           context: context,
-          builder: (BuildContext context) {
-            return SizedBox(
-              height: 150,
-              child: Padding(
-                padding: paddingMobile,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 4,
-                        width: 40,
-                        color: darkGrey,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Select your complaint file',
-                        style:
-                            Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                  color: black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                      ),
-                      const SizedBox(height: 20),
-                      IRow(
-                        gap: 10,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: primaryGreen,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              onPressed: takeImageWithCamera,
-                              child: IRow(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                gap: 5,
-                                children: [
-                                  const Icon(
-                                    Icons.camera,
-                                    color: white,
-                                  ),
-                                  Text(
-                                    'Camera',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(
-                                          color: white,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: primaryGreen,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              onPressed: takeImageWithGallery,
-                              child: IRow(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                gap: 5,
-                                children: [
-                                  const Icon(
-                                    Icons.photo,
-                                    color: white,
-                                  ),
-                                  Text(
-                                    'Gallery',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(
-                                          color: white,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+          builder: (context) {
+            return BottomSheetChangeImage(
+              onImagePick: (image) {
+                file = image;
+
+                Navigator.of(context).pop();
+              },
             );
           },
         );
       },
-      child: DottedBorder(
-          color: Colors.blue,
-          strokeWidth: 2,
-          dashPattern: const [8, 4],
-          borderType: BorderType.RRect,
-          radius: const Radius.circular(12),
-          child: Container(
-            width: 345,
-            height: 250,
-            alignment: Alignment.center,
-            child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: isFile
-                    ? Image.file(
-                        _file!,
-                        width: 345,
-                        height: 250,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.asset(pathImageUpload)),
-          )),
+      child: Column(
+        children: [
+          DottedBorder(
+              color: errorText != null ? Colors.red : Colors.blue,
+              strokeWidth: 2,
+              dashPattern: const [8, 4],
+              borderType: BorderType.RRect,
+              radius: const Radius.circular(12),
+              child: Container(
+                width: 345,
+                height: 250,
+                alignment: Alignment.center,
+                child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: isFile
+                        ? Image.file(
+                            _file!,
+                            width: 345,
+                            height: 250,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(pathImageUpload)),
+              )),
+          if (errorText != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                errorText ?? '',
+                style: const TextStyle(color: Colors.red),
+              ),
+            )
+        ],
+      ),
     );
   }
 }

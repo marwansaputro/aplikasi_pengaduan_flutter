@@ -65,7 +65,7 @@ class BottomSheetChangeHandphone extends StatelessWidget {
                           previous.handphone != current.handphone,
                       builder: (context, state) {
                         return MyFormInput(
-                          onChange: (value) {
+                          onChanged: (value) {
                             context.read<BlocUserChangeHandphone>().add(
                                 BlocUserChangeHandphoneEventChangeHandphone(
                                     handphone: value ?? ''));

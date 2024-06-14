@@ -5,7 +5,9 @@ import 'package:integra_mobile/app/config/app_env.dart';
 import 'package:integra_mobile/app/services/helper_local_notifications.dart';
 import 'package:integra_mobile/app/services/pusher.dart';
 import 'package:integra_mobile/bloc/bloc.dart';
+import 'package:integra_mobile/bloc/bloc_notification.dart';
 import 'package:integra_mobile/firebase_options.dart';
+import 'package:integra_mobile/screens/notifications/bloc/bloc_notification.dart';
 import 'package:integra_mobile/screens/welcome/screen_welcome.dart';
 import 'package:integra_mobile/data/provider/network/network.dart';
 import 'package:integra_mobile/app/services/helper_storage.dart';
@@ -74,6 +76,12 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MultiBlocProvider(
           providers: List.of([
+            BlocProvider(
+              create: (context) => BlocRootNotification(
+                  authRepository: authRepository,
+                  notificationRepository: notificationRepository)
+                ..add(BlocRootNotificationCount()),
+            ),
             BlocProvider(
                 create: (context) =>
                     AuthenticationBloc(userRepository: authRepository)),

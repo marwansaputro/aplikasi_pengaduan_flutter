@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:integra_mobile/bloc/bloc_notification.dart';
 import 'package:integra_mobile/screens/notifications/bloc/bloc_notification.dart';
-import 'package:integra_mobile/screens/notifications/section_notification/body_notifications.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/screens/notifications/section_notification/section_list_notifications.dart';
 
 class ScreenNotifications extends StatefulWidget {
   const ScreenNotifications({super.key});
@@ -12,6 +13,13 @@ class ScreenNotifications extends StatefulWidget {
 }
 
 class _ScreenNotificationsState extends State<ScreenNotifications> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<BlocRootNotification>().add(BlocRootNotificationReadAll());
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,7 +40,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
           elevation: 0,
           iconTheme: const IconThemeData(color: black),
         ),
-        body: const BodyNotification(),
+        body: const SectionListNotifications(),
       ),
     );
   }

@@ -62,6 +62,16 @@ class BlocFormLogin extends Bloc<BlocFormLoginEvent, BlocFormLoginState> {
 
   Future<void> login(
       BlocFormLoginActionLogin event, Emitter<BlocFormLoginState> emit) async {
+    emit(state.copyWith(
+        email: EmailRegistration.dirty(state.email.value),
+        rememberMe: RememberMeValidation.dirty(state.rememberMe.value),
+        password: PasswordRegistration.dirty(state.password.value),
+        isValid: Formz.validate([
+          state.email,
+          state.password,
+          state.rememberMe,
+        ])));
+
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 

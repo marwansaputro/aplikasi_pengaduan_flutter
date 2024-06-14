@@ -21,16 +21,24 @@ class BlocNotification
 
   getData(BlocNotificationEventGetData event,
       Emitter<BlocNotificationState> emit) async {
+    final page = event.page ?? state.currentPage;
+
     if (state.status != FormzSubmissionStatus.inProgress) {
       try {
         emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
-        var data = await notificationRepository.listHistory();
+        var data = await notificationRepository.listHistory(page: page);
 
-        emit(state.copyWith(status: FormzSubmissionStatus.success, data: [
-          ...state.data,
-          ...data.data,
-        ]));
+        emit(state.copyWith(
+            status: FormzSubmissionStatus.success,
+            isMore: data.nextPageUrl != null,
+            currentPage: data.currentPage,
+            data: page != 1
+                ? [
+                    ...state.data,
+                    ...data.data,
+                  ]
+                : data.data));
       } catch (e) {
         log(e.toString());
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

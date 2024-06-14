@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:integra_mobile/app/config/app_constant.dart';
+import 'package:integra_mobile/app/validations/validations.dart';
 import 'package:integra_mobile/layout/column.dart';
 import 'package:integra_mobile/layout/padding.dart';
 import 'package:integra_mobile/screens/complaint/bloc/bloc_complaint.dart';
 import 'package:integra_mobile/screens/complaint/section_complaint/section_image_complaint.dart';
 import 'package:integra_mobile/app/config/theme.dart';
+import 'package:integra_mobile/share/widget/mocullar/form/form_input.dart';
 
 class SectionFormComplaint extends StatefulWidget {
   const SectionFormComplaint({
@@ -144,6 +146,7 @@ class FormComplaint extends StatelessWidget {
 
   Widget formImage() => BlocBuilder<BlocComplaint, BlocComplaintState>(
         builder: (context, state) => SectionImageComplaint(
+          errorText: state.image.isPure ? null : state.image.error?.text,
           changeImage: (fileImage) {
             if (fileImage != null) {
               context
@@ -159,41 +162,18 @@ class FormComplaint extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.complaint != current.complaint,
         builder: (context, state) {
-          return TextFormField(
-            // validator: (value) {
-            //   if (value == null || value.isEmpty) {
-            //     return 'Please enter your Complaint';
-            //   }
-            //   return null;
-            // },
+          return MyFormInput(
             maxLines: 5,
             onChanged: (value) {
               context
                   .read<BlocComplaint>()
                   .add(BlocComplaintChangeComplaint(complaint: value));
             },
-            decoration: InputDecoration(
-              hintText: "Type your complaint",
-              hintStyle: TextStyle(color: darkGrey),
-              labelText: "Complaint",
-              labelStyle: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            hintText: "Type your complaint",
+            labelText: "Complaint",
+            errorText: state.complaint.isPure == false
+                ? state.complaint.error?.text
+                : null,
           );
         });
   }
@@ -202,40 +182,17 @@ class FormComplaint extends StatelessWidget {
     return BlocBuilder<BlocComplaint, BlocComplaintState>(
         buildWhen: (previous, current) => previous.company != current.company,
         builder: (context, state) {
-          return TextFormField(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter Company/Office';
-              }
-              return null;
-            },
+          return MyFormInput(
             onChanged: (value) {
               context
                   .read<BlocComplaint>()
                   .add(BlocComplaintChangeCompany(company: value));
             },
-            decoration: InputDecoration(
-              hintText: "Enter name of Company/Office",
-              hintStyle: TextStyle(color: darkGrey),
-              labelText: "Company/Office",
-              labelStyle: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            hintText: "Enter name of Company/Office",
+            labelText: "Company/Office",
+            errorText: state.company.isPure == false
+                ? state.company.error?.text
+                : null,
           );
         });
   }
@@ -244,40 +201,17 @@ class FormComplaint extends StatelessWidget {
     return BlocBuilder<BlocComplaint, BlocComplaintState>(
         buildWhen: (previous, current) => previous.appName != current.appName,
         builder: (context, state) {
-          return TextFormField(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter App Name';
-              }
-              return null;
-            },
+          return MyFormInput(
             onChanged: (value) {
               context
                   .read<BlocComplaint>()
                   .add(BlocComplaintChangeAppName(appName: value));
             },
-            decoration: InputDecoration(
-              hintText: "Enter the name application",
-              hintStyle: TextStyle(color: darkGrey),
-              labelText: "App Name",
-              labelStyle: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: darkblue, fontWeight: FontWeight.w500),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            hintText: "Enter the name application",
+            labelText: "App Name",
+            errorText: state.appName.isPure == false
+                ? state.appName.error?.text
+                : null,
           );
         });
   }

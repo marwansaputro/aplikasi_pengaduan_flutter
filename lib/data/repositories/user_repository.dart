@@ -42,4 +42,17 @@ class UserRepository {
       rethrow;
     }
   }
+
+  updatePassword(
+      {required String newPassword, required String oldPassword}) async {
+    try {
+      final data = await apiUpdatePasssword(
+          newPassword: newPassword, oldPassword: oldPassword);
+      authRepository.userProfile();
+
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

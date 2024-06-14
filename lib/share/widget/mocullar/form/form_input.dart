@@ -6,33 +6,55 @@ class MyFormInput extends StatelessWidget {
     super.key,
     required this.labelText,
     this.hintText,
+    this.errorText,
     this.maxLines = 1,
     this.suffixIcon,
-    this.onChange,
+    this.onChanged,
+    this.obscureText = false,
+    this.obscuringCharacter = '*',
   });
 
   final String? hintText;
+  final String? errorText;
   final String labelText;
   final int maxLines;
   final Widget? suffixIcon;
+  final bool obscureText;
+  final String obscuringCharacter;
 
-  final void Function(String? value)? onChange;
+  final void Function(String value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
+      obscureText: obscureText,
+      obscuringCharacter: obscuringCharacter,
       maxLines: maxLines,
-      onChanged: onChange,
+      onChanged: onChanged,
       decoration: InputDecoration(
-          border: const OutlineInputBorder(),
+          // border: const OutlineInputBorder(),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: primaryGreen),
           ),
           hintText: hintText,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: darkGrey, fontWeight: FontWeight.w400),
+          errorText: errorText,
+          // hintStyle: Theme.of(context)
+          //     .textTheme
+          //     .titleLarge
+          //     ?.copyWith(color: darkGrey, fontWeight: FontWeight.w400),
+          hintStyle: const TextStyle(color: Colors.black26),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.black12, // Default border color
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.black12, // Default border color
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           labelText: labelText,
           labelStyle: Theme.of(context)
               .textTheme
